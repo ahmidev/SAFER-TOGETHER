@@ -1,0 +1,24 @@
+/* CSS HEX */
+:root {
+
+    --raisin-black: #262023;
+    --tea-rose-red: #EFC3C3ff;
+    --taupe-gray: #98949Dff;
+    --cornflower-blue: #66A1FBff;
+    --puce: #BE8EA8ff;
+    --tea-rose-red-2: #EEC2C2ff;
+    --white: #FEFEFEff;
+    --china-rose: #9E5E78ff;
+}
+
+/* CSS HSL */
+/*
+--raisin-black: hsla(330, 9%, 14%, 1);
+--tea-rose-red: hsla(0, 58%, 85%, 1);
+--taupe-gray: hsla(267, 4%, 60%, 1);
+--cornflower-blue: hsla(216, 95%, 69%, 1);
+--puce: hsla(328, 27%, 65%, 1);
+--tea-rose-red-2: hsla(0, 56%, 85%, 1);
+--white: hsla(0, 0%, 100%, 1);
+--china-rose: hsla(336, 25%, 49%, 1);
+*/
