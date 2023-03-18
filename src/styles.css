@@ -53,13 +53,13 @@ table {
 :root {
 
     --raisin-black: #262023;
-    --tea-rose-red: #EFC3C3ff;
-    --taupe-gray: #98949Dff;
+    --tea-rose-red: #FDC5CC;
+    --taupe-gray: #CACACA;
     --cornflower-blue: #66A1FBff;
     --puce: #BE8EA8ff;
     --tea-rose-red-2: #EEC2C2ff;
     --white: #FEFEFEff;
-    --china-rose: #9E5E78ff;
+    --china-rose: #652A3A;
 }
 
 /* CSS HSL */
