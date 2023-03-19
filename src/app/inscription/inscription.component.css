@@ -1,15 +1,14 @@
 main {
     width: 100vw;
-    ;
     height: 100vh;
-
     font-family: 'Montserrat', sans-serif;
-    background-image: url("/assets/fond_mobile2.jpg");
+    background-image: url("/assets/bg_original2.png");
+    background-size: cover;
 
 }
 
 .main {
-    width: 300px;
+    width:77vw;
     height: 100%;
     margin: auto;
     display: flex;
@@ -19,7 +18,7 @@ main {
 }
 
 .logo {
-    width: 257px;
+    width:  66vw;
     height: 257px;
     display: flex;
     align-items: center;
@@ -28,7 +27,8 @@ main {
 }
 
 .logo img {
-    height: 200px;
+    height: 28vh;
+
 
 }
 
@@ -40,13 +40,13 @@ form {
 }
 
 .title {
-    height: 50px;
+    height: 6vh;
     display: flex;
     align-items: center;
 }
 
 .title h2 {
-    font-size: 24px;
+    font-size: 1.5em;
     font-weight: 700;
     margin: 0;
     color: var(--china-rose);
@@ -54,14 +54,14 @@ form {
 }
 
 .fullName {
-    width: 250px;
+    width:64vw;
     display: flex;
     justify-content: space-between;
 }
 
 .fullName input {
-    width: 116px;
-    height: 50px;
+    width: 30vw;
+    height:6vh;
     border-radius: 5px;
     border: none;
     box-sizing: border-box;
@@ -70,8 +70,8 @@ form {
 }
 
 input {
-    width: 250px;
-    height: 50px;
+    width: 64vw;
+    height: 6vh;
     margin-bottom: 10px;
     border-radius: 5px;
     border: none;
@@ -108,8 +108,8 @@ input {
 }
 
 .btn-upload {
-    width: 140px;
-    height: 50px;
+    width: 36vw;
+    height: 6vh;
     background-color: var(--taupe-gray);
     border: none;
     padding: 10px;
@@ -124,12 +124,13 @@ input {
 
 
 button {
-    width: 250px;
-    height: 50px;
+    width: 64vw;
+    height: 6vh;
     border-radius: 5px;
     border: none;
     background-color: var(--tea-rose-red);
     font-size: 16px;
     color: var(--china-rose);
     box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
 }
