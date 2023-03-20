@@ -49,25 +49,14 @@ table {
 
 
 body {
-    position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rosybrown
-    ;
-  
+    background-image: url("/assets/fond_mobile2.jpg");
+    border: 0;
+  outline: 0;
 }
-header {
-    width: 100vw;
-}
-.picture {
-    width: 78%;
-    height: 350px;
-    background-color: white;
-    position: relative;
-    margin-top: 5%;
-    margin-left: 5%;
-}
-.photo {
-    width: 350px;
-    
+
+
+header img {
+    width: 300px;
 }
