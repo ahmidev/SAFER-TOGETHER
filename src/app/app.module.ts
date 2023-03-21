@@ -14,6 +14,8 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { MessageComponent } from './message/message.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { environment } from 'src/environnements/environnement';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey})
+    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

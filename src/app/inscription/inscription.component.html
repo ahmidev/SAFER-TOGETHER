@@ -7,32 +7,32 @@
         <img src="../assets/logo1.png" alt="" srcset="">
     </div>
 
-    <form>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="title">
             <h2>Inscription</h2>
 
         </div>
 
         <div class="fullName">
-            <input type="text" id="nom" name="nom" required placeholder="nom" />
+            <input type="text" id="name" formControlName="name" required placeholder="nom" />
 
-            <input type="text" id="prenom" name="prenom" required placeholder="prénom" />
+            <input type="text" id="firstname" formControlName="firstname" required placeholder="prénom" />
         </div>
 
-        <input type="email" id="email" name="email" required placeholder="Email" />
+        <input type="email" id="email" formControlName="email" required placeholder="Email" />
 
-        <input type="date" id="date_naissance" name="date_naissance" required placeholder="Date de naissance" />
+        <input type="date" id="birthday" formControlName="birthday" required placeholder="Date de naissance" />
 
-        <input type="password" id="mot_de_passe" name="mot_de_passe" required placeholder="Mot de passe" />
+        <input type="password" id="password" formControlName="password" required placeholder="Mot de passe" />
 
-        <input type="password" id="confirmation_mot_de_passe" name="confirmation_mot_de_passe" required
+        <input type="password" id="confirm_password" formControlName="confirm_password" required
             placeholder="Confirmation du mot de passe" />
         <div class="file">
             <label for="fichier">Fichier:</label>
-            <input type="file" id="fichier" name="fichier" placeholder="Fichier" />
+            <input type="file" id="file" formControlName="file" placeholder="Fichier" />
         </div>
 
-        <button>Créer compte</button>
+        <button type="submit">Créer compte</button>
     </form>
 </div>
 </main>
