@@ -1,0 +1,136 @@
+main {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("/assets/bg_original2.png");
+    background-size: cover;
+
+}
+
+.main {
+    width:77vw;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.logo {
+    width:  66vw;
+    height: 257px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logo img {
+    height: 28vh;
+
+
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.title {
+    height: 6vh;
+    display: flex;
+    align-items: center;
+}
+
+.title h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 0;
+    color: var(--china-rose);
+
+}
+
+.fullName {
+    width:64vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fullName input {
+    width: 30vw;
+    height:6vh;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+input {
+    width: 64vw;
+    height: 6vh;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.file {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 10px 0;
+    padding: 0 5px;
+}
+
+.parent-div {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 10px 10px 0;
+}
+
+.parent-div input[type=file] {
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    position: absolute;
+
+}
+
+.btn-upload {
+    width: 36vw;
+    height: 6vh;
+    background-color: var(--taupe-gray);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    color: var(--china-rose);
+    box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+
+
+}
+
+
+button {
+    width: 64vw;
+    height: 6vh;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--tea-rose-red);
+    font-size: 16px;
+    color: var(--china-rose);
+    box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+}
