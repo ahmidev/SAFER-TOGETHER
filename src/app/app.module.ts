@@ -17,7 +17,7 @@ import { environment } from 'src/environnements/environnement';
 
 @NgModule({
   declarations: [
-    
+
     AppComponent,
     NavbarComponent,
     HomeComponent,
