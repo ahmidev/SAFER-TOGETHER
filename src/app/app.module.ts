@@ -14,6 +14,7 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { MessageComponent } from './message/message.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { environment } from 'src/environnements/environnement';
     MapComponent,
     DiscussionComponent,
     MessageComponent,
-    SaferListComponent
+    SaferListComponent,
+    UserProfilComponent
   ],
   imports: [
     BrowserModule,
