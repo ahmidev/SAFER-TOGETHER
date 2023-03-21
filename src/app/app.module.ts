@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 
 @NgModule({
   declarations: [
-    
+
     AppComponent,
     NavbarComponent,
     HomeComponent,
