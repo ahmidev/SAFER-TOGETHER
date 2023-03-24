@@ -1,7 +1,17 @@
 .navbar{
-display: flex;
-justify-content: center;
-align-items: space-between;
 position: sticky;
 bottom: 0;
+}
+
+.icones{
+  display: flex;
+  justify-content: space-between;
+  height: 78px;
+  padding: 0 8px;
+  background-color: #EEC2C2ff;
+}
+
+img{
+  width: 15vw;
+  cursor: pointer;
 }
