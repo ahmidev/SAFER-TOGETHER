@@ -4,7 +4,7 @@
     <div class="fond">
       <!-- création de la div "display" pour ensuite utiliser flexbox et manipuler les icones -->
       <div class="display">
-        <img class="fleche" src="../assets/icone_fleche1.svg" alt="" />
+        <img class="fleche" src="../assets/icone_fleche1.svg" alt="" (click)="back()"/>
         <img class="coeur" src="../assets/icone_coeur.svg" alt="" />
       </div>
       <!-- photo de profil -->
@@ -41,7 +41,7 @@
     </p>
     <!-- bouton pour contacter le Safer -->
     <div class="bloc">
-      <button>Contacter</button>
+      <button (click)="next()">Contacter</button>
     </div>
   </main>
 
