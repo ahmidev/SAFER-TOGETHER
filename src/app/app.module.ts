@@ -14,7 +14,6 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { MessageComponent } from './message/message.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
-import { UserProfilComponent } from './user-profil/user-profil.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,7 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey})
+    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

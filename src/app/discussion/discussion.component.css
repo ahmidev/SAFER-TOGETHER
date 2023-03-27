@@ -188,7 +188,11 @@ img{
   align-items: center;
 }
 
-.submit-message img main {
+.submit-message img {
+  width: 30px;
+}
+
+main {
     width: 100vw;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
