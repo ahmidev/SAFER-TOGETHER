@@ -9,11 +9,12 @@
   
     
     <div class="input">
-        <input type="text" placeholder="Email*">
-        <input type="text" placeholder="Password*">
+        <input type="text" placeholder="Email*" [(ngModel)]="user.email">
+        <input type="text" placeholder="Password*" [(ngModel)]="user.password">
+     
     </div>
 
     
-        <button class="bouton" aria-placeholder="Connexion">Connexion</button>
+        <button class="bouton" aria-placeholder="Connexion" (click)="onLoggedin()">Connexion</button>
     
 </div>

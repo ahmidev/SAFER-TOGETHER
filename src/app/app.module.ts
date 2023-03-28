@@ -14,6 +14,8 @@ import { DiscussionComponent } from './discussion/discussion.component';
 import { MessageComponent } from './message/message.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { environment } from 'src/environnements/environnement';
     DiscussionComponent,
     MessageComponent,
     SaferListComponent,
-    UserProfilComponent
+    UserProfilComponent,
+    
   ],
   imports: [
     BrowserModule,
