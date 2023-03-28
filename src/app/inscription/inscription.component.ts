@@ -10,7 +10,7 @@ import { User } from '../modele/User';
 export class InscriptionComponent {
 
   userForm! : FormGroup;
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder) {
 
   this.userForm = this.fb.group ({
       name : ['',Validators.required],
@@ -27,7 +27,7 @@ export class InscriptionComponent {
 
     onSubmit(){
 
-      let newUser : User = new User(this.userForm.value.name,this.userForm.value.firstname,this.userForm.value.email,this.userForm.value.birthday,this.userForm.value.password,this.userForm.value.file,) 
+      let newUser : User = new User(this.userForm.value.name,this.userForm.value.firstname,this.userForm.value.email,this.userForm.value.birthday,this.userForm.value.password,this.userForm.value.file,)
       console.log(newUser)
 
       fetch('http://localhost:8080/user/create', {
@@ -51,6 +51,8 @@ export class InscriptionComponent {
   console.error(error);
 });
     }
+
+    
 
 
 

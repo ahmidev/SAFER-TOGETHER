@@ -3,18 +3,23 @@
         <h1>SAFER TOGETHER</h1>
     </div>
 
+
+
     <div class="logo">
         <img src="../assets/logo1.png" alt="" srcset="">
     </div>
-  
-    
+
+    <div class="alert" *ngIf="erreur==1">
+    <strong>login ou mot de passe erronés..</strong>
+    </div>
+
     <div class="input">
         <input type="text" placeholder="Email*" [(ngModel)]="user.email">
         <input type="text" placeholder="Password*" [(ngModel)]="user.password">
-     
+
     </div>
 
-    
+
         <button class="bouton" aria-placeholder="Connexion" (click)="onLoggedin()">Connexion</button>
-    
+
 </div>
