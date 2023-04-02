@@ -15,7 +15,7 @@ import { MessageComponent } from './message/message.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,9 @@ import { Router } from '@angular/router';
     MapComponent,
     DiscussionComponent,
     MessageComponent,
-    SaferListComponent
+    SaferListComponent,
+    UserProfilComponent,
+    
   ],
   imports: [
     BrowserModule,
