@@ -15,10 +15,13 @@ constructor(public router : Router){
 
 back():void {
   this.router.navigate(["/safer-list"]);
+  console.log("coucou");
+  
 }
 
 next():void {
   this.router.navigate(["/discussion"]);
+  console.log("coucou");
 }
 
 
