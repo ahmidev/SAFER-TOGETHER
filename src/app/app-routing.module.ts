@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MessageComponent } from './message/message.component';
 import { ProfilComponent } from './profil/profil.component';
+import { SaferListComponent } from './safer-list/safer-list.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'message', component: MessageComponent},
   {path:'profil', component: ProfilComponent},
   {path:'discussion', component: DiscussionComponent},
+  { path: "safer-list", component: SaferListComponent}
 ];
 
 @NgModule({

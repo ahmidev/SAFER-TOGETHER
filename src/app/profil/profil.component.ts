@@ -1,6 +1,9 @@
+
+=======
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../Services/auth.service';
+import { AuthService } from '../Services/auth.service';>>>>>>> dev
+
 
 @Component({
   selector: 'app-profil',
@@ -9,7 +12,24 @@ import { AuthService } from '../Services/auth.service';
 })
 export class ProfilComponent implements OnInit {
 
+
 constructor( private authService : AuthService , private router : Router ) { }
+
+
+
+back():void {
+  this.router.navigate(["/safer-list"]);
+  console.log("coucou");
+  
+}
+
+next():void {
+  this.router.navigate(["/discussion"]);
+  console.log("coucou");
+}
+
+
+
 
 
   ngOnInit(){
