@@ -8,8 +8,6 @@ import { UserConnect } from '../modele/UserConnect';
 })
 export class AuthService {
 
-
-
   users: UserConnect[] = [{"email":"admin", "password":"123", "role":['ADMIN']},
   {"email":"mouss", "password":"123", "role":['USER']} ];
 
@@ -68,6 +66,4 @@ getUserRoles(email : string){
     }
   })
 }
-
-
 }
