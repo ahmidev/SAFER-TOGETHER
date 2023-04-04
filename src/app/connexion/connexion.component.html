@@ -9,18 +9,18 @@
         <img src="../assets/logo1.png" alt="" srcset="">
     </div>
 
-    <div class="alert" *ngIf="erreur==1">
+    <div class="alert" *ngIf="erreur">
     <strong>login ou mot de passe erronés..</strong>
     </div>
 
     <div class="input">
-        <input type="text" placeholder="Email*" [(ngModel)]="user.email">
-        <input type="text" placeholder="Password*" [(ngModel)]="user.password">
+        <input type="email" placeholder="Email*" [(ngModel)]="email">
+        <input type="password" placeholder="Password*" [(ngModel)]="password">
 
     </div>
 
 
-        <button class="bouton" aria-placeholder="Connexion" (click)="onLoggedin()">Connexion</button>
+        <button class="bouton" aria-placeholder="Connexion" (click)=" login()">Connexion</button>
 
 </div>
 

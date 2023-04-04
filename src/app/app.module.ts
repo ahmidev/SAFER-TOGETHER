@@ -17,6 +17,7 @@ import { environment } from 'src/environnements/environnement';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 
 @NgModule({
   declarations: [
@@ -32,11 +33,12 @@ import { HttpClientModule } from '@angular/common/http';
     MessageComponent,
     SaferListComponent,
     UserProfilComponent,
+    ConfirmRegistrationComponent,
     
   ],
   imports: [
-    BrowserModule,HttpClientModule,
-    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule
+    BrowserModule,
+    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
