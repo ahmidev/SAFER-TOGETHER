@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { UserConnect } from '../modele/UserConnect';
 
 
@@ -14,6 +15,8 @@ export class AuthService {
   public loggedUser!:string;
   public isloggedIn: Boolean = false;
   public roles!:string[];
+  http: any;
+ 
 
   constructor(private router: Router) { }
 
@@ -66,4 +69,9 @@ getUserRoles(email : string){
     }
   })
 }
+
+getUserById(id: number): Observable<any> {
+   return this.http.get(`http://localhost:8080/users/${id}`);
+}
+
 }

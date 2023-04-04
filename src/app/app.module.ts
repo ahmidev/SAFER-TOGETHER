@@ -16,6 +16,7 @@ import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
     
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,HttpClientModule,
     AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule
   ],
   providers: [],

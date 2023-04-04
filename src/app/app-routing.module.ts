@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MessageComponent } from './message/message.component';
 import { ProfilComponent } from './profil/profil.component';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path:'message', component: MessageComponent},
   {path:'profil', component: ProfilComponent},
   {path:'discussion', component: DiscussionComponent},
+  {path:'userprofil', component: UserProfilComponent},
+  {path:'user/:id', component:UserProfilComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
