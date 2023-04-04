@@ -1,4 +1,4 @@
-/* main {
+main {
     width: 100vw;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
@@ -130,4 +130,4 @@ button {
     color: var(--china-rose);
     box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
     margin-bottom: 10px;
-} */
+}

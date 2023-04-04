@@ -16,6 +16,7 @@ import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { ParentMapComponent } from './parent-map/parent-map.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
     MessageComponent,
     SaferListComponent,
     UserProfilComponent,
+    ParentMapComponent,
     
   ],
   imports: [
