@@ -13,15 +13,15 @@ constructor( private authService : AuthService , private router : Router ) { }
 
 
   ngOnInit(){
-    let isloggedIn: string | null;
-    let loggedUser: string | null;
-    isloggedIn = localStorage.getItem('isloggedIn');
-    loggedUser = localStorage.getItem('loggedUser');
-    if (isloggedIn!= "true" || !loggedUser){
-      this.router.navigate(['/connexion']);
-    }else{
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
-    }
+    // let isloggedIn: string | null;
+    // let loggedUser: string | null;
+    // isloggedIn = localStorage.getItem('isloggedIn');
+    // loggedUser = localStorage.getItem('loggedUser');
+    // if (isloggedIn!= "true" || !loggedUser){
+    //   this.router.navigate(['/connexion']);
+    // }else{
+    //   this.authService.setLoggedUserFromLocalStorage(loggedUser);
+    // }
 
 
 

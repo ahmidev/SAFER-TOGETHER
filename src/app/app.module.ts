@@ -16,6 +16,8 @@ import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,12 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
     MessageComponent,
     SaferListComponent,
     UserProfilComponent,
+    ConfirmRegistrationComponent,
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule
+    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { DiscussionComponent } from './discussion/discussion.component';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MessageComponent } from './message/message.component';
@@ -9,13 +11,14 @@ import { ProfilComponent } from './profil/profil.component';
 
 
 const routes: Routes = [
-  {path:'', component: ConnexionComponent},
-  {path:'connexion', component: ConnexionComponent},
-  {path:'inscription', component: InscriptionComponent},
+  {path:'', component: HomeComponent},
   {path:'home', component: HomeComponent},
-  {path:'message', component: MessageComponent},
-  {path:'profil', component: ProfilComponent},
-  {path:'discussion', component: DiscussionComponent},
+  {path:'inscription', component: InscriptionComponent},
+  {path:'connexion', component: ConnexionComponent},
+  {path:'register', component: ConfirmRegistrationComponent},
+  {path:'message', component: MessageComponent,canActivate: [AuthGuard]},
+  {path:'profil', component: ProfilComponent, canActivate: [AuthGuard]},
+  {path:'discussion', component: DiscussionComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
