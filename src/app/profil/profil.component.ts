@@ -1,6 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
+
 
 @Component({
   selector: 'app-profil',
@@ -9,22 +11,36 @@ import { AuthService } from '../Services/auth.service';
 })
 export class ProfilComponent implements OnInit {
 
-  safers: any = [];
-  safer: any;
-  saferId: any;
-  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute) { }
+
+constructor( private authService : AuthService , private router : Router ) { }
 
 
-  ngOnInit() {
-    let isloggedIn: string | null;
-    let loggedUser: string | null;
-    isloggedIn = localStorage.getItem('isloggedIn');
-    loggedUser = localStorage.getItem('loggedUser');
-    if (isloggedIn != "true" || !loggedUser) {
-      this.router.navigate(['/profil']);
-    } else {
-      this.authService.setLoggedUserFromLocalStorage(loggedUser);
-    }
+
+back():void {
+  this.router.navigate(["/safer-list"]);
+  console.log("coucou");
+  
+}
+
+next():void {
+  this.router.navigate(["/discussion"]);
+  console.log("coucou");
+}
+
+
+
+
+
+  ngOnInit(){
+    // let isloggedIn: string | null;
+    // let loggedUser: string | null;
+    // isloggedIn = localStorage.getItem('isloggedIn');
+    // loggedUser = localStorage.getItem('loggedUser');
+    // if (isloggedIn!= "true" || !loggedUser){
+    //   this.router.navigate(['/connexion']);
+    // }else{
+    //   this.authService.setLoggedUserFromLocalStorage(loggedUser);
+    // }
 
 
 
@@ -43,21 +59,7 @@ export class ProfilComponent implements OnInit {
     }
 
 
-    this.saferId = this.activatedRoute.snapshot.params['id'];
-    // this.saferId = 5;
-
-    console.log('alioune ', this.saferId);
-    fetch(`http://localhost:8080/users/${this.saferId}`, options)
-      .then((data) => data.json())
-
-      .then((data) => {
-        this.safer = data
-        console.log(data);
-
-      })
-
-
-      .catch(error => console.log(error))
+  
 
 
 
@@ -71,7 +73,7 @@ export class ProfilComponent implements OnInit {
 
 
 
-      ;
+    
 
   }
 

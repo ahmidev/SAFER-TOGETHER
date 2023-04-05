@@ -1,5 +1,7 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { UserConnect } from '../modele/UserConnect';
 
 
@@ -10,64 +12,40 @@ export class AuthService {
 
 
 
-  users: UserConnect[] = [{"email":"admin", "password":"123", "role":['ADMIN']},
-  {"email":"mouss", "password":"123", "role":['USER']} ];
+  private url = 'http://localhost:8080/auth/authenticate';
 
-  public loggedUser!:string;
-  public isloggedIn: Boolean = false;
-  public roles!:string[];
+  constructor(private http: HttpClient) { }
 
-  constructor(private router: Router) { }
-
-logout(){
-this.isloggedIn = false;
-this.loggedUser = undefined!;
-this.roles = undefined!;
-localStorage.removeItem('loggedUser');
-localStorage.setItem('isloggedIn',String(this.isloggedIn));
-this.router.navigate(['/connexion']);
-
+  login(email: string, password: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    const body = {
+      email: email,
+      password: password
+    };
+    return this.http.post<any>(this.url, body, httpOptions);
   }
 
-signIn(user :UserConnect):Boolean{
-    let validUser: Boolean = false;
-    this.users.forEach((curUser) => {
-    if(user.email== curUser.email && user.password==curUser.password) {
-    validUser = true;
-    this.loggedUser = curUser.email;
-    this.isloggedIn = true;
-    this.roles = curUser.role;
-    localStorage.setItem('loggedUser',this.loggedUser);
-    localStorage.setItem('isloggedIn',String(this.isloggedIn));
-    }
-    });
-    return validUser;
-
-}
-
-isAdmin(): Boolean{
-  if (!this.roles){ // this.roles == undefined
-    return false
-
-  }else{
-    return (this.roles.indexOf('ADMIN') > -1)
+  getToken(): string|null {
+    return localStorage.getItem('token');
   }
 
-}
-
-setLoggedUserFromLocalStorage(login : string){
-  this.loggedUser = login;
-  this.isloggedIn = true;
-  this.getUserRoles(login);
-}
-
-getUserRoles(email : string){
-  this.users.forEach((curUser) => {
-    if(curUser.email == email){
-      this.roles = curUser.role;
+  isLoggedIn(): boolean {
+    const token = this.getToken();
+    if (token) {
+      // Vérifier si le token est expiré
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.exp > (Date.now() / 1000);
+    } else {
+      return false;
     }
-  })
-}
+  }
 
+  logout(): void {
+    localStorage.removeItem('token');
+  }
 
 }
