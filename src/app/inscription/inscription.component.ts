@@ -110,7 +110,7 @@ export class InscriptionComponent implements OnInit{
     if (input.files && input.files.length) {
       this.file = input.files[0];
     }
-  }
+}
 
 
 
