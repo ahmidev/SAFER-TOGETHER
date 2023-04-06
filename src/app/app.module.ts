@@ -15,11 +15,14 @@ import { MessageComponent } from './message/message.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { environment } from 'src/environnements/environnement';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UserProfilComponent } from './user-profil/user-profil.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
+import { ParentMapComponent } from './parent-map/parent-map.component';
 
 @NgModule({
   declarations: [
-
+    
     AppComponent,
     NavbarComponent,
     HomeComponent,
@@ -29,11 +32,17 @@ import { Router } from '@angular/router';
     MapComponent,
     DiscussionComponent,
     MessageComponent,
-    SaferListComponent
+    SaferListComponent,
+    UserProfilComponent,
+    ConfirmRegistrationComponent,
+    SaferListComponent,
+    ParentMapComponent,
+    MapComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule
+    AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule,HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

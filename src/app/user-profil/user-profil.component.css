@@ -1,0 +1,61 @@
+.main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url("src/assets/fond_mobile2.jpg");
+}
+
+.section1 {
+    height: 25vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 200px;
+    display: flex;
+}
+
+img {
+    height: 150px;
+    margin-top: 10px;
+}
+
+/* .puce {
+    height: 30px;
+} */
+
+p {
+    font-size: 1.5em;
+}
+
+.section2 {
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;    
+}
+
+.button {
+    height: 50px;
+    background-color: var(--tea-rose-red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30px;
+}
+
+
+
+

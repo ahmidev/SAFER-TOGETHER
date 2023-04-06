@@ -1,6 +1,6 @@
 main {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     font-family: 'Montserrat', sans-serif;
     background-image: url("/assets/bg_original2.png");
     background-size: cover;
@@ -100,13 +100,11 @@ input {
 }
 
 .parent-div input[type=file] {
-    width: 0;
-    height: 0;
+   
     left: 0;
     top: 0;
     opacity: 0;
     position: absolute;
-
 }
 
 .btn-upload {
@@ -120,12 +118,10 @@ input {
     margin-top: 10px;
     color: var(--china-rose);
     box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
-
-
 }
 
 
-button {
+.submit {
     width: 64vw;
     height: 6vh;
     border-radius: 5px;
@@ -135,6 +131,4 @@ button {
     color: var(--china-rose);
     box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
     margin-bottom: 10px;
-    
 }
-
