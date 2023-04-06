@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -88,7 +88,12 @@ export class InscriptionComponent implements OnInit{
     formData.append('file', this.file, this.file.name);
     console.log(this.file.name);
     
-    this.http.post('http://localhost:8080/auth/register', formData).subscribe(
+    
+    const headers = new HttpHeaders({
+      'skipInterceptor': '' // Ajoutez ce header pour ignorer l'intercepteur pour cette requête
+    });
+
+    this.http.post('http://localhost:8080/auth/register', formData, { headers }).subscribe(
       (response) =>{
         console.log('Envoi réussi');
         this.router.navigate(["register"]);

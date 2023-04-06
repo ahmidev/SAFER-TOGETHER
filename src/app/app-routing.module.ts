@@ -19,10 +19,10 @@ const routes: Routes = [
   {path:'inscription', component: InscriptionComponent},
   {path:'connexion', component: ConnexionComponent},
   {path:'register', component: ConfirmRegistrationComponent},
-  {path:'userprofil', component: UserProfilComponent},
-  {path:'parentmap', component: ParentMapComponent},
+  {path:'userprofil', component: UserProfilComponent,canActivate: [AuthGuard]},
+  {path:'parentmap', component: ParentMapComponent,canActivate: [AuthGuard]},
   {path:'message', component: MessageComponent,canActivate: [AuthGuard]},
-  {path:'profil', component: ProfilComponent,canActivate: [AuthGuard]},
+  {path:'profil/:id', component: ProfilComponent, canActivate: [AuthGuard]},
   {path:'discussion', component: DiscussionComponent, canActivate: [AuthGuard]},
 ];
 

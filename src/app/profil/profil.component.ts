@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -10,9 +11,11 @@ import { AuthService } from '../Services/auth.service';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+  safers: any = [];
+  safer: any;
+  saferId: any;
 
-
-constructor( private authService : AuthService , private router : Router ) { }
+  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient) { }
 
 
 
@@ -56,10 +59,15 @@ next():void {
         'Authorization': 'Bearer ' + token, // Ajout du token d'authentification dans l'en-tête de la requête
         'Content-Type': 'application/json' // Définition du type de contenu de la requête (ici JSON)
       }
+
+
     }
+    this.saferId = this.activatedRoute.snapshot.params['id'];
 
 
-  
+  this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(data=>{
+    this.safer = data; 
+  })
 
 
 
