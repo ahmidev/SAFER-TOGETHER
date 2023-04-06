@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 <main>
   <div class="main">
     <div class="logo">
@@ -17,7 +26,7 @@
               userForm.get('lastname')?.invalid
             " class="text-danger">
             Le nom est requis.
-          </div>
+        </div>
         </div>
         <div>
           <input type="text" id="firstname" formControlName="firstname" required placeholder="prénom" />
@@ -26,7 +35,7 @@
           userForm.get('firstname')?.invalid
         " class="text-danger">
             Le prénom est requis.
-          </div>
+        </div>
 
         </div>
 
@@ -38,7 +47,7 @@
       userForm.get('email')?.invalid
     " class="text-danger">
         L'email est requis.
-      </div>
+    </div>
 
       <input type="date" id="birthday" formControlName="birthday" required placeholder="Date de naissance" />
       <div *ngIf="
@@ -55,17 +64,29 @@
 
       <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
         placeholder="Confirmation du mot de passe" />
-      <div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
-        Les mots de passe ne correspondent pas.
-      </div>
+        <div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
+          Les mots de passe ne correspondent pas.
+        </div>
       <div class="file">
         <label for="file">Votre pièce d'identité </label>
         <div class="parent-div">
           <button class="btn-upload">Joindre un Fichier</button>
           <input type="file" id="file" formControlName="file" (change)="onFileChange($event)" />
         </div>
-        </div>
-        <button class="submit" type="submit">Créer compte</button>
+      </div>
+      <div class="accept">
+        <label for="checkbox">
+          J'ai lu et j'accepte les
+          <a href="">conditions générales</a>
+        </label>
+        <input type="checkbox" class="checkbox" formControlName="checkbox" />
+      </div>
+<!-- bouton d'inscription -->
+      <button class="submit" type="submit" [disabled]="!userForm.value.checkbox || userForm.invalid">
+        Créer compte
+      </button>
     </form>
   </div>
 </main>
+
+
