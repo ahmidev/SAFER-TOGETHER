@@ -26,4 +26,6 @@ export class InscriptionComponent {
     onSubmit(){
       console.log(this.userForm.value)
     }
+
+   
 }

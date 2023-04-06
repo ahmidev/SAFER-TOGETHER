@@ -90,6 +90,8 @@ input {
     padding: 0 5px;
 }
 
+
+
 .parent-div {
     display: inline-block;
     position: relative;
@@ -133,4 +135,6 @@ button {
     color: var(--china-rose);
     box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
     margin-bottom: 10px;
+    
 }
+
