@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
+import { RgpdComponent } from './rgpd/rgpd.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ConfirmRegistrationComponent } from './confirm-registration/confirm-reg
     SaferListComponent,
     UserProfilComponent,
     ConfirmRegistrationComponent,
+    RgpdComponent,
     
   ],
   imports: [
