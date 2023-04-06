@@ -19,10 +19,11 @@ import { UserProfilComponent } from './user-profil/user-profil.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { RgpdComponent } from './rgpd/rgpd.component';
+import { ParentMapComponent } from './parent-map/parent-map.component';
 
 @NgModule({
   declarations: [
-
+    
     AppComponent,
     NavbarComponent,
     HomeComponent,
@@ -36,6 +37,9 @@ import { RgpdComponent } from './rgpd/rgpd.component';
     UserProfilComponent,
     ConfirmRegistrationComponent,
     RgpdComponent,
+    SaferListComponent,
+    ParentMapComponent,
+    MapComponent
     
   ],
   imports: [
