@@ -17,7 +17,7 @@
               userForm.get('lastname')?.invalid
             " class="text-danger">
             Le nom est requis.
-        </div>
+          </div>
         </div>
         <div>
           <input type="text" id="firstname" formControlName="firstname" required placeholder="prénom" />
@@ -26,7 +26,7 @@
           userForm.get('firstname')?.invalid
         " class="text-danger">
             Le prénom est requis.
-        </div>
+          </div>
 
         </div>
 
@@ -38,7 +38,7 @@
       userForm.get('email')?.invalid
     " class="text-danger">
         L'email est requis.
-    </div>
+      </div>
 
       <input type="date" id="birthday" formControlName="birthday" required placeholder="Date de naissance" />
       <div *ngIf="
@@ -49,43 +49,23 @@
       </div>
       <input type="password" id="password" formControlName="password" required placeholder="Mot de passe" />
 
-        <input type="password" id="confirm_password" formControlName="confirm_password" required
-            placeholder="Confirmation du mot de passe" />
-        <div class="file">
-            <label for="fichier">Fichier:</label>
-            <input type="file" id="file" formControlName="file" placeholder="Fichier" />
+      <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
+        Le mot de passe est invalide.
+      </div>
+
+      <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
+        placeholder="Confirmation du mot de passe" />
+      <div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
+        Les mots de passe ne correspondent pas.
+      </div>
+      <div class="file">
+        <label for="file">Votre pièce d'identité </label>
+        <div class="parent-div">
+          <button class="btn-upload">Joindre un Fichier</button>
+          <input type="file" id="file" formControlName="file" (change)="onFileChange($event)" />
         </div>
 
         <button type="submit">Créer compte</button>
     </form>
   </div>
 </main>
-
-<!-- <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <div>
-      <label for="firstName">Prénom</label>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
-    </div>
-    <div>
-      <label for="lastName">Nom</label>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required>
-    </div>
-    <div>
-      <label for="birthdate">Date de naissance</label>
-      <input type="date" id="birthdate" name="birthdate" [(ngModel)]="birthdate" required>
-    </div>
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email" required>
-    </div>
-    <div>
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password" required>
-    </div>
-    <div>
-      <label for="file">Fichier</label>
-      <input type="file" id="file" name="file" (change)="onFileChange($event)" required>
-    </div>
-    <button type="submit">Envoyer</button>
-  </form>
-   -->
