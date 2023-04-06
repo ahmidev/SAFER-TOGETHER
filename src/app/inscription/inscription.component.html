@@ -49,33 +49,14 @@
       </div>
       <input type="password" id="password" formControlName="password" required placeholder="Mot de passe" />
 
-      <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
-        Le mot de passe est invalide.
-      </div>
-
-      <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
-        placeholder="Confirmation du mot de passe" />
-        <div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
-          Les mots de passe ne correspondent pas.
+        <input type="password" id="confirm_password" formControlName="confirm_password" required
+            placeholder="Confirmation du mot de passe" />
+        <div class="file">
+            <label for="fichier">Fichier:</label>
+            <input type="file" id="file" formControlName="file" placeholder="Fichier" />
         </div>
-      <div class="file">
-        <label for="file">Votre pièce d’identité </label>
-        <div class="parent-div">
-          <button class="btn-upload">Joindre un Fichier</button>
-          <input type="file" id="file" formControlName="file" (change)="onFileChange($event)" />
-        </div>
-      </div>
-      <div class="accept">
-        <label for="checkbox">
-          J'ai lu et j'accepte les
-          <a href="">conditions générales</a>
-        </label>
-        <input type="checkbox" class="checkbox" formControlName="checkbox" />
-      </div>
 
-      <button class="submit" type="submit" [disabled]="!userForm.value.checkbox || userForm.invalid">
-        Créer compte
-      </button>
+        <button type="submit">Créer compte</button>
     </form>
   </div>
 </main>

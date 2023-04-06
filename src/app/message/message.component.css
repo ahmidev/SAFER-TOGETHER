@@ -1,0 +1,77 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/assets/fond_mobile2.jpg");
+  border: 0;
+  outline: 0;
+  position: absolute;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15%;
+}
+
+h2 {
+  margin: 2%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  
+  
+}
+input {
+    width: 60%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #F5F5F5;
+    border: none;
+    box-shadow: inset 1px 1px;
+    
+}
+img {
+    width: 18%;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 7%;
+    box-shadow: 1px 1px 1px ;
+}
+.safer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+   
+    
+}
+h3, p {
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    margin-bottom: 10%;
+}
+
+
+.test {
+    display: flex;
+    justify-content: center;
+    margin-left: 15%;
+    margin-top: -15%;
+    
+    
+}
+.test2 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+    
+    
+}
+.en-ligne {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgb(4, 158, 4);
+  margin-top: 8px;
+  margin-left: 8px;
+}
