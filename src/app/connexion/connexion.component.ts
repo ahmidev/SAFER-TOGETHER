@@ -46,7 +46,7 @@ ngOnInit(): void {
          console.log('user profi', this.user)
 
         // Rediriger l'utilisateur vers une autre page
-        this.router.navigate(['/profil']);
+        this.router.navigate(['/parentmap']);
       },
       (error) => {
         // Si la connexion échoue, afficher un message d'erreur
