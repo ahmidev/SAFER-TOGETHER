@@ -10,6 +10,7 @@ import { MessageComponent } from './message/message.component';
 import { ParentMapComponent } from './parent-map/parent-map.component';
 import { ProfilComponent } from './profil/profil.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
+import { UserProfilComponent } from './user-profil/user-profil.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'inscription', component: InscriptionComponent},
   {path:'connexion', component: ConnexionComponent},
   {path:'register', component: ConfirmRegistrationComponent},
+  {path:'userprofil', component: UserProfilComponent},
   {path:'parentmap', component: ParentMapComponent},
   {path:'message', component: MessageComponent,canActivate: [AuthGuard]},
   {path:'profil/:id', component: ProfilComponent, canActivate: [AuthGuard]},

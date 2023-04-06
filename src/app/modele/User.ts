@@ -17,14 +17,11 @@ export class User {
     constructor(
          name: string, firstname: string,  email: string, birthday: Date,  password: string,    identityFile: string,   )  {
        
-       
-      
         this.lastname = name;
         this.firstname = firstname;
         this.email = email;
         this.birthday = birthday;
         this.password = password;
-       
         this.identity = identityFile;
       
         }

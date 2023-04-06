@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
+import { RgpdComponent } from './rgpd/rgpd.component';
 import { ParentMapComponent } from './parent-map/parent-map.component';
 import { AuthInterceptor } from './Services/auth.interceptor';
 
@@ -36,6 +37,7 @@ import { AuthInterceptor } from './Services/auth.interceptor';
     SaferListComponent,
     UserProfilComponent,
     ConfirmRegistrationComponent,
+    RgpdComponent,
     SaferListComponent,
     ParentMapComponent,
     MapComponent
