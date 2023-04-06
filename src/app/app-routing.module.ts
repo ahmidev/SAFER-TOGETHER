@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:'register', component: ConfirmRegistrationComponent},
   {path:'parentmap', component: ParentMapComponent},
   {path:'message', component: MessageComponent,canActivate: [AuthGuard]},
-  {path:'profil', component: ProfilComponent, canActivate: [AuthGuard]},
+  {path:'profil/:id', component: ProfilComponent, canActivate: [AuthGuard]},
   {path:'discussion', component: DiscussionComponent, canActivate: [AuthGuard]},
 ];
 

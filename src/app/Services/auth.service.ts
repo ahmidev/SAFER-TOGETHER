@@ -19,9 +19,14 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'skipInterceptor': ''
       })
     };
+
+    // const headers = new HttpHeaders({
+    //   'skipInterceptor': '' // Ajoutez ce header pour ignorer l'intercepteur pour cette requête
+    // });
     const body = {
       email: email,
       password: password
