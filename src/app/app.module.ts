@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserProfilComponent } from './user-profil/user-profil.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
+import { RgpdComponent } from './rgpd/rgpd.component';
 import { ParentMapComponent } from './parent-map/parent-map.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ParentMapComponent } from './parent-map/parent-map.component';
     SaferListComponent,
     UserProfilComponent,
     ConfirmRegistrationComponent,
+    RgpdComponent,
     SaferListComponent,
     ParentMapComponent,
     MapComponent

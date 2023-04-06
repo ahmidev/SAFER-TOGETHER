@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserConnect } from '../modele/UserConnect';
 
 
@@ -10,11 +10,19 @@ import { UserConnect } from '../modele/UserConnect';
 })
 export class AuthService {
 
+  private navBoolean = new BehaviorSubject<any>(null);
+  currentData = this.navBoolean.asObservable();
 
+  public user!: {};
 
   private url = 'http://localhost:8080/auth/authenticate';
 
   constructor(private http: HttpClient) { }
+
+    
+ updateData(data: any) {
+  this.navBoolean.next(data);
+}
 
   login(email: string, password: string): Observable<any> {
     const httpOptions = {
@@ -47,5 +55,9 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
   }
+  
+  getUserById(id: number): Observable<any> {
+  return this.http.get(`http://localhost:8080/users/${id}`);
+}
 
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserConnect } from '../modele/UserConnect';
 import { AuthService } from '../Services/auth.service';
+import { UserProfilService } from '../Services/user-profil.service';
 
 
 @Component({
@@ -9,12 +10,23 @@ import { AuthService } from '../Services/auth.service';
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
-export class ConnexionComponent{
+export class ConnexionComponent implements OnInit{
 
   email!: string;
   password!: string;
   erreur:boolean = false;
-  constructor(private authService: AuthService, private router: Router) { }
+
+  user:any;
+  constructor(private authService: AuthService, private router: Router, private userProfileService: UserProfilService) { }
+
+
+
+ngOnInit(): void {
+
+}
+
+
+
 
   login(): void {
     console.log(this.email+this.password);
@@ -27,8 +39,12 @@ export class ConnexionComponent{
         localStorage.setItem('lastname', response.user.lastname);
         localStorage.setItem('firstname', response.user.firstname);
         localStorage.setItem('file', response.user.file);
-        console.log(response);
-        
+        console.log(response.user);
+        this.user = response.user;
+        this.userProfileService.updateData(response.user)
+        this.authService.updateData(true) 
+         console.log('user profi', this.user)
+
         // Rediriger l'utilisateur vers une autre page
         this.router.navigate(['/profil']);
       },
