@@ -21,6 +21,8 @@ import { ConfirmRegistrationComponent } from './confirm-registration/confirm-reg
 import { RgpdComponent } from './rgpd/rgpd.component';
 import { ParentMapComponent } from './parent-map/parent-map.component';
 import { AuthInterceptor } from './Services/auth.interceptor';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 @NgModule({
   declarations: [
@@ -51,8 +53,8 @@ import { AuthInterceptor } from './Services/auth.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
-    },
+      multi: true, 
+    },Geolocation
   ],
   bootstrap: [AppComponent]
 })
