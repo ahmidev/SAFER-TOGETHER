@@ -126,7 +126,7 @@ getUser(){
   }
 
   setDefaultPhoto(): void {
-    const defaultPhotoPath = 'assets/Safer1.svg'; // Remplacez par le chemin de votre photo par défaut
+    const defaultPhotoPath = 'assets/Safer1.svg'; 
     this.photoPreview = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
   }
 

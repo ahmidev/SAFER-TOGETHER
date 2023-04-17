@@ -16,6 +16,7 @@ export class ProfilComponent implements OnInit {
   safers: any = [];
   safer: any;
   saferId: any;
+  photoSafer:any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient,     private userPhotoService: UserPhotoService,private sanitizer: DomSanitizer)
    { }
@@ -71,19 +72,28 @@ back():void {
     (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
       (photoBlob: Blob) => {
         console.log('Photo Blob:', photoBlob);
-     this.safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+     this.photoSafer = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
     
        
 
     });
     
-  })
+  },
+  (error) => {
+   
+  // Mettre une photo par défaut si aucune photo n'est chargée
+  this.setDefaultPhoto();
+  }
+  )
 
     
 
   }
 
-
+  setDefaultPhoto(): void {
+    const defaultPhotoPath = 'assets/Safer1.svg'; 
+    this.photoSafer = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
+  }
   
 next():void {
   this.router.navigate(["/discussion", this.saferId]);
