@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
 
 <div class="global-discussion">
 
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <button class="submit-message">
+      <button class="submit-message" onclick="sendMessage()">
         <img src="../assets/send.svg" alt="send-message">
       </button>
 
@@ -80,42 +80,88 @@
 <main>
 
     <div class="main">
-    
-    
+
+
         <div class="logo">
             <img src="../assets/logo1.png" alt="" srcset="">
         </div>
-    
+
         <form>
             <div class="title">
                 <h2>INSCRIPTION</h2>
-    
+
             </div>
-    
+
             <div class="fullName">
                 <input type="text" id="nom" name="nom" required placeholder="Nom" />
-    
+
                 <input type="text" id="prenom" name="prenom" required placeholder="Prénom" />
             </div>
-    
+
             <input type="email" id="email" name="email" required placeholder="Email" />
-    
+
             <input type="date" id="date_naissance" name="date_naissance" required placeholder="Date de naissance" />
-    
+
             <input type="password" id="mot_de_passe" name="mot_de_passe" required placeholder="Mot de passe" />
-    
+
             <input type="password" id="confirmation_mot_de_passe" name="confirmation_mot_de_passe" required
                 placeholder="Confirmation du mot de passe" />
                 <div class="file">
-    
+
                     <label for="">Votre pièce d'identité</label>
                     <div class="parent-div">
                         <button class="btn-upload">Joindre fichier</button>
                         <input type="file" name="upfile" />
                     </div>
-                    
+
                 </div>
             <button>Créer compte</button>
         </form>
     </div>
-    </main>
+    </main> -->
+
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Chat app</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+          </div>
+        </nav>
+  </header>
+
+  <main class="chat">
+      <div class="container">
+          <div class="chat-content">
+              <div class="card">
+                  <ul class="list-group list-group-flush">
+                      <!-- <li class="list-group-item" *ngFor="let chatMessage of webSocketService.chatMessages">
+                          <strong>{{chatMessage.sender_id}}: </strong>
+                          <span>{{chatMessage.message}}</span>
+                      </li> -->
+                  </ul>
+              </div>
+          </div>
+          <form (ngSubmit)="sendMessage(sendForm)" #sendForm="ngForm">
+              <div class="chat-send row">
+                  <div class="col-2">
+                      <input type="number" class="form-control" name="sender_id" id="sender_id" [(ngModel)] = sender_id>
+                  </div>
+                  <div class="col-2">
+                      <input type="number" class="form-control" name="receiver_id" id="receiver_id" [(ngModel)] = receiver_id>
+                  </div>
+                  <div class="col-8">
+                      <input type="text" class="form-control" name="message" id="message" [(ngModel)] = message>
+                  </div>
+                  <div class="col-2">
+                      <button type="submit" class="btn btn-primary">Send</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+
+  </main>

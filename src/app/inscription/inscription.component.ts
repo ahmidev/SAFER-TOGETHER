@@ -30,7 +30,7 @@ export class InscriptionComponent {
       let newUser : User = new User(this.userForm.value.name,this.userForm.value.firstname,this.userForm.value.email,this.userForm.value.birthday,this.userForm.value.password,this.userForm.value.file,)
       console.log(newUser)
 
-      fetch('http://localhost:8080/user/create', {
+      fetch('http://localhost:8080/users/create', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ export class InscriptionComponent {
 });
     }
 
-    
+
 
 
 
