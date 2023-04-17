@@ -38,10 +38,12 @@ ngOnInit(): void {
         localStorage.setItem('userId', response.user.id);
         localStorage.setItem('lastname', response.user.lastname);
         localStorage.setItem('firstname', response.user.firstname);
-        localStorage.setItem('file', response.user.file);
+        localStorage.setItem('photo', response.user.photo);
+       
         console.log(response.user);
         this.user = response.user;
-        this.userProfileService.updateData(response.user)
+        this.userProfileService.updateDataUser(response.user)
+        
         this.authService.updateData(true) 
          console.log('user profi', this.user)
 

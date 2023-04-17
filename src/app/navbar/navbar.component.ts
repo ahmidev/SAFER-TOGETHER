@@ -18,10 +18,10 @@ export class NavbarComponent implements OnInit{
   ngOnInit() {
   
     
-  this.authService.getUserById(8).subscribe(data=>{
-    console.log(data , "mous")
-    this.userId = data
-      })
+  // this.authService.getUserById(8).subscribe(data=>{
+  //   console.log(data , "mous")
+  //   this.userId = data
+  //     })
 
 
 }

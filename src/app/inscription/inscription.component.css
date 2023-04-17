@@ -156,7 +156,26 @@ input {
     filter: none;
     box-shadow: none;
 }
+ 
+
+
+.container-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+    border: 2px solid red  !important;
+    background-color: rgb(249, 177, 177);
+   
+}
+
+.valid {
+    border: 2px solid green  !important;
+    background-color: rgb(255, 255, 255);
+}
 
 .text-danger {
     color: red;
+    font-size: 0.7em;
 }

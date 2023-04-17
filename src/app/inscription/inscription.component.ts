@@ -26,7 +26,7 @@ export class InscriptionComponent implements OnInit{
 
   this.userForm = this.fb.group ({
     lastname : ['',[Validators.required]],
-      firstname : ['',[Validators.required]],
+      firstname : ['',[Validators.required, Validators.minLength(2)]],
       email : ['',[Validators.required, Validators.email]],
       birthday : ['',[Validators.required]],
       password : ['',[Validators.required, this.passwordValidator]],
@@ -128,35 +128,7 @@ export class InscriptionComponent implements OnInit{
 
   
 
-
-//     onSubmit(){
-
-//       let newUser : User = new User(this.userForm.value.name,this.userForm.value.firstname,this.userForm.value.email,this.userForm.value.birthday,this.userForm.value.password,this.userForm.value.file,)
-//       console.log(newUser)
-
-//       fetch('http://localhost:8080/user/create', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify(newUser)
-// })
-// .then(response => {
-//   if (!response.ok) {
-//     throw new Error('Erreur lors de la création de l\'utilisateur.');
-//   }
-//   return response.json();
-// })
-
-// .then(data => {
-//   console.log('Utilisateur créé avec succès : ', data);
-// })
-// .catch(error => {
-//   console.error(error);
-// });
-//     }
-
-    
+   
 
 
 

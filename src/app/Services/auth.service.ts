@@ -24,6 +24,8 @@ export class AuthService {
   this.navBoolean.next(data);
 }
 
+
+
   login(email: string, password: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -46,6 +48,7 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+
   isLoggedIn(): boolean {
     const token = this.getToken();
     if (token) {
@@ -57,9 +60,11 @@ export class AuthService {
     }
   }
 
+
   logout(): void {
     localStorage.removeItem('token');
   }
+  
   
   getUserById(id: number): Observable<any> {
   return this.http.get(`http://localhost:8080/users/${id}`);
