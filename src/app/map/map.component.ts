@@ -20,6 +20,7 @@ export class MapComponent {
     lng!: number;
   
     lat2= 48.852020263671875;
+    
     lng2= 2.1309494972229004; 
   
 }
