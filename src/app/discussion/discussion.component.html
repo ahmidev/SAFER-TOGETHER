@@ -1,4 +1,4 @@
-<body>
+ <body>
 
 <div class="global-discussion">
 
@@ -10,7 +10,7 @@
 
     <div class="user">
 
-      <p>Jane Doe</p>
+      <p>{{receiverUserData.lastname}} {{receiverUserData.firstname}}</p>
       <p>Active now</p>
 
     </div>
@@ -24,17 +24,31 @@
 
   <div class="conversation">
 
-    <div class="talk left">
+    <!-- <div class="talk left">
       <img src="../assets/Safer1.svg" alt="safer1">
       <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+    </div> -->
 
-    <div class="talk right">
-      <p>Lorem ipsum dolor sit amet.</p>
+    <!-- <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
       <img src="../assets/Safer4.svg" alt="user">
-      </div>
+      <p>{{msg.message}}</p>
+    </div> -->
 
-      <div class="talk left">
+    <div class="conversation">
+      <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
+        <!-- <img [src]="getUserImage(msg.sender) | async" alt="user"> -->
+        <img [src]="getAppropriateImage(msg.sender)" alt="user">
+
+
+
+
+
+        <p>{{msg.message}}</p>
+      </div>
+    </div>
+    
+
+      <!-- <div class="talk left">
         <img src="../assets/Safer1.svg" alt="safer1">
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
@@ -42,28 +56,28 @@
       <div class="talk right">
         <p>Lorem ipsum dolor sit amet.</p>
         <img src="../assets/Safer4.svg" alt="user">
-      </div>
+      </div> -->
 
 
     </div>
 
-    <form action="" class="chat-form">
+  
       <div class="container-input">
         <div class="files-logo-container">
           <img src="../assets/clip.svg" alt="attach-files">
         </div>
 
         <div class="group-inp">
-          <textarea placeholder="Enter your message here" minlength="1" maxlength="1500"></textarea>
+          <input placeholder="Enter your message here"  [(ngModel)]="messageContent">
           <img src="../assets/happy.svg" alt="emojis">
         </div>
       </div>
 
-      <button class="submit-message">
+      <button class="submit-message" (click)="sendMessage()">
         <img src="../assets/send.svg" alt="send-message">
       </button>
 
-    </form>
+
 
 
 
@@ -77,45 +91,17 @@
 
 </body>
 
-<main>
 
-    <div class="main">
+<!--     
+<div>
+  <label for="messageContent">Message:</label>
+  <input [(ngModel)]="messageContent" id="messageContent" type="text" />
+</div>
+<button (click)="sendMessage()">Send Message</button>
+<div class="messages-container">
+  <div *ngFor="let msg of messages" [ngClass]="{'sender': msg.sender === currentUser, 'receiver': msg.sender === idReceiver}" class="message">
+    <div class="message-content">{{msg.message}}</div>
+  </div>
+</div> -->
+
     
-    
-        <div class="logo">
-            <img src="../assets/logo1.png" alt="" srcset="">
-        </div>
-    
-        <form>
-            <div class="title">
-                <h2>INSCRIPTION</h2>
-    
-            </div>
-    
-            <div class="fullName">
-                <input type="text" id="nom" name="nom" required placeholder="Nom" />
-    
-                <input type="text" id="prenom" name="prenom" required placeholder="Prénom" />
-            </div>
-    
-            <input type="email" id="email" name="email" required placeholder="Email" />
-    
-            <input type="date" id="date_naissance" name="date_naissance" required placeholder="Date de naissance" />
-    
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required placeholder="Mot de passe" />
-    
-            <input type="password" id="confirmation_mot_de_passe" name="confirmation_mot_de_passe" required
-                placeholder="Confirmation du mot de passe" />
-                <div class="file">
-    
-                    <label for="">Votre pièce d'identité</label>
-                    <div class="parent-div">
-                        <button class="btn-upload">Joindre fichier</button>
-                        <input type="file" name="upfile" />
-                    </div>
-                    
-                </div>
-            <button>Créer compte</button>
-        </form>
-    </div>
-    </main>

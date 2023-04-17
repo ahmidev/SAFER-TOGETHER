@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { UserPhotoService } from '../Services/user-photo.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class ProfilComponent implements OnInit {
   safer: any;
   saferId: any;
 
-  constructor(private authService: AuthService, private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient,     private userPhotoService: UserPhotoService,private sanitizer: DomSanitizer)
+   { }
 
 
 
@@ -25,10 +28,6 @@ back():void {
   
 }
 
-next():void {
-  this.router.navigate(["/discussion"]);
-  console.log("coucou");
-}
 
 
 
@@ -65,24 +64,30 @@ next():void {
     this.saferId = this.activatedRoute.snapshot.params['id'];
 
 
-  this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(data=>{
+  this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(async (data:any)=>{
     this.safer = data; 
+    console.log(this.safer);
+    
+    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
+      (photoBlob: Blob) => {
+        console.log('Photo Blob:', photoBlob);
+     this.safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+    
+       
+
+    });
+    
   })
-
-
-
-
-
-
-
-
-
-
-
-
 
     
 
   }
+
+
+  
+next():void {
+  this.router.navigate(["/discussion", this.saferId]);
+  console.log("coucou");
+}
 
 }

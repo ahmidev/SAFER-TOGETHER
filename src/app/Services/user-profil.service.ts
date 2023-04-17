@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, EMPTY, Observable, catchError, of, throwError } from 'rxjs';
 
 
 @Injectable({
@@ -10,8 +10,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class UserProfilService {
 
 
-  private dataSource = new BehaviorSubject<any>(null);
-  currentData = this.dataSource.asObservable();
+  private readonly apiUrl = 'http://localhost:8080/users';
+  
+
+  private dataUser = new BehaviorSubject<any>(null);
+  currentDataUser = this.dataUser.asObservable();
 
 
 
@@ -22,17 +25,82 @@ export class UserProfilService {
   constructor(private http: HttpClient) { }
 
 
-  updateData(data: any) {
-    this.dataSource.next(data);
+  updateUserProfile(userId: number, userData: any, file?: File|null): Observable<any> {
+    const formData = new FormData();
+  
+    // Ajouter les données utilisateur au formData
+    for (const key in userData) {
+      if (userData.hasOwnProperty(key)) {
+        formData.append(key, userData[key]);
+      }
+    }
+  
+    // Ajouter la photo au formData si elle existe
+    if (file) {
+      formData.append('photo', file);
+    }
+  
+    return this.http.put(`${this.apiUrl}/${userId}/update`, formData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+
+  updateUserData(userId: number, userData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${userId}/update`, userData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
+
+
+
+  uploadPhoto(userId: number, file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+   
+
+    return this.http.post(`${this.apiUrl}/${userId}/upload-photo`, formData).pipe(
+      catchError(this.handleError)
+    );
   }
 
-  getUserById(id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    })
-    return this.http.get(`http://localhost:8080/users/${id}` , { headers: headers });
+  private handleError(error: HttpErrorResponse): Observable<never|string|boolean> {
+    if (error.status === 200) {
+      console.log('La photo a été téléchargée avec succès.');
+      return of(true);
+    } else {
+      if (error.error instanceof ErrorEvent) {
+        console.error('An error occurred:', error.error.message);
+      } else {
+        console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+      }
+      return throwError('Something went wrong; please try again later.');
+    }
   }
+
+
+
+
+
+  updateDataUser(data: any) {
+    this.dataUser.next(data);
+  }
+
+  getUserById(id: number|string|null): Observable<any> {
+   
+    return this.http.get(`http://localhost:8080/users/${id}`);
+  }
+
+  
+  // getUserById(id: number): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${this.token}`
+  //   })
+  //   return this.http.get(`http://localhost:8080/users/${id}` , { headers: headers });
+  // }
 
   updateUser(users: any): Observable<any> {
     return this.http.put(`http://localhost:8080/users/${users.id}`, users);

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { UserPhotoService } from '../Services/user-photo.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-safer-list',
@@ -9,9 +11,9 @@ import { Component, OnInit } from '@angular/core';
 export class SaferListComponent implements OnInit {
 
 
-  listSafer!: any;
+  listSafer!: any[];
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer){}
 
 
 
@@ -30,10 +32,24 @@ export class SaferListComponent implements OnInit {
 
 
 
-this.http.get(url).subscribe(data=>{
-  console.log(data)
-  this.listSafer = data;
-})
+    this.http.get(url).subscribe((data: any) => {
+      console.log(data);
+      this.listSafer = data;
+      this.listSafer.forEach(async (safer) => {
+        if (safer.photo) {
+          (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
+            (photoBlob: Blob) => {
+              console.log('Photo Blob:', photoBlob);
+              safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+              console.log(this.listSafer[0].photo);
+              console.log(safer.photo);
+            });
+        } else {
+          // Mettre une photo par défaut si la photo est null ou vide
+          this.setDefaultPhoto(safer);
+        }
+      });
+    });
 
     // fetch(url, options)
     //   .then(response => {
@@ -58,7 +74,10 @@ this.http.get(url).subscribe(data=>{
 
 
   }
-
+  setDefaultPhoto(safer: any): void {
+    const defaultPhotoPath = 'assets/Safer3.svg'; 
+    safer.photo = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
+  }
   // fetch(url, options)
   // .then(response => {
   //   if (response.ok) {

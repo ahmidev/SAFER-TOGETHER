@@ -13,7 +13,7 @@
             <div [routerLink]="['/profil', user.id]"
             [queryParams]="{ id: user.id}" class="user">
                 <div class="profile">
-                    <img src="https://img.freepik.com/vecteurs-libre/homme-affaires-caractere-avatar-isole_24877-60111.jpg?w=2000"
+                    <img [src]=user.photo
                         alt="">
                     <div class="name">
                         <h2>{{user.firstname}}</h2>

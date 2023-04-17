@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'parentmap', component: ParentMapComponent,canActivate: [AuthGuard]},
   {path:'message', component: MessageComponent,canActivate: [AuthGuard]},
   {path:'profil/:id', component: ProfilComponent, canActivate: [AuthGuard]},
-  {path:'discussion', component: DiscussionComponent, canActivate: [AuthGuard]},
+  {path:'discussion/:id', component: DiscussionComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

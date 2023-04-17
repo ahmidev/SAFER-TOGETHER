@@ -1,17 +1,75 @@
-<div class="main">
-    <div class="section1">
+<!-- <div class="main">
+    <div>
+        <input type="number" [(ngModel)]="userId" placeholder="User ID">
+        <input type="file" (change)="handleFileInput($event)">
+        <button (click)="upload()">Upload Photo</button>
+      </div>
+      
+     <div class="section1">
         <div class="logo">
             <img src="../assets/Safer3.svg" alt="">
         </div>
         <p class="description"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, placeat.
         </p>
-    </div>
+    </div> 
     <div class="section2">
-        <input class="button" type="text" value="{{user.lastname}}" placeholder="nom">
-        <input class="button" type="text" value="{{user.firstname}}" placeholder="prénom">
+        <input class="button" type="text" value="{{user.lastname}}" placeholder="nom" readonly>
+        <input class="button" type="text" value="{{user.firstname}}" placeholder="prénom" readonly>
         <input id="toto" class="button" type="password" value="{{user.password}}" placeholder="password" style="background-image:url(../assets/draw.svg)">
         <input id="toto" class="button" type="email" value="{{user.email}}" placeholder="email" style="background-image:url(../assets/draw.svg)">
         <input class="button" type="date" value="{{user.birthday}}" placeholder="date de naissance">
         <input id="toto" class="button" type="text" placeholder="description" style="background-image:url(../assets/draw.svg)">
     </div>
-</div>
+   
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+</div> -->
+
+<div class="main">
+    <div class="upload-container">
+        <p style="display:none;">Id : {{userId}} </p>
+        <label for="file-input" class="custom-file-upload">
+          <img src="../assets/photo.svg" alt="">
+        </label>
+        <input id="file-input" type="file" (change)="handleFileInput($event)" style="display:none;">
+        <button (click)="upload()" class="upload-button" [ngClass]="{'success': uploadSuccess}"> {{ uploadSuccess ? 'Photo modifée' : 'Modifier la Photo' }}</button>
+        <img *ngIf="photoError " [src]=" photoPreview" alt="Photo Preview" class="photo-preview"   >
+        <img *ngIf="!photoError " src="/assets/Safer1.svg" alt="default Photo " class="photo-preview">
+    </div>
+      
+
+  <div class="section2">
+    <input class="button disabled" [(ngModel)]="user.lastname" placeholder="nom" readonly>
+    <input class="button disabled" [(ngModel)]="user.firstname" placeholder="prénom" readonly>
+    <input id="toto" class="button" [(ngModel)]="user.password" type="password" placeholder="password">
+    <input id="toto" class="button" [(ngModel)]="user.email" type="email" placeholder="email" >
+    <input class="button" [(ngModel)]="user.birthday" type="date" placeholder="date de naissance">
+    <!-- <input id="toto" class="button" [(ngModel)]="user.description" type="text" placeholder="description" > -->
+    <button type="submit" class="upload-button"  [ngClass]="{'success': saveSuccess}" (click)="saveUserData()">{{ saveSuccess ? 'Données enregistrées' : 'Enregistrer' }}</button>
+  </div>
+   
+<!-- </div>
+<div class="main">
+    <div class="upload-container">
+        <p style="display:none;">Id : {{userId}} </p>
+        <label for="file-input" class="custom-file-upload">
+          <img src="../assets/photo.svg" alt="">
+        </label>
+        <input id="file-input" type="file" (change)="handleFileInput($event)" style="display:none;">
+        <button (click)="upload()" class="upload-button" [ngClass]="{'success': uploadSuccess}"> {{ uploadSuccess ? 'Photo modifée' : 'Modifier la Photo' }}</button>
+        <img *ngIf="photoPreview" [src]="photoPreview" alt="Photo Preview" class="photo-preview">
+    </div>
+      
+
+  <div class="section2">
+    <input class="button" [(ngModel)]="user.lastname" placeholder="nom" readonly>
+    <input class="button" [(ngModel)]="user.firstname" placeholder="prénom" readonly>
+    <input id="toto" class="button" [(ngModel)]="user.password" type="password" placeholder="password">
+    <input id="toto" class="button" [(ngModel)]="user.email" type="email" placeholder="email" >
+    <input class="button" [(ngModel)]="user.birthday" type="date" placeholder="date de naissance">
+    <input id="toto" class="button" [(ngModel)]="user.description" type="text" placeholder="description" >
+    <button type="submit" class="upload-button"  [ngClass]="{'success': saveSuccess}" (click)="saveUserData()">{{ saveSuccess ? 'Données enregistrées' : 'Enregistrer' }}</button>
+  </div>
+   
+</div> -->
+
