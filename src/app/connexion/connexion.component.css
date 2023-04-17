@@ -3,7 +3,7 @@
 .main {
     height: 100vh;
     width: 100vw;
-    background-image: url("/assets/bg_original2.png");    
+    background-image: url("/assets/bg_original2.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -34,7 +34,7 @@ img {
     margin-top: 300px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     margin-left: 110px;
     gap: 20px;
     border-radius: 5%;
@@ -68,7 +68,7 @@ img {
 }
 
 
-.link {
-  
-    
-}
+/* .link {
+
+
+} */
