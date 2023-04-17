@@ -1,20 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PositionService } from '../Services/position.service';
+
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent {
+export class MapComponent implements OnInit {
 
 
   
-  constructor() { 
+  constructor(private positionService: PositionService) { 
 
 
   }
   
-  
+  ngOnInit(): void {
+      this.positionService.getLocationService().then(resp=>{
+        console.log(resp.lng);
+        console.log(resp.lat);
+
+      })
+  }
   
     lat! : number;
     lng!: number;
