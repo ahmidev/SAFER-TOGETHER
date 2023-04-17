@@ -1,0 +1,15 @@
+<div class="navBar">
+
+  <div class="icones">
+
+      <img (click)="logOut()" src="../assets/icone_log.svg" alt="disconnect">
+
+      <img routerLink="parentmap" src="../assets/icone_home.svg" alt="home">
+
+      <img [routerLink]="['userprofil']" routerLinkActive="router-link-active"  src="../assets/icone_profil.svg" alt="profile">
+
+      <img routerLink="message" src="../assets/icone_messages.svg" alt="messages">
+
+  </div>
+
+</div>

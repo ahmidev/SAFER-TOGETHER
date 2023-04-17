@@ -1,0 +1,105 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/assets/fond_mobile2.jpg");
+  border: 0;
+  outline: 0;
+  position: absolute;
+}
+
+.fond {
+  width: 350px;
+  height: 380px;
+  background-color: white;
+  margin-left: 5%;
+  margin-top: 10%;
+  border-radius: 10px;
+}
+
+.display {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fleche {
+  width: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+  z-index: 10;
+}
+.coeur {
+  width: 50px;
+  margin-right: 10px;
+  margin-top: 10px;
+  z-index: 10;
+  
+}
+
+.safer {
+  width: 370px;
+  margin-top: -50px;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.rating {
+  display: flex;
+  justify-content: center;
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.rating a {
+  float: right;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 3em;
+  transition: color 0.4s;
+  color: yellow;
+}
+.rating a:hover,
+.rating a:focus,
+.rating a:hover ~ a,
+.rating a:focus ~ a {
+  color: orange;
+  cursor: pointer;
+}
+
+.descrip {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.bloc {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+button {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  background-color: #FDC5CC;
+  box-shadow: 5px 5px 5px grey;
+}

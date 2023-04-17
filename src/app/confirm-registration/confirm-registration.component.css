@@ -1,0 +1,50 @@
+
+
+/* .container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/assets/bg_original2.png");
+} */
+
+
+.card {
+    width: 90vw;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var( --cornflower-blue);
+    margin:200px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.card h2  {
+    font-weight: 800;
+    font-size: 18px;
+    color: rgb(3, 168, 3);
+}
+
+
+.card p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.card button {
+    width: 34vw;
+    height: 6vh;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: none;
+    background-color: var(--tea-rose-red);
+    font-size: 16px;
+    color: var(--china-rose);
+    box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+

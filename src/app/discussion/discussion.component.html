@@ -1,0 +1,107 @@
+ <body>
+
+<div class="global-discussion">
+
+  <div class="nav-top">
+
+    <div class="go-back">
+      <img src="assets/back-arrow.svg" alt="" routerLink="/message">
+    </div>
+
+    <div class="user">
+
+      <p>{{receiverUserData.lastname}} {{receiverUserData.firstname}}</p>
+      <p>Active now</p>
+
+    </div>
+
+    <div class="call">
+      <img src="../assets/phone-call.svg" alt="call">
+
+    </div>
+
+  </div>
+
+  <div class="conversation">
+
+    <!-- <div class="talk left">
+      <img src="../assets/Safer1.svg" alt="safer1">
+      <p>Lorem ipsum dolor sit amet.</p>
+    </div> -->
+
+    <!-- <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
+      <img src="../assets/Safer4.svg" alt="user">
+      <p>{{msg.message}}</p>
+    </div> -->
+
+    <div class="conversation">
+      <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
+        <!-- <img [src]="getUserImage(msg.sender) | async" alt="user"> -->
+        <img [src]="getAppropriateImage(msg.sender)" alt="user">
+
+
+
+
+
+        <p>{{msg.message}}</p>
+      </div>
+    </div>
+    
+
+      <!-- <div class="talk left">
+        <img src="../assets/Safer1.svg" alt="safer1">
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+
+      <div class="talk right">
+        <p>Lorem ipsum dolor sit amet.</p>
+        <img src="../assets/Safer4.svg" alt="user">
+      </div> -->
+
+
+    </div>
+
+  
+      <div class="container-input">
+        <div class="files-logo-container">
+          <img src="../assets/clip.svg" alt="attach-files">
+        </div>
+
+        <div class="group-inp">
+          <input placeholder="Enter your message here"  [(ngModel)]="messageContent">
+          <img src="../assets/happy.svg" alt="emojis">
+        </div>
+      </div>
+
+      <button class="submit-message" (click)="sendMessage()">
+        <img src="../assets/send.svg" alt="send-message">
+      </button>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+</body>
+
+
+<!--     
+<div>
+  <label for="messageContent">Message:</label>
+  <input [(ngModel)]="messageContent" id="messageContent" type="text" />
+</div>
+<button (click)="sendMessage()">Send Message</button>
+<div class="messages-container">
+  <div *ngFor="let msg of messages" [ngClass]="{'sender': msg.sender === currentUser, 'receiver': msg.sender === idReceiver}" class="message">
+    <div class="message-content">{{msg.message}}</div>
+  </div>
+</div> -->
+
+    

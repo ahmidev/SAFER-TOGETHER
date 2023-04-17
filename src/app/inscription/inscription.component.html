@@ -1,0 +1,107 @@
+
+
+
+
+
+
+
+
+
+<main>
+  <div class="main">
+    <div class="logo">
+      <img src="../assets/logo1.png" alt="" srcset="" />
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div class="title">
+        <h2>INSCRIPTION</h2>
+      </div>
+
+      <div class="fullName">
+        <div class="contianer-name">
+          <input type="text" id="lastname" formControlName="lastname" required placeholder="nom" [class.valid]="userForm.get('lastname')?.touched &&
+          userForm.get('lastname')?.valid"  [class.error]="userForm.get('lastname')?.touched &&
+          userForm.get('lastname')?.invalid"/>
+          <div *ngIf="
+              userForm.get('lastname')?.touched &&
+              userForm.get('lastname')?.invalid
+            " class="text-danger">
+            Le nom est requis.
+        </div>
+        </div>
+        <div class="contianer-name">
+          <input type="text" id="firstname" formControlName="firstname" required placeholder="prénom"  [class.error]="userForm.get('firstname')?.touched &&
+          userForm.get('firstname')?.invalid"  [class.valid]="userForm.get('firstname')?.touched &&
+          userForm.get('firstname')?.valid"/>
+          <div *ngIf="
+          userForm.get('firstname')?.touched &&
+          userForm.get('firstname')?.invalid
+        " class="text-danger">
+            Le prénom est requis.
+        </div>
+
+        </div>
+
+      </div>
+
+      <input type="email" id="email" formControlName="email" required placeholder="Email" [class.error]="userForm.get('email')?.touched &&
+      userForm.get('email')?.invalid" [class.valid]="userForm.get('email')?.touched &&
+      userForm.get('email')?.valid"/>
+      <div *ngIf="
+      userForm.get('email')?.touched &&
+      userForm.get('email')?.invalid
+    " class="text-danger">
+        L'email est requis.
+    </div>
+
+      <input type="date" id="birthday" formControlName="birthday" required placeholder="Date de naissance" [class.error]="userForm.get('birthday')?.touched &&
+      userForm.get('birthday')?.invalid"   [class.valid]="userForm.get('birthday')?.touched &&
+      userForm.get('birthday')?.valid"/>
+      <div *ngIf="
+      userForm.get('birthday')?.touched &&
+      userForm.get('birthday')?.invalid
+    " class="text-danger">
+        La date de naissance est requise.
+      </div>
+      <input type="password" id="password" formControlName="password" required placeholder="Mot de passe"  [class.error]="userForm.get('password')?.touched &&
+      userForm.get('password')?.invalid"  [class.valid]="userForm.get('password')?.touched &&
+      userForm.get('password')?.valid"/>
+
+      <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
+        Le mot de passe est invalide.
+      </div>
+
+      <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
+        placeholder="Confirmation du mot de passe" [class.error]="userForm.get('confirm_password')?.touched &&
+        userForm.get('firstname')?.invalid" [class.valid]="userForm.get('confirm_password')?.touched &&
+        userForm.get('firstname')?.valid"/>
+        <div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
+          Les mots de passe ne correspondent pas.
+        </div>
+      <div class="file">
+        <label for="file">Votre pièce d'identité </label>
+        <div class="parent-div">
+          <button class="btn-upload"    [class.error]="userForm.get('file')?.touched &&
+          userForm.get('file')?.invalid"   [class.valid]="userForm.get('file')?.touched &&
+          userForm.get('file')?.valid">Joindre un Fichier</button>
+          <input type="file" id="file" formControlName="file" (change)="onFileChange($event)"  [class.error]="userForm.get('file')?.touched &&
+          userForm.get('file')?.invalid"/>
+        </div>
+      </div>
+      <div class="accept">
+        <label for="checkbox">
+          J'ai lu et j'accepte les
+          <a href="">conditions générales</a>
+        </label>
+        <input type="checkbox" class="checkbox" formControlName="checkbox" [class.error]="userForm.get('firstname')?.invalid" [class.valid]="userForm.get('firstname')?.valid"/>
+      </div>
+<!-- bouton d'inscription -->
+      <button class="submit" type="submit" [disabled]="!userForm.value.checkbox || userForm.invalid">
+        Créer compte
+      </button>
+    </form>
+  </div>
+</main>
+
+

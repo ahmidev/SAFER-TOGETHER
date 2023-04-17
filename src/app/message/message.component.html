@@ -1,0 +1,34 @@
+<body>
+    <header>
+        <h2>Vos messages</h2>
+        <input type="text" placeholder="   Recherche ..."> 
+    </header>
+    <main *ngFor="let user of users" >
+
+        <div   [routerLink]="['/discussion', user.id]"
+        [queryParams]="{ id: user.id}">
+
+      
+        <div>
+           <img [src]="user.photo" alt="Safer1"> 
+
+        </div>
+        <div class="test">
+        <div class="safer">
+            <h3>{{user.lastname}} {{user.firstname}}</h3>
+            <p>Lorem ipsum dolor</p>
+        </div>
+       
+        <div class="test2">
+        <p>{{ heureActuelle | date:'HH:mm' }}</p>
+    
+        <div class="en-ligne"></div>
+    </div>
+    </div>
+
+</div> 
+    </main>
+ 
+</body>
+
+
