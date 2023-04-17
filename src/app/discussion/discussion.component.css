@@ -328,3 +328,53 @@ button {
     box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
     margin-bottom: 10px;
 }
+
+
+
+
+.conversation {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.talk {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.talk img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.talk.right {
+  flex-direction: row-reverse;
+}
+
+.talk.left {
+  flex-direction: row;
+}
+
+.talk.right p, .talk.left p {
+  padding: 5px 10px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.talk.right p {
+  background-color: #0084ff;
+  color: white;
+  border-radius: 5px 5px 0 5px;
+}
+
+.talk.left p {
+  background-color: #e6e6e6;
+  color: black;
+  border-radius: 5px 5px 5px 0;
+}

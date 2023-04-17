@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ChatService } from './classTest/chatService';
-import { Message } from './classTest/message';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './Services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +10,37 @@ import { Message } from './classTest/message';
 })
 export class AppComponent implements OnInit {
   title = 'safer';
-message : Message = new Message();
+  connexion!:boolean;
 
-constructor(private chatService: ChatService){
+  constructor(private guard: AuthGuard, private authService :AuthService, public router: Router){}
+
+
+  ngOnInit(): void {
+     this.authService.currentData.subscribe(data => {this.connexion = data});
+
+  }
+
+  shouldShowComponent(route: string): boolean {
+    switch (route) {
+      case '/connexion':
+      case '/':
+      case '/home':
+      case '/inscription':
+        return false;
+      default:
+        return true;
+    }
+  }
+
 
 }
 
-ngOnInit(): void {
+// ngOnInit(): void {
 
 // this.chatService.receiveMessages().subscribe(message => {
 // console.log(message);
 
 // })
 
-}
-}
+// }
+

@@ -4,17 +4,18 @@
     <div class="fond">
       <!-- création de la div "display" pour ensuite utiliser flexbox et manipuler les icones -->
       <div class="display">
-        <img class="fleche" src="../assets/icone_fleche1.svg" alt="" />
+        
+        <img class="fleche" src="../assets/icone_fleche1.svg" alt="" (click)="back()"/>
         <img class="coeur" src="../assets/icone_coeur.svg" alt="" />
       </div>
       <!-- photo de profil -->
-      <img class="safer" src="../assets/Safer1.svg" alt="" />
+      <img class="safer" [src]=safer.photo alt="" />
     </div>
   </header>
 
   <main>
     <!-- nom Safer -->
-    <h1>Jane Doe</h1>
+    <h1 *ngIf="safer">{{safer.firstname}} {{safer.lastname}}</h1>
     <!-- localisation Safer -->
     <h2>Paris, France</h2>
 
@@ -38,12 +39,16 @@
       adipisicing elit. Asperiores <br />
       molestiae voluptates <br />
       aspernatur minus.
-    </p>
+
+     
+    </p>   
+    <!-- {{saferdescription}} rajouter la description -->
     <!-- bouton pour contacter le Safer -->
     <div class="bloc">
-      <button>Contacter</button>
+      <button (click)="next()">Contacter</button>
     </div>
   </main>
 
   <footer></footer>
+ 
 </body>
