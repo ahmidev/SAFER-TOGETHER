@@ -43,11 +43,6 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   imports: [
     BrowserModule,
     AppRoutingModule,AgmCoreModule.forRoot({apiKey: environment.googleApiKey}), FormsModule,ReactiveFormsModule, HttpClientModule,
-    ConfirmRegistrationComponent,
-    RgpdComponent,
-    SaferListComponent,
-    ParentMapComponent,
-    MapComponent
 
   ],
 
@@ -55,7 +50,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true, 
+      multi: true,
     },Geolocation
   ],
   bootstrap: [AppComponent]
