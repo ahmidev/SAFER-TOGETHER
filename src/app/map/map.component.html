@@ -1,10 +1,15 @@
-
 <div class="background">
-    <div class="map">
-   <agm-map class="carte" [latitude]="lat" [longitude]="lng">
-       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-       <agm-marker [latitude]="lat2" [longitude]="lng2"></agm-marker>
-     </agm-map>
-   </div>
-   </div>
+  <div class="map">
+    <agm-map class="carte" [latitude]="48.866667" [longitude]="2.333333">
 
+      <agm-marker *ngFor="let item of geolocations" [latitude]="item.geolocalisation.latitude" [longitude]="item.geolocalisation.longitude">
+
+        <agm-info-window>
+          <p>Safer {{ item.firstname }} {{item.lastname}}</p>
+        </agm-info-window>
+        
+      </agm-marker>
+
+    </agm-map>
+  </div>
+</div>
