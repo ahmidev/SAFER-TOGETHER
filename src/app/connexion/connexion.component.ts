@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserConnect } from '../modele/UserConnect';
 import { AuthService } from '../Services/auth.service';
 import { UserProfilService } from '../Services/user-profil.service';
+import { PositionService } from '../Services/position.service';
 
 
 @Component({
@@ -10,27 +11,26 @@ import { UserProfilService } from '../Services/user-profil.service';
   templateUrl: './connexion.component.html',
   styleUrls: ['./connexion.component.css']
 })
-export class ConnexionComponent implements OnInit{
+export class ConnexionComponent implements OnInit {
 
   email!: string;
   password!: string;
-  erreur:boolean = false;
+  erreur: boolean = false;
 
-  user:any;
-  constructor(private authService: AuthService, private router: Router, private userProfileService: UserProfilService) { }
-
-
-
-ngOnInit(): void {
-
-}
+  user: any;
+  constructor(private authService: AuthService, private router: Router, private userProfileService: UserProfilService,
+    private positionService: PositionService) { }
 
 
+
+  ngOnInit(): void {
+    // this.positionService.saveLocation(2, {latitude : 7896545, longitude : 123654}).subscribe(data => console.log(data))
+  }
 
 
   login(): void {
-    console.log(this.email+this.password);
-    
+    console.log(this.email + this.password);
+
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
         // Si la connexion réussit, stocker le token dans le localStorage
@@ -39,13 +39,28 @@ ngOnInit(): void {
         localStorage.setItem('lastname', response.user.lastname);
         localStorage.setItem('firstname', response.user.firstname);
         localStorage.setItem('photo', response.user.photo);
-       
+
         console.log(response.user);
         this.user = response.user;
         this.userProfileService.updateDataUser(response.user)
-        
-        this.authService.updateData(true) 
-         console.log('user profi', this.user)
+
+        this.authService.updateData(true)
+        console.log('user profil', this.user)
+
+        const userId = Number(localStorage.getItem("userId"));
+
+        this.positionService.getPosition().subscribe(
+          (position) => {
+            this.positionService.saveLocation(userId, { latitude: position.coords.latitude, longitude: position.coords.longitude }).subscribe(data => console.log(data))
+            console.log("position accepter")
+            console.log("position okkkk", position)
+            console.log("usssssser", userId)
+
+          }
+        )
+
+
+
 
         // Rediriger l'utilisateur vers une autre page
         this.router.navigate(['/parentmap']);
