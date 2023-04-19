@@ -27,7 +27,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [
-
+AppComponent,
     NavbarComponent,
     HomeComponent,
     ConnexionComponent,
@@ -38,6 +38,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     MessageComponent,
     SaferListComponent,
     UserProfilComponent,
+    ParentMapComponent,
+    ConfirmRegistrationComponent,
 
   ],
   imports: [
