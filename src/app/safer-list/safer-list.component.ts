@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FavorisService } from '../Services/favoris.service';
 
 @Component({
   selector: 'app-safer-list',
@@ -12,13 +13,18 @@ export class SaferListComponent implements OnInit {
 
 
   listSafer!: any[];
+  isFav : boolean = false;
+  saferId : any;
+  userId : any;
+  listFav!:any[];
+  
 
-  constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer){}
+  constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}
 
 
 
   ngOnInit(): void {
-
+    this.userId = Number(localStorage.getItem('userId'));
     // const token = localStorage.getItem('token');
     const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b3RvQGdtYWlsLmNvbSIsImZ1bGxOYW1lIjoidGF0YSB0b3RvIiwiZXhwIjoxNjgwOTkxNTQ5LCJ1c2VySWQiOjQsImlhdCI6MTY4MDI3MTU0OSwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XX0.Ul0A7TCmPy3kzkF5mKpH-psI92hGgO_B8WIr2HnYSMo";
     const url = 'http://localhost:8080/users/';
@@ -33,9 +39,11 @@ export class SaferListComponent implements OnInit {
 
 
     this.http.get(url).subscribe((data: any) => {
-      console.log(data);
+      console.log("!!",data);
+      
       this.listSafer = data;
       this.listSafer.forEach(async (safer) => {
+     
         if (safer.photo) {
           (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
             (photoBlob: Blob) => {
@@ -44,6 +52,7 @@ export class SaferListComponent implements OnInit {
               console.log(this.listSafer[0].photo);
               console.log(safer.photo);
             });
+       
         } else {
           // Mettre une photo par défaut si la photo est null ou vide
           this.setDefaultPhoto(safer);
@@ -72,6 +81,11 @@ export class SaferListComponent implements OnInit {
     //   });
     // ;
 
+    this.favorisService.getFavorites(this.userId).subscribe((fav:any) =>{
+      this.listFav = fav
+    })
+    
+    
 
   }
   setDefaultPhoto(safer: any): void {
@@ -93,4 +107,13 @@ export class SaferListComponent implements OnInit {
   //   console.error('Erreur :', error);
   // });
 
+
+
+
+  userFavorite(id : any) : boolean {
+    
+    return this.listFav.some((favUser:any) => favUser.favoriteUser == id)
+  
+  
+}
 }
