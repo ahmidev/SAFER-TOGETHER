@@ -34,6 +34,9 @@ body {
   z-index: 10;
   
 }
+.favorited svg {
+  fill: red;
+}
 
 .safer {
   width: 370px;

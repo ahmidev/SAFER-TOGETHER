@@ -5,6 +5,7 @@ import { AuthService } from '../Services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FavorisService } from '../Services/favoris.service';
 
 
 @Component({
@@ -13,12 +14,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+
+  userId: any;
   safers: any = [];
   safer: any;
   saferId: any;
   photoSafer:any;
+  isFav : boolean = false;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient,     private userPhotoService: UserPhotoService,private sanitizer: DomSanitizer)
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient,     private userPhotoService: UserPhotoService,private sanitizer: DomSanitizer, private favorisService : FavorisService)
    { }
 
 
@@ -35,6 +39,8 @@ back():void {
 
 
   ngOnInit(){
+
+    this.userId = Number(localStorage.getItem('userId'));
     // let isloggedIn: string | null;
     // let loggedUser: string | null;
     // isloggedIn = localStorage.getItem('isloggedIn');
@@ -46,6 +52,17 @@ back():void {
     // }
 
 
+  this.favorisService.getFavorites(this.userId).subscribe((data : any) => {
+    console.log("listefaaaav",data);
+    for(let fav of data){
+      if(fav.favoriteUser == this.saferId){
+        this.isFav = true
+      }
+    }
+  }
+  
+  
+   )
 
 
 
@@ -98,6 +115,26 @@ back():void {
 next():void {
   this.router.navigate(["/discussion", this.saferId]);
   console.log("coucou");
+}
+
+
+favoris(){
+  if(this.isFav) {
+    return console.log('utilisateur déjà en base de donnée');
+    
+  }
+  this.favorisService.addFavorite({user : this.userId, favoriteUser : this.saferId}).subscribe((data:any)=>{
+    console.log("daaaataaa",data);
+    
+    this.isFav = true;
+  },
+  (error)=> { console.log(error);
+
+  }
+  )
+
+
+
 }
 
 }

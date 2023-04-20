@@ -94,15 +94,13 @@ gap: 10px;
   .note label:hover {
     background-position: right;
   } 
-  /* .background{
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEXxv75c+AjBAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  .coeur {
+    width: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    z-index: 10;
     
-    top: 0;
-    left: 0;
-    width: 100%;
-    height:100%;
-  }  */
-   
+  }
+  .favorited svg {
+    fill: red;
+  }
