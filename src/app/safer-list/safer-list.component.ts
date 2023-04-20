@@ -31,7 +31,6 @@ export class SaferListComponent implements OnInit {
     // }
 
 
-
     this.http.get(url).subscribe((data: any) => {
       console.log(data);
       this.listSafer = data;
@@ -40,9 +39,16 @@ export class SaferListComponent implements OnInit {
           (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
             (photoBlob: Blob) => {
               console.log('Photo Blob:', photoBlob);
-              safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
-              console.log(this.listSafer[0].photo);
-              console.log(safer.photo);
+              // Vérifier si le Blob est une image
+              const mimeType = photoBlob.type.split('/')[0];
+              if (mimeType === 'image') {
+                safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+                console.log(this.listSafer[0].photo);
+                console.log(safer.photo);
+              } else {
+                // Mettre une photo par défaut si le Blob n'est pas une image
+                this.setDefaultPhoto(safer);
+              }
             });
         } else {
           // Mettre une photo par défaut si la photo est null ou vide
@@ -50,6 +56,7 @@ export class SaferListComponent implements OnInit {
         }
       });
     });
+    
 
     // fetch(url, options)
     //   .then(response => {

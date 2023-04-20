@@ -1,8 +1,8 @@
 <div class="background">
   <div class="map">
-    <agm-map class="carte" [latitude]="48.866667" [longitude]="2.333333">
+    <agm-map *ngIf="geolocations" class="carte" [latitude]="48.866667" [longitude]="2.333333">
 
-      <agm-marker *ngFor="let item of geolocations" [latitude]="item.geolocalisation.latitude" [longitude]="item.geolocalisation.longitude">
+      <agm-marker  *ngFor="let item of geolocations" [latitude]="item.geolocalisation.latitude" [longitude]="item.geolocalisation.longitude">
 
         <agm-info-window>
           <p>Safer {{ item.firstname }} {{item.lastname}}</p>
