@@ -61,7 +61,7 @@ export class UserProfilService {
 
    
 
-    return this.http.post(`${this.apiUrl}/${userId}/upload-photo`, formData).pipe(
+    return this.http.post(`${this.apiUrl}/${userId}/save-photo`, formData).pipe(
       catchError(this.handleError)
     );
   }

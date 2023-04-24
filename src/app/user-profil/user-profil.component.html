@@ -33,7 +33,7 @@
         </label>
         <input id="file-input" type="file" (change)="handleFileInput($event)" style="display:none;">
         <button (click)="upload()" class="upload-button" [ngClass]="{'success': uploadSuccess}"> {{ uploadSuccess ? 'Photo modifée' : 'Modifier la Photo' }}</button>
-        <img *ngIf="photoError " [src]=" photoPreview" alt="Photo Preview" class="photo-preview"   >
+        <img *ngIf="photoError " [src]="'data:;base64,'+user.photo" alt="Photo Preview" class="photo-preview"   >
         <img *ngIf="!photoError " src="/assets/Safer1.svg" alt="default Photo " class="photo-preview">
     </div>
       

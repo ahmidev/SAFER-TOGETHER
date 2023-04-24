@@ -13,7 +13,7 @@
             <div [routerLink]="['/profil', user.id]"
             [queryParams]="{ id: user.id}" class="user">
                 <div class="profile">
-                    <img [src]=user.photo
+                    <img [src]="'data:;base64,'+user.photo"
                         alt="">
                     <div class="name">
                         <h2>{{user.firstname}}</h2>
