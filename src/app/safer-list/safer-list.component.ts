@@ -41,29 +41,24 @@ export class SaferListComponent implements OnInit {
       console.log("!!",data);
       
       this.listSafer = data;
-      this.listSafer.forEach(async (safer) => {
+      // this.listSafer.forEach(async (safer) => {
      
-        if (safer.photo) {
-          (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
-            (photoBlob: Blob) => {
-              console.log('Photo Blob:', photoBlob);
-              // Vérifier si le Blob est une image
-              const mimeType = photoBlob.type.split('/')[0];
-              if (mimeType === 'image') {
-                safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
-                console.log(this.listSafer[0].photo);
-                console.log(safer.photo);
-              } else {
-                // Mettre une photo par défaut si le Blob n'est pas une image
-                this.setDefaultPhoto(safer);
-              }
-            });
+      //   if (safer.photo) {
+      //     (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
+      //       (photoBlob: Blob) => {
+      //         console.log('Photo Blob:', photoBlob);
+      //         safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+      //         console.log(this.listSafer[0].photo);
+      //         console.log(safer.photo);
+      //       });
        
-        } else {
-          // Mettre une photo par défaut si la photo est null ou vide
-          this.setDefaultPhoto(safer);
-        }
-      });
+      //   } else {
+      //     // Mettre une photo par défaut si la photo est null ou vide
+      //     this.setDefaultPhoto(safer);
+      //   }
+      // });
+
+      
     });
     
 
