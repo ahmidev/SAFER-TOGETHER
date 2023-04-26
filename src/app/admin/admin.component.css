@@ -1,0 +1,60 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.title {
+    font-size: 2rem;
+    text-align: center;
+    padding: 10px;
+}
+.logOut {
+    width: 50px;
+    cursor: pointer;
+    
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .user-table th,
+  .user-table td {
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    text-align: left;
+  }
+  
+  .user-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-table tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+  
+  .user-table tr:hover {
+    background-color: #eaeaea;
+  }
+  
+  .status-indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+  }
+  
+  .active {
+    background-color: green;
+  }
+  
+  .inactive {
+    background-color: red;
+  }
+  
+  

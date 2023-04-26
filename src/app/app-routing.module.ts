@@ -11,11 +11,14 @@ import { ParentMapComponent } from './parent-map/parent-map.component';
 import { ProfilComponent } from './profil/profil.component';
 import { SaferListComponent } from './safer-list/safer-list.component';
 import { UserProfilComponent } from './user-profil/user-profil.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'home', component: HomeComponent},
+  {path:'admin', component: AdminComponent, canActivate: [AdminGuard] },
   {path:'inscription', component: InscriptionComponent},
   {path:'connexion', component: ConnexionComponent},
   {path:'register', component: ConfirmRegistrationComponent},
