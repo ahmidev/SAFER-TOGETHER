@@ -16,7 +16,7 @@ export class ParentMapComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.positionService.getLocation().subscribe(geolocations => {
+    this.positionService.getLocation().subscribe((geolocations:any) => {
       // this.geolocations.push(geolocations)
       console.log(geolocations)
     })
