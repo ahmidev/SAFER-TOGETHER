@@ -1,0 +1,26 @@
+<div class="header">
+    <h2 class="title">Liste des Safers</h2>
+    <img class="logOut" (click)="logOut()" src="/assets/icone_log.svg" alt="disconnect">
+
+</div>
+<table class="user-table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>
+          <div class="status-indicator" [ngClass]="{'active': user.active, 'inactive': !user.active}" (click)="toggleUserStatus(user)">
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  

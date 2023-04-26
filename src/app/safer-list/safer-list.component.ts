@@ -17,7 +17,7 @@ export class SaferListComponent implements OnInit {
   saferId : any;
   userId : any;
   listFav!:any[];
-  rating: number = 3.8;
+  rating: number = 0;
   
 
   constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}

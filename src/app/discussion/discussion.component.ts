@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Message } from '../message-interface';
 import { ChatService } from '../message-service';
 import { MessageService } from '../Services/message.service';
-import { UserPhotoCacheService } from '../Services/userPhotoCacheService.service'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserProfilService } from '../Services/user-profil.service';
 import { UserPhotoService } from '../Services/user-photo.service';
