@@ -9,6 +9,7 @@ import { UserProfilService } from '../Services/user-profil.service';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { Observable, catchError, map, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { RouterTestingHarness } from '@angular/router/testing';
 
 @Component({
   selector: 'app-discussion',
@@ -21,10 +22,11 @@ export class DiscussionComponent implements OnInit, OnDestroy {
   public receiverEmail!: string;
   public messageContent!: string;
   public messages: any[]=[];
-  public   idReceiver!:number;
-  public   currentUser!:number;
+  public idReceiver!:number;
+  public currentUser!:number;
   public photoCurrentUser:any;
-  public photoReceiverUser:any;
+  public photoReceiverUser!:string ;
+  public defaultImage: string = "/assets/Safer2.svg"
   public currentUserData:any;
   public receiverUserData:any;
 
@@ -60,6 +62,7 @@ export class DiscussionComponent implements OnInit, OnDestroy {
     );
     this.getPhotoCurrentUser();
     this.getPhotoUserReceiver();
+    this.getMessage();
   }
 
 
@@ -74,20 +77,24 @@ export class DiscussionComponent implements OnInit, OnDestroy {
  
   }
 
-
+getMessage(){
+  this.http.get(`http://localhost:8080/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
+    this.messages = msg.filter((receiverUser: any) => receiverUser.receiver == this.idReceiver);
+    console.log(this.messages);
+    
+    
+  })
+}
 
 
 
 getPhotoCurrentUser(){
   this.http.get(`http://localhost:8080/users/${this.currentUser}`).subscribe(async (data:any)=>{
   this.currentUserData = data;
-    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-      (photoBlob: Blob) => {
-        console.log('Photo Blob:', photoBlob);
-     this.photoCurrentUser = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob))
-
-    })
-    
+  console.log(data.photo);
+  
+     this.photoCurrentUser = data.photo
+   
   })
 }
 
@@ -96,27 +103,38 @@ getPhotoCurrentUser(){
 getPhotoUserReceiver(){
   this.http.get(`http://localhost:8080/users/${this.idReceiver}`).subscribe(async (data:any)=>{
     this.receiverUserData = data;
-    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-      (photoBlob: Blob) => {
-        console.log('Photo Blob:', photoBlob);
-     this.photoReceiverUser = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
-    
-    })
+  console.log(data)
+  
+  this.photoReceiverUser = data.photo; 
+  
+  console.log(this.photoReceiverUser)
     
   })
 }
 
 
 
+
 getAppropriateImage(sender: number): SafeUrl | undefined {
   if (sender === this.currentUser) {
-    return this.photoCurrentUser;
-  } else if (sender !== this.idReceiver) {
-    return this.photoReceiverUser;
+    if(this.photoCurrentUser !== null){
+
+      return 'data:;base64,'+ this.photoCurrentUser;
+    }else{
+      return this.defaultImage;
+    }
+  }
+  if (sender === this.idReceiver) {
+    if(this.receiverUserData.photo !== null ){
+      return 'data:;base64,'+ this.photoReceiverUser;
+    }else{
+      return this.defaultImage;
+    }
   } else {
     return undefined;
   }
 }
+
 
 
 //  getUserImage(userId: number): Observable<SafeUrl> {

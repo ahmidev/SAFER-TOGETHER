@@ -17,11 +17,21 @@ export class SaferListComponent implements OnInit {
   saferId : any;
   userId : any;
   listFav!:any[];
+  rating: number = 3.8;
   
 
   constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}
 
-
+  getStarBackgroundWidth(index: number): string {
+    const starValue = index + 1;
+    if (this.rating >= starValue) {
+      return '100%';
+    } else if (this.rating > index && this.rating < starValue) {
+      const percentage = (this.rating - index) * 100;
+      return `${percentage}%`;
+    }
+    return '0%';
+  }
 
   ngOnInit(): void {
     this.userId = Number(localStorage.getItem('userId'));
@@ -40,7 +50,7 @@ export class SaferListComponent implements OnInit {
     this.http.get(url).subscribe((data: any) => {
       console.log("!!",data);
       
-      this.listSafer = data;
+      this.listSafer = data.filter((user: any) => user.id !== this.userId);;
       // this.listSafer.forEach(async (safer) => {
      
       //   if (safer.photo) {

@@ -1,54 +1,17 @@
 .main {
     height: 100vh;
-    width: 100%;
+    width: 100vw;
+    margin: auto ;
+    max-width: 768px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: url("src/assets/fond_mobile2.jpg");
+    background-image: url("/assets/bg_original2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.section1 {
-    height: 25vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
 
-.logo {
-    height: 200px;
-    display: flex;
-}
-
-img {
-    height: 150px;
-    margin-top: 10px;
-}
-
-p {
-    font-size: 1.5em;
-}
-
-.section2 {
-    height: 75%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    justify-content: center;    
-}
-
-.button {
-    width: 80vw;
-    height: 6vh;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: none;
-    padding: 10px;
-    box-sizing: border-box;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
 
 .form-group {
     display: flex;
@@ -60,7 +23,6 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
 }
 
 .upload-container p {
@@ -100,12 +62,7 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Media query for smaller screens */
-@media screen and (max-width: 450px) {
-    .button {
-        width: 90vw;
-    }
-}
+
 .main {
     height: 100vh;
     width: 100%;
@@ -128,7 +85,7 @@ p {
 }
 
 img {
-    height: 150px;
+    height: 100px;
     margin-top: 10px;
 }
 
@@ -142,7 +99,6 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
     justify-content: center;    
 }
 
@@ -230,3 +186,12 @@ p {
         width: 90vw;
     }
 }
+
+
+/* Media query pour les écrans de taille tablette et supérieure */
+@media (min-width: 768px) {
+    .button {
+        width: 60vw;
+      
+    }
+   }

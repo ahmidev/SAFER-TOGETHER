@@ -1,34 +1,32 @@
-<body>
+<div class="container">
     <header>
         <h2>Vos messages</h2>
-        <input type="text" placeholder="   Recherche ..."> 
+        <input type="text" placeholder="   Recherche ...">
     </header>
-    <main *ngFor="let user of users" >
+    <main *ngFor="let user of users">
 
-        <div   [routerLink]="['/discussion', user.id]"
-        [queryParams]="{ id: user.id}">
+        <div [routerLink]="['/discussion', user.id]" [queryParams]="{ id: user.id}" class="user-info">
 
-      
-        <div>
-           <img [src]="user.photo" alt="Safer1"> 
 
-        </div>
-        <div class="test">
-        <div class="safer">
-            <h3>{{user.lastname}} {{user.firstname}}</h3>
-            <p>Lorem ipsum dolor</p>
-        </div>
-       
-        <div class="test2">
-        <p>{{ heureActuelle | date:'HH:mm' }}</p>
+            <div class="photo">
+                <img *ngIf="user.photo " [src]="'data:;base64,'+user.photo" alt="Safer1">
+                <img *ngIf="!user.photo " src="assets/Safer2.svg" alt="default Photo ">
+
+            </div>
+            <div class="name-date">
+                <div class="safer">
+                    <h3>{{user.lastname}} {{user.firstname}}</h3>
     
-        <div class="en-ligne"></div>
-    </div>
-    </div>
+                </div>
 
-</div> 
+                <div class="date">
+                    <p>{{ heureActuelle | date:'HH:mm' }}</p>
+
+                    <div class="en-ligne"></div>
+                </div>
+            </div>
+
+        </div>
     </main>
- 
-</body>
 
-
+</div>

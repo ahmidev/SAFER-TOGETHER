@@ -9,7 +9,7 @@
     </div>
 
     <div class="user">
-
+      <img [src]="getAppropriateImage(idReceiver) || defaultImage" alt="user">
       <p>{{receiverUserData.lastname}} {{receiverUserData.firstname}}</p>
       <p>Active now</p>
 
@@ -24,31 +24,28 @@
 
   <div class="conversation">
 
-    <!-- <div class="talk left">
+     <!-- <div class="talk left">
       <img src="../assets/Safer1.svg" alt="safer1">
       <p>Lorem ipsum dolor sit amet.</p>
-    </div> -->
+    </div>  -->
 
     <!-- <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
       <img src="../assets/Safer4.svg" alt="user">
       <p>{{msg.message}}</p>
     </div> -->
 
-    <div class="conversation">
-      <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
+      <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender !== currentUser}">
         <!-- <img [src]="getUserImage(msg.sender) | async" alt="user"> -->
         <img [src]="getAppropriateImage(msg.sender)" alt="user">
-
-
-
-
-
-        <p>{{msg.message}}</p>
+        <div class="msg-date">
+          <p>{{msg.message}}</p>
+          <span class="date">{{msg.createdDate|date:'dd/MM/yyyy, hh:mm '}}</span>
+        </div>
       </div>
-    </div>
+ 
     
 
-      <!-- <div class="talk left">
+       <!-- <div class="talk left">
         <img src="../assets/Safer1.svg" alt="safer1">
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
@@ -56,7 +53,7 @@
       <div class="talk right">
         <p>Lorem ipsum dolor sit amet.</p>
         <img src="../assets/Safer4.svg" alt="user">
-      </div> -->
+      </div>  -->
 
 
     </div>
@@ -69,13 +66,13 @@
 
         <div class="group-inp">
           <input placeholder="Enter your message here"  [(ngModel)]="messageContent">
-          <img src="../assets/happy.svg" alt="emojis">
+          <button class="submit-message" (click)="sendMessage()">
+            <img src="../assets/send.svg" alt="send-message">
+          </button>
         </div>
       </div>
 
-      <button class="submit-message" (click)="sendMessage()">
-        <img src="../assets/send.svg" alt="send-message">
-      </button>
+      
 
 
 

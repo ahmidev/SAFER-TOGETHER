@@ -1,4 +1,4 @@
-<body>
+<div class="container">
   <header>
     <!-- création de la div "fond" pour avoir un carré blanc comme sur la maquette -->
     <div class="fond">
@@ -8,14 +8,15 @@
         <img class="fleche" src="../assets/icone_fleche1.svg" alt="" (click)="back()"/>
         
            <div (click)="favoris()" class="coeur" [class.favorited]="isFav">
-          <svg id="Calque_7" data-name="Calque 7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 48.8">
-          <path d="m25.01,9.83c-16.12-21.83-46.35,8.68,0,36.56,46.21-27.73,16.29-58.45,0-36.56Z" style=""/>
-        </svg>
-      </div>
+             <svg id="Calque_7" data-name="Calque 7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 48.8">
+             <path d="m25.01,9.83c-16.12-21.83-46.35,8.68,0,36.56,46.21-27.73,16.29-58.45,0-36.56Z" style=""/>
+             </svg>
+          </div>
       
       </div>
       <!-- photo de profil -->
-      <img class="safer" [src]="'data:;base64,'+safer.photo" alt="" />
+      <img *ngIf="safer.photo " class="safer" [src]="'data:;base64,'+safer.photo" alt="" />
+      <img *ngIf="!safer.photo " src="assets/Safer2.svg" alt="default Photo " class="safer" >
     </div>
   </header>
 
@@ -27,16 +28,11 @@
 
     <!-- note du Safer -->
     <div class="rating">
-      <!--
-        --><a href="#5" title="Donner 5 étoiles">★</a
-      ><!--
-        --><a href="#4" title="Donner 4 étoiles">★</a
-      ><!--
-        --><a href="#3" title="Donner 3 étoiles">★</a
-      ><!--
-        --><a href="#2" title="Donner 2 étoiles">★</a
-      ><!--
-        --><a href="#1" title="Donner 1 étoile">★</a>
+      <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" [style.backgroundSize]="getStarBackgroundWidth(i) + ' 100%'">
+        ★
+      </span>
+      
+      
     </div>
     <!-- description du profil -->
     <p class="descrip">
@@ -55,6 +51,5 @@
     </div>
   </main>
 
-  <footer></footer>
  
-</body>
+</div>

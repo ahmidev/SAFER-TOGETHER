@@ -1,17 +1,36 @@
-body {
+.container{
+  min-height: 100vh;
   width: 100vw;
-  height: 100vh;
-  background-image: url("/assets/fond_mobile2.jpg");
-  border: 0;
-  outline: 0;
-  position: absolute;
+  margin: auto ;
+  max-width: 768px;
+  background-image: url("/assets/bg_original2.png");
+  background-repeat: no-repeat;
+ background-size: cover;
+
 }
 
 header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 15%;
+
+}
+main {
+  width: 95%;
+  border: 1px solid rgb(179, 178, 178); 
+  border-radius: 5px;
+  margin: 15px auto;
+  box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  background-color:#fbd0d54d;
+}
+
+.user-info {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+ 
 }
 
 h2 {
@@ -31,47 +50,70 @@ input {
     
 }
 img {
-    width: 18%;
+    width: 15vw;
     background-color: white;
     border-radius: 5px;
-    margin-top: 5%;
-    margin-left: 7%;
+    margin-left: 15px;
     box-shadow: 1px 1px 1px ;
 }
 .safer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 10px;
    
     
 }
 h3, p {
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
-    margin-bottom: 10%;
+  
 }
 
 
-.test {
-    display: flex;
-    justify-content: center;
-    margin-left: 15%;
-    margin-top: -15%;
+.name-date {
+  width: 70%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 15px;
+   
     
     
 }
-.test2 {
+.date {
+  width: 50%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     margin-left: 10%;
     
     
 }
+
+
+
+
 .en-ligne {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-color: rgb(4, 158, 4);
-  margin-top: 8px;
-  margin-left: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Media query pour les écrans de taille tablette et supérieure */
+@media (min-width: 768px) {
+  main {
+    margin-bottom: 20px;
+  }
+
+  .img {
+    width: 10vw;
+   
+}
 }

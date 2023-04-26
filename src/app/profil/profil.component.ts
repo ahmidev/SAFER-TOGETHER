@@ -21,6 +21,7 @@ export class ProfilComponent implements OnInit {
   saferId: any;
   photoSafer:any;
   isFav : boolean = false;
+  rating: number = 3.6;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient,     private userPhotoService: UserPhotoService,private sanitizer: DomSanitizer, private favorisService : FavorisService)
    { }
@@ -33,7 +34,16 @@ back():void {
   
 }
 
-
+getStarBackgroundWidth(index: number): string {
+  const starValue = index + 1;
+  if (this.rating >= starValue) {
+    return '100%';
+  } else if (this.rating > index && this.rating < starValue) {
+    const percentage = (this.rating - index) * 100;
+    return `${percentage}%`;
+  }
+  return '0%';
+}
 
 
 
