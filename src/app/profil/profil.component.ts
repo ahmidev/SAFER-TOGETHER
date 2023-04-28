@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FavorisService } from '../Services/favoris.service';
+import { ReviewsService } from '../Services/reviews.service';
 
 
 @Component({
@@ -19,25 +20,26 @@ export class ProfilComponent implements OnInit {
   safers: any = [];
   safer: any;
   saferId: any;
-  isFav : boolean = false;
+  isFav: boolean = false;
+  review!: string;
+  rating!: number;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient,     private userPhotoService: UserPhotoService,private sanitizer: DomSanitizer, private favorisService : FavorisService)
-   { }
-
-
-
-back():void {
-  this.router.navigate(["/safer-list"]);
-  console.log("coucou");
-  
-}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient, private userPhotoService: UserPhotoService, private sanitizer: DomSanitizer, private favorisService: FavorisService, private reviewsService: ReviewsService) { }
 
 
 
+  back(): void {
+    this.router.navigate(["/safer-list"]);
+    console.log("coucou");
+
+  }
 
 
 
-  ngOnInit(){
+
+
+
+  ngOnInit() {
 
     this.userId = Number(localStorage.getItem('userId'));
     // let isloggedIn: string | null;
@@ -51,17 +53,17 @@ back():void {
     // }
 
 
-  this.favorisService.getFavorites(this.userId).subscribe((data : any) => {
-    console.log("listefaaaav",data);
-    for(let fav of data){
-      if(fav.favoriteUser == this.saferId){
-        this.isFav = true
+    this.favorisService.getFavorites(this.userId).subscribe((data: any) => {
+      console.log("listefaaaav", data);
+      for (let fav of data) {
+        if (fav.favoriteUser == this.saferId) {
+          this.isFav = true
+        }
       }
     }
-  }
-  
-  
-   )
+
+
+    )
 
 
 
@@ -81,50 +83,58 @@ back():void {
     this.saferId = this.activatedRoute.snapshot.params['id'];
 
 
-  this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(async (data:any)=>{
-    this.safer = data; 
-    console.log(this.safer);
-    
-    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-      (photoBlob: Blob) => {
-        console.log('Photo Blob:', photoBlob);
-     this.safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
-    
-       
+    this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(async (data: any) => {
+      this.safer = data;
+      console.log(this.safer);
 
-    });
-    
-  })
+      (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
+        (photoBlob: Blob) => {
+          console.log('Photo Blob:', photoBlob);
+          this.safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
 
-    
+
+
+        });
+
+    })
+
+
 
   }
 
-
-  
-next():void {
-  this.router.navigate(["/discussion", this.saferId]);
-  console.log("coucou");
-}
-
-
-favoris(){
-  if(this.isFav) {
-    return console.log('utilisateur déjà en base de donnée');
-    
+  addAReview() {
+    this.reviewsService.addReviews({
+      reviewer: this.userId,
+      reviewed: this.saferId,
+      rating: this.rating,
+      comment: this.review
+    }).subscribe(data => console.log(data));
   }
-  this.favorisService.addFavorite({user : this.userId, favoriteUser : this.saferId}).subscribe((data:any)=>{
-    console.log("daaaataaa",data);
-    
-    this.isFav = true;
-  },
-  (error)=> { console.log(error);
+
+  next(): void {
+    this.router.navigate(["/discussion", this.saferId]);
+    console.log("coucou");
+  }
+
+
+  favoris() {
+    if (this.isFav) {
+      return console.log('utilisateur déjà en base de donnée');
+
+    }
+    this.favorisService.addFavorite({ user: this.userId, favoriteUser: this.saferId }).subscribe((data: any) => {
+      console.log("daaaataaa", data);
+
+      this.isFav = true;
+    },
+      (error) => {
+        console.log(error);
+
+      }
+    )
+
+
 
   }
-  )
-
-
-
-}
 
 }

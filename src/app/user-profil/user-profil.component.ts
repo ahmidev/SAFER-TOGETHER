@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/co
 import { UserProfilService } from '../Services/user-profil.service';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ReviewsService } from '../Services/reviews.service';
 
 
 
@@ -26,44 +27,43 @@ export class UserProfilComponent implements OnInit{
     email: '',
     birthday: '',
     description: '',
-    
+
   };
 
   fileToUpload!: File|null ;
 
 
 
-  
 
-  constructor(private userProfilService: UserProfilService, private userPhotoService: UserPhotoService, private sanitizer: DomSanitizer,private cdRef: ChangeDetectorRef){
+
+  constructor(private userProfilService: UserProfilService, private userPhotoService: UserPhotoService, private sanitizer: DomSanitizer,private cdRef: ChangeDetectorRef, private reviewsService: ReviewsService){
 
   }
 
 
- 
+
 
 
   ngOnInit(): void {
-   
- 
-  
+
+
   this.userProfilService.currentDataUser.subscribe(data =>{
     this.user = data
     // this.userId =data.id
     const userIdStorage = localStorage.getItem('userId');
     if (userIdStorage) {
       this.userId = JSON.parse(userIdStorage);
-      
+
     } else {
-   
+
       this.userId = data.id
-        
+
       };
-  
-  
+
+
   })
-   
-  
+
+
 
 
   this.loadUserPhoto();
@@ -83,10 +83,10 @@ getUser(){
   this.userProfilService.getUserById(this.userId).subscribe(data=>{
     console.log(data)
     this.userProfilService.updateDataUser(data)
-  
+
   });
-  
-  
+
+
 }
 
 
@@ -99,7 +99,7 @@ getUser(){
         console.log('Photo Blob:', photoBlob);
         this.photoPreview = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
         console.log(this.photoPreview);
-        
+
 
         this.getUser();
 
@@ -111,8 +111,8 @@ getUser(){
 
         console.log(this.photoPreview);
         console.log( photoBlob);
-        
-        
+
+
       },
       (error) => {
         console.error('Erreur lors du chargement de la photo de l\'utilisateur', error);
@@ -175,7 +175,7 @@ getUser(){
 
 
 
-  
+
 
 
 
@@ -183,7 +183,7 @@ getUser(){
 
   upload(): void {
     console.log('cc');
-    
+
     if (this.fileToUpload) {
       this.userProfilService.uploadPhoto(this.userId, this.fileToUpload).subscribe(
         response => {

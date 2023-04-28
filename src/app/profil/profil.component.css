@@ -32,8 +32,9 @@ body {
   margin-right: 10px;
   margin-top: 10px;
   z-index: 10;
-  
+
 }
+
 .favorited svg {
   fill: red;
 }
@@ -105,4 +106,10 @@ button {
   font-weight: bold;
   background-color: #FDC5CC;
   box-shadow: 5px 5px 5px grey;
+}
+
+
+.avis{
+  display: flex;
+  flex-direction: column;
 }

@@ -17,7 +17,7 @@ export class SaferListComponent implements OnInit {
   saferId : any;
   userId : any;
   listFav!:any[];
-  
+
 
   constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}
 
@@ -40,10 +40,10 @@ export class SaferListComponent implements OnInit {
 
     this.http.get(url).subscribe((data: any) => {
       console.log("!!",data);
-      
+
       this.listSafer = data;
       this.listSafer.forEach(async (safer) => {
-     
+
         if (safer.photo) {
           (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
             (photoBlob: Blob) => {
@@ -52,7 +52,7 @@ export class SaferListComponent implements OnInit {
               console.log(this.listSafer[0].photo);
               console.log(safer.photo);
             });
-       
+
         } else {
           // Mettre une photo par défaut si la photo est null ou vide
           this.setDefaultPhoto(safer);
@@ -84,12 +84,12 @@ export class SaferListComponent implements OnInit {
     this.favorisService.getFavorites(this.userId).subscribe((fav:any) =>{
       this.listFav = fav
     })
-    
-    
+
+
 
   }
   setDefaultPhoto(safer: any): void {
-    const defaultPhotoPath = 'assets/Safer3.svg'; 
+    const defaultPhotoPath = 'assets/Safer3.svg';
     safer.photo = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
   }
   // fetch(url, options)
@@ -111,9 +111,9 @@ export class SaferListComponent implements OnInit {
 
 
   userFavorite(id : any) : boolean {
-    
+
     return this.listFav.some((favUser:any) => favUser.favoriteUser == id)
-  
-  
+
+
 }
 }
