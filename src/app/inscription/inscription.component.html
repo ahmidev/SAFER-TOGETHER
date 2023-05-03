@@ -10,7 +10,7 @@
 <main>
   <div class="main">
     <div class="logo">
-      <img src="../assets/logo1.png" alt="" srcset="" />
+      <img src="/assets/logo1.png" alt="" srcset="" />
     </div>
 
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
@@ -19,66 +19,85 @@
       </div>
 
       <div class="fullName">
-        <div class="contianer-name">
-          <input type="text" id="lastname" formControlName="lastname" required placeholder="nom" [class.valid]="userForm.get('lastname')?.touched &&
+        <div class="container-name">
+          <div *ngIf="
+          userForm.get('lastname')?.touched &&
+          userForm.get('lastname')?.invalid
+        " class="text-danger">
+        Le nom est requis.
+    </div>
+          <input type="text" id="lastname" formControlName="lastname" required placeholder="Ecrire votre nom ici" [class.valid]="userForm.get('lastname')?.touched &&
           userForm.get('lastname')?.valid"  [class.error]="userForm.get('lastname')?.touched &&
           userForm.get('lastname')?.invalid"/>
-          <div *ngIf="
-              userForm.get('lastname')?.touched &&
-              userForm.get('lastname')?.invalid
-            " class="text-danger">
-            Le nom est requis.
+          <!-- <label for="lastname" class="floating-label">Nom</label> -->
+         
         </div>
-        </div>
-        <div class="contianer-name">
-          <input type="text" id="firstname" formControlName="firstname" required placeholder="prénom"  [class.error]="userForm.get('firstname')?.touched &&
-          userForm.get('firstname')?.invalid"  [class.valid]="userForm.get('firstname')?.touched &&
-          userForm.get('firstname')?.valid"/>
+        <div class="container-name">
           <div *ngIf="
           userForm.get('firstname')?.touched &&
           userForm.get('firstname')?.invalid
         " class="text-danger">
             Le prénom est requis.
         </div>
+          <input type="text" id="firstname" formControlName="firstname" required placeholder="Ecrire votre prénom"  [class.error]="userForm.get('firstname')?.touched &&
+          userForm.get('firstname')?.invalid"  [class.valid]="userForm.get('firstname')?.touched &&
+          userForm.get('firstname')?.valid"/>
+          <!-- <label for="firstname" class="floating-label">Prénom</label> -->
+         
 
         </div>
 
       </div>
+<div class="container-data">
+  <div *ngIf="
+  userForm.get('email')?.touched &&
+  userForm.get('email')?.invalid
+  " class="text-danger">
+  L'email est requis.
+</div>
 
-      <input type="email" id="email" formControlName="email" required placeholder="Email" [class.error]="userForm.get('email')?.touched &&
-      userForm.get('email')?.invalid" [class.valid]="userForm.get('email')?.touched &&
-      userForm.get('email')?.valid"/>
-      <div *ngIf="
-      userForm.get('email')?.touched &&
-      userForm.get('email')?.invalid
-    " class="text-danger">
-        L'email est requis.
-    </div>
+  <input type="email" id="email" formControlName="email" required placeholder="Ecrire votre Email ici " [class.error]="userForm.get('email')?.touched &&
+  userForm.get('email')?.invalid" [class.valid]="userForm.get('email')?.touched &&
+  userForm.get('email')?.valid"/>
+  <!-- <label for="email" class="floating-label">Email</label> -->
+  
+</div>
 
-      <input type="date" id="birthday" formControlName="birthday" required placeholder="Date de naissance" [class.error]="userForm.get('birthday')?.touched &&
-      userForm.get('birthday')?.invalid"   [class.valid]="userForm.get('birthday')?.touched &&
-      userForm.get('birthday')?.valid"/>
-      <div *ngIf="
-      userForm.get('birthday')?.touched &&
-      userForm.get('birthday')?.invalid
-    " class="text-danger">
-        La date de naissance est requise.
-      </div>
-      <input type="password" id="password" formControlName="password" required placeholder="Mot de passe"  [class.error]="userForm.get('password')?.touched &&
-      userForm.get('password')?.invalid"  [class.valid]="userForm.get('password')?.touched &&
-      userForm.get('password')?.valid"/>
+<div class="container-data">
+  <div *ngIf="
+  userForm.get('birthday')?.touched &&
+  userForm.get('birthday')?.invalid
+  " class="text-danger">
+  La date de naissance est requise.
+</div>
+  <input type="date" id="birthday" formControlName="birthday" required  [class.error]="userForm.get('birthday')?.touched &&
+  userForm.get('birthday')?.invalid"   [class.valid]="userForm.get('birthday')?.touched &&
+  userForm.get('birthday')?.valid"/>
+  <!-- <label for="birthday" class="floating-label">Date de naissance</label> -->
+ 
+</div>
+<div class="container-data">
 
-      <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
-        Le mot de passe est invalide.
-      </div>
+  <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
+    Le mot de passe est invalide (8 caractères minimum).
+  </div>
+  <input type="password" id="password" formControlName="password" required placeholder="Mot de passe"  [class.error]="userForm.get('password')?.touched &&
+  userForm.get('password')?.invalid"  [class.valid]="userForm.get('password')?.touched &&
+  userForm.get('password')?.valid"/>
+  <!-- <label for="password" class="floating-label">Mot de passe</label> -->
+  
+</div>
+<div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
+  Les mots de passe ne correspondent pas.
+</div>
+<div class="container-data">
 
-      <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
-        placeholder="Confirmation du mot de passe" [class.error]="userForm.get('confirm_password')?.touched &&
-        userForm.get('firstname')?.invalid" [class.valid]="userForm.get('confirm_password')?.touched &&
-        userForm.get('firstname')?.valid"/>
-        <div *ngIf="userForm.get('confirm_password')?.errors?.['compare']" class="text-danger">
-          Les mots de passe ne correspondent pas.
-        </div>
+  <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
+  placeholder="Confirmation du mot de passe" [class.error]="userForm.get('confirm_password')?.touched &&
+  userForm.get('firstname')?.invalid" [class.valid]="userForm.get('confirm_password')?.touched &&
+  userForm.get('firstname')?.valid"/>
+  <!-- <label for="confirm_password" class="floating-label">Confirmer votre Mot de passe</label> -->
+</div>
       <div class="file">
         <label for="file">Votre pièce d'identité </label>
         <div class="parent-div">

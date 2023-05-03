@@ -13,11 +13,13 @@
             <div [routerLink]="['/profil', user.id]"
             [queryParams]="{ id: user.id}" class="user">
                 <div class="profile">
-                    <img [src]=user.photo
+                    <img *ngIf="user.photo" [src]="'data:;base64,'+user.photo"
+                        alt="">
+                    <img *ngIf="!user.photo" src="assets/Safer2.svg"
                         alt="">
                     <div class="name">
                         <h2>{{user.firstname}}</h2>
-                        <h3>ville</h3>
+                        <!-- <h3>ville</h3> -->
                     </div>
                 </div>
                 <div  class="coeur" [ngClass]="{'favorited':userFavorite(user.id)}">
@@ -26,16 +28,11 @@
                   </svg>
                 </div>
                 <div class="note">
-                    <input type="radio" name="rating" id="star1">
-                    <label for="star1">&#9733;</label>
-                    <input type="radio" name="rating" id="star2">
-                    <label for="star2">&#9733;</label>
-                    <input type="radio" name="rating" id="star3">
-                    <label for="star3">&#9733;</label>
-                    <input type="radio" name="rating" id="star4">
-                    <label for="star4">&#9733;</label>
-                    <input type="radio" name="rating" id="star5">
-                    <label for="star5">&#9733;</label>
+                    <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" [style.backgroundSize]="getStarBackgroundWidth(i) + ' 100%'">
+                        ★
+                      </span>
+                      
+                      
                 </div>
             </div>
         </div>

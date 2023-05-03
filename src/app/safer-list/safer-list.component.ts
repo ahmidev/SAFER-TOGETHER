@@ -17,11 +17,21 @@ export class SaferListComponent implements OnInit {
   saferId : any;
   userId : any;
   listFav!:any[];
+  rating: number = 0;
 
 
   constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}
 
-
+  getStarBackgroundWidth(index: number): string {
+    const starValue = index + 1;
+    if (this.rating >= starValue) {
+      return '100%';
+    } else if (this.rating > index && this.rating < starValue) {
+      const percentage = (this.rating - index) * 100;
+      return `${percentage}%`;
+    }
+    return '0%';
+  }
 
   ngOnInit(): void {
     this.userId = Number(localStorage.getItem('userId'));
@@ -35,7 +45,6 @@ export class SaferListComponent implements OnInit {
     //     'Content-Type': 'application/json' // Définition du type de contenu de la requête (ici JSON)
     //   }
     // }
-
 
 
     this.http.get(url).subscribe((data: any) => {
@@ -58,7 +67,28 @@ export class SaferListComponent implements OnInit {
           this.setDefaultPhoto(safer);
         }
       });
+
+      this.listSafer = data.filter((user: any) => user.id !== this.userId);;
+      // this.listSafer.forEach(async (safer) => {
+
+      //   if (safer.photo) {
+      //     (await this.userPhotoService.getUserPhoto(safer.photo)).subscribe(
+      //       (photoBlob: Blob) => {
+      //         console.log('Photo Blob:', photoBlob);
+      //         safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+      //         console.log(this.listSafer[0].photo);
+      //         console.log(safer.photo);
+      //       });
+
+      //   } else {
+      //     // Mettre une photo par défaut si la photo est null ou vide
+      //     this.setDefaultPhoto(safer);
+      //   }
+      // });
+
+
     });
+
 
     // fetch(url, options)
     //   .then(response => {

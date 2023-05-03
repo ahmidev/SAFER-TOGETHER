@@ -11,6 +11,7 @@ import { UserPhotoService } from '../Services/user-photo.service';
 export class MessageComponent implements OnInit {
   heureActuelle: Date | undefined;
   users !:any[];
+  userId! : number;
 
 
 constructor(private http: HttpClient,private sanitizer: DomSanitizer, private userPhotoService : UserPhotoService){}
@@ -18,9 +19,12 @@ constructor(private http: HttpClient,private sanitizer: DomSanitizer, private us
 
   ngOnInit() {
 
-    const url = 'http://localhost:8080/users/';
+    const url = 'http://localhost:8080/message/all-receivers-by-sender';
   
-
+    const userIdStorage = localStorage.getItem('userId');
+    this.userId = Number(userIdStorage);
+    console.log(this.userId);
+    
 
 
 // this.http.get(url).subscribe((data:any) =>{
@@ -39,23 +43,11 @@ constructor(private http: HttpClient,private sanitizer: DomSanitizer, private us
 //     })})
 // })
 
-this.http.get(url).subscribe((data: any) => {
+this.http.get(url + "/" + this.userId).subscribe((data: any) => {
   console.log(data);
-  this.users = data;
-  this.users.forEach((user) => {
-    this.userPhotoService.getUserPhoto(user.photo).subscribe(
-      (photoUrl: SafeUrl) => {
-        console.log('Photo URL:', photoUrl);
-        user.photo = photoUrl;
-        console.log(this.users[0].photo);
-        console.log(user.photo);
-      },
-      (error) => {
-        console.error('Erreur lors du chargement de la photo', error);
-      }
-    );
-  });
+  this.users = data.filter((user: any) => user.id !== this.userId); // Filtrer et enlever l'utilisateur avec l'ID spécifique
 });
+
 
 
 

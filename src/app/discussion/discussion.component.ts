@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Message } from '../message-interface';
 import { ChatService } from '../message-service';
 import { MessageService } from '../Services/message.service';
-import { UserPhotoCacheService } from '../Services/userPhotoCacheService.service'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserProfilService } from '../Services/user-profil.service';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { Observable, catchError, map, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { RouterTestingHarness } from '@angular/router/testing';
 
 @Component({
   selector: 'app-discussion',
@@ -21,10 +21,11 @@ export class DiscussionComponent implements OnInit{
   public receiverEmail!: string;
   public messageContent!: string;
   public messages: any[]=[];
-  public   idReceiver!:number;
-  public   currentUser!:number;
+  public idReceiver!:number;
+  public currentUser!:number;
   public photoCurrentUser:any;
-  public photoReceiverUser:any;
+  public photoReceiverUser!:string ;
+  public defaultImage: string = "/assets/Safer2.svg"
   public currentUserData:any;
   public receiverUserData:any;
 
@@ -64,6 +65,7 @@ message : string = '';
     );
     this.getPhotoCurrentUser();
     this.getPhotoUserReceiver();
+    this.getMessage();
   }
 
 
@@ -78,13 +80,21 @@ message : string = '';
 
   }
 
-
+getMessage(){
+  this.http.get(`http://localhost:8080/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
+    this.messages = msg.filter((receiverUser: any) => receiverUser.receiver == this.idReceiver);
+    console.log(this.messages);
+    
+    
+  })
+}
 
 
 
 getPhotoCurrentUser(){
   this.http.get(`http://localhost:8080/users/${this.currentUser}`).subscribe(async (data:any)=>{
   this.currentUserData = data;
+<<<<<<< HEAD
     (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
       (photoBlob: Blob) => {
         console.log('Photo Blob:', photoBlob);
@@ -92,6 +102,12 @@ getPhotoCurrentUser(){
 
     })
 
+=======
+  console.log(data.photo);
+  
+     this.photoCurrentUser = data.photo
+   
+>>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
   })
 }
 
@@ -100,6 +116,7 @@ getPhotoCurrentUser(){
 getPhotoUserReceiver(){
   this.http.get(`http://localhost:8080/users/${this.idReceiver}`).subscribe(async (data:any)=>{
     this.receiverUserData = data;
+<<<<<<< HEAD
     (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
       (photoBlob: Blob) => {
         console.log('Photo Blob:', photoBlob);
@@ -107,22 +124,46 @@ getPhotoUserReceiver(){
 
     })
 
+=======
+  console.log(data)
+  
+  this.photoReceiverUser = data.photo; 
+  
+  console.log(this.photoReceiverUser)
+    
+>>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
   })
 }
 
 
 
+
 getAppropriateImage(sender: number): SafeUrl | undefined {
   if (sender === this.currentUser) {
-    return this.photoCurrentUser;
-  } else if (sender !== this.idReceiver) {
-    return this.photoReceiverUser;
+    if(this.photoCurrentUser !== null){
+
+      return 'data:;base64,'+ this.photoCurrentUser;
+    }else{
+      return this.defaultImage;
+    }
+  }
+  if (sender === this.idReceiver) {
+    if(this.receiverUserData.photo !== null ){
+      return 'data:;base64,'+ this.photoReceiverUser;
+    }else{
+      return this.defaultImage;
+    }
   } else {
     return undefined;
   }
 }
 
+<<<<<<< HEAD
 }
+=======
+
+
+>>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
 //  getUserImage(userId: number): Observable<SafeUrl> {
 //      let filename="";
 //     const user = this.userProfilService.getUserById(userId).subscribe(data=>{

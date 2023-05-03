@@ -20,9 +20,9 @@ export class ProfilComponent implements OnInit {
   safers: any = [];
   safer: any;
   saferId: any;
-  isFav: boolean = false;
-  review!: string;
-  rating!: number;
+  photoSafer:any;
+  isFav : boolean = false;
+  rating: number = 3.6;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient, private userPhotoService: UserPhotoService, private sanitizer: DomSanitizer, private favorisService: FavorisService, private reviewsService: ReviewsService) { }
 
@@ -34,7 +34,16 @@ export class ProfilComponent implements OnInit {
 
   }
 
-
+getStarBackgroundWidth(index: number): string {
+  const starValue = index + 1;
+  if (this.rating >= starValue) {
+    return '100%';
+  } else if (this.rating > index && this.rating < starValue) {
+    const percentage = (this.rating - index) * 100;
+    return `${percentage}%`;
+  }
+  return '0%';
+}
 
 
 
@@ -83,14 +92,26 @@ export class ProfilComponent implements OnInit {
     this.saferId = this.activatedRoute.snapshot.params['id'];
 
 
-    this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(async (data: any) => {
-      this.safer = data;
-      console.log(this.safer);
+  this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(async (data:any)=>{
+    this.safer = data;
+    console.log(this.safer);
 
-      (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-        (photoBlob: Blob) => {
-          console.log('Photo Blob:', photoBlob);
-          this.safer.photo = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
+      (photoBlob: Blob) => {
+        console.log('Photo Blob:', photoBlob);
+     this.photoSafer = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
+
+
+
+    });
+
+  },
+  (error) => {
+
+  // Mettre une photo par défaut si aucune photo n'est chargée
+  this.setDefaultPhoto();
+  }
+  )
 
 
 
@@ -98,23 +119,20 @@ export class ProfilComponent implements OnInit {
 
     })
 
-
-
+  setDefaultPhoto(): void {
+    const defaultPhotoPath = 'assets/Safer1.svg';
+    this.photoSafer = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
   }
 
-  addAReview() {
-    this.reviewsService.addReviews({
-      reviewer: this.userId,
-      reviewed: this.saferId,
-      rating: this.rating,
-      comment: this.review
-    }).subscribe(data => console.log(data));
+  setDefaultPhoto(): void {
+    const defaultPhotoPath = 'assets/Safer1.svg';
+    this.photoSafer = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
   }
 
-  next(): void {
-    this.router.navigate(["/discussion", this.saferId]);
-    console.log("coucou");
-  }
+next():void {
+  this.router.navigate(["/discussion", this.saferId]);
+  console.log("coucou");
+}
 
 
   favoris() {

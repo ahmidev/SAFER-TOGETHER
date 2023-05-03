@@ -39,12 +39,14 @@ export class ConnexionComponent implements OnInit {
         localStorage.setItem('lastname', response.user.lastname);
         localStorage.setItem('firstname', response.user.firstname);
         localStorage.setItem('photo', response.user.photo);
+        localStorage.setItem('roles', JSON.stringify(response.user.roles));
 
-        console.log(response.user);
+
+        console.log( response.user);
         this.user = response.user;
         this.userProfileService.updateDataUser(response.user)
 
-        this.authService.updateData(true)
+     
         console.log('user profil', this.user)
 
         const userId = Number(localStorage.getItem("userId"));
@@ -58,12 +60,18 @@ export class ConnexionComponent implements OnInit {
 
           }
         )
+          // Vérifier si l'utilisateur a le rôle "ADMIN"
+        const isAdmin = response.user.roles.some((role: { name: string; }) => role.name === 'ADMIN');
 
+          // Rediriger l'utilisateur vers la page appropriée en fonction de son rôle
+        if (isAdmin) {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/parentmap']);
+          this.authService.updateData(true)
+        }
+        
 
-
-
-        // Rediriger l'utilisateur vers une autre page
-        this.router.navigate(['/parentmap']);
       },
       (error) => {
         // Si la connexion échoue, afficher un message d'erreur

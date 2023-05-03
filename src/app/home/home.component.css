@@ -1,7 +1,12 @@
 .main {
     height: 100vh;
     width: 100vw;
-    background-image: url("src/assets/fond_mobile2.jpg");
+    margin: auto ;
+    max-width: 768px;
+    background-image: url("src/assets/bg_original1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,49 +17,72 @@ h1 {
     text-align: center;
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 39px;
+    font-weight: 700;
+    font-size: 2em;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 1em;
 }
 
 .logo {
-    height: 100px;
-    margin-top: 150px;
+    height: 40vh;
+    margin-top: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 img {
-    width: 300px;
+    height: 28vh;
 }
 
 .bouton {
-    height: 200px;
-    margin-top: 150px;
+    height:20%;
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  
 }
 
 .button {
-    border: none;
-    margin-bottom: 20px;
-    height: 50px;
-    width: 150px;
-    background-color: var(--tea-rose-red);
+    width: 50vw;
+    height: 6vh;
     border-radius: 5px;
-    color: #652A3A;
+    border: none;
+    background-color: var(--tea-rose-red);
+    font-size: 1em;
+    color: var(--china-rose);
+    box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-bottom: 10px;
 }
 
 a {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 1em;
+    line-height: 1.2em;
+}
+
+
+/* Media query pour les écrans de taille tablette et supérieure */
+@media (min-width: 768px) {
+    .main {
+        height: 90vh;
+        margin: 5vh auto;
+        border-radius: 1.2em;
+        box-shadow: 6px 4px 4px 2px rgba(0, 0, 0, 0.25);
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
+    
+    .button {
+        width: 25vw; 
+        font-size: 1.2em;
+    }
+
+    a {
+        font-size: 1.2em;;
+    }
 }

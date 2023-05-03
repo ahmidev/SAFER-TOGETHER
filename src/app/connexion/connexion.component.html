@@ -14,9 +14,16 @@
     </div>
 
     <div class="input">
-        <input type="email" placeholder="Email*" [(ngModel)]="email">
-        <input type="password" placeholder="Password*" [(ngModel)]="password">
-
+        <div class="login">
+            <svg id="Capa_1" enable-background="new 0 0 345.326 345.326" height="512" viewBox="0 0 345.326 345.326" width="512" xmlns="http://www.w3.org/2000/svg"><g><g id="account_1_"><path id="Combined-Shape" d="m223.023 158.274c51.653 0 93.526 41.873 93.526 93.526v64.749c0 15.893-12.884 28.777-28.777 28.777h-230.218c-15.893 0-28.777-12.884-28.777-28.777v-64.749c0-51.653 41.873-93.526 93.526-93.526zm-50.36-158.274c39.733 0 71.943 32.21 71.943 71.943s-32.21 71.943-71.943 71.943-71.943-32.21-71.943-71.943 32.21-71.943 71.943-71.943z"/></g></g></svg>
+            <input type="email" placeholder="Email*" [(ngModel)]="email">
+        </div>
+        <div class="login">
+            <svg id="magicoon-Filled" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><g id="lock-Filled"><path id="lock-Filled-2" d="m362.667 213.12v-63.787a106.667 106.667 0 0 0 -213.334 0v63.787c-31.573 15.786-53.333 48-53.333 85.547v64a96.145 96.145 0 0 0 96 96h128a96.145 96.145 0 0 0 96-96v-64c0-37.547-21.76-69.761-53.333-85.547zm-85.334 128.213a21.333 21.333 0 1 1 -42.666 0v-21.333a21.333 21.333 0 0 1 42.666 0zm42.667-138.666h-128v-53.334a64 64 0 1 1 128 0z" data-name="lock-Filled"/></g></svg>
+           
+            <input type="password" placeholder="Password*" [(ngModel)]="password">
+        </div>
+            
     </div>
 
      <button class="bouton" aria-placeholder="Connexion" (click)=" login()">Connexion</button>
@@ -26,4 +33,4 @@
 
 </div>
 
-<app-navbar></app-navbar>
+

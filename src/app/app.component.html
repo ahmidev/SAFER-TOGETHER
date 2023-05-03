@@ -1,10 +1,12 @@
 
 
+<div class="container">
 
-<router-outlet></router-outlet>
-
-
-<app-navbar class="navBar" *ngIf="connexion || shouldShowComponent(router.url) "></app-navbar >
+    <router-outlet></router-outlet>
+    
+    
+    <app-navbar class="navBar" *ngIf="connexion || shouldShowComponent(router.url) "></app-navbar >
+</div>
 
 <!-- <app-rgpd></app-rgpd> -->
 

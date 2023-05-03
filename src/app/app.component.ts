@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
       case '/':
       case '/home':
       case '/inscription':
+      case '/admin':
         return false;
       default:
         return true;

@@ -47,6 +47,7 @@ export class MapComponent implements OnInit {
       console.log(users[0].geolocalisation.latitude
         )
     })
+    console.log(this.geolocations);
   }
 
 

@@ -23,6 +23,7 @@ import { RgpdComponent } from './rgpd/rgpd.component';
 import { ParentMapComponent } from './parent-map/parent-map.component';
 import { AuthInterceptor } from './Services/auth.interceptor';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -39,8 +40,14 @@ AppComponent,
     SaferListComponent,
     UserProfilComponent,
     ParentMapComponent,
+<<<<<<< HEAD
     ConfirmRegistrationComponent,
 
+=======
+    MapComponent,
+    AdminComponent
+    
+>>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
   ],
   imports: [
     BrowserModule,
