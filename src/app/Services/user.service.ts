@@ -14,7 +14,7 @@ export interface User {
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'http://217.160.37.151:8080';
 
 
 
@@ -35,7 +35,10 @@ toggleUserStatus(id: number, active: boolean): Observable<any> {
   }
 }
 
-
+setUserDisconnected(userId: number): Observable<void> {
+  const url = `${this.apiUrl}/auth/${userId}/disconnected`;
+  return this.http.put<void>(url, {});
+}
 
 
 }

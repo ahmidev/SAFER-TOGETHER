@@ -11,16 +11,11 @@ html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;  
-    top: 0;
-    left: 0;
   
   } 
 
-  .map {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
+
+
 
 
   

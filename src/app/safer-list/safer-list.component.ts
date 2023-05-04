@@ -37,7 +37,7 @@ export class SaferListComponent implements OnInit {
     this.userId = Number(localStorage.getItem('userId'));
     // const token = localStorage.getItem('token');
     const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b3RvQGdtYWlsLmNvbSIsImZ1bGxOYW1lIjoidGF0YSB0b3RvIiwiZXhwIjoxNjgwOTkxNTQ5LCJ1c2VySWQiOjQsImlhdCI6MTY4MDI3MTU0OSwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XX0.Ul0A7TCmPy3kzkF5mKpH-psI92hGgO_B8WIr2HnYSMo";
-    const url = 'http://localhost:8080/users/';
+    const url = 'http://217.160.37.151:8080/users/';
     // const options = {
     //   method: 'GET', // Méthode HTTP (GET, POST, PUT, DELETE, etc.)
     //   headers: {

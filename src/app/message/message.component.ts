@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserPhotoService } from '../Services/user-photo.service';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-message',
@@ -14,12 +15,17 @@ export class MessageComponent implements OnInit {
   userId! : number;
 
 
-constructor(private http: HttpClient,private sanitizer: DomSanitizer, private userPhotoService : UserPhotoService){}
+constructor(private http: HttpClient,private sanitizer: DomSanitizer, private userPhotoService : UserPhotoService, private notificationService: NotificationService){}
+
+
+hasUnreadMessages(userId: number): boolean {
+  return this.notificationService.hasUnreadMessagesFromUser(userId);
+}
 
 
   ngOnInit() {
 
-    const url = 'http://localhost:8080/message/all-receivers-by-sender';
+    const url = 'http://217.160.37.151:8080/message/all-receivers-by-sender';
   
     const userIdStorage = localStorage.getItem('userId');
     this.userId = Number(userIdStorage);

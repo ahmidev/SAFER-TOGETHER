@@ -108,7 +108,7 @@ img{
 .right {
   display: flex;
   justify-content: flex-end;
-  margin-left: 35vw;
+
 
 }
 .right p {
@@ -275,7 +275,7 @@ input {
 
 .conversation {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   max-width: 100%;
   overflow-y: auto;
 }
@@ -296,6 +296,7 @@ input {
 
 .talk.right {
   flex-direction: row-reverse;
+  justify-content: end;
 }
 
 .talk.left {
@@ -305,6 +306,7 @@ input {
 .talk.right p, .talk.left p {
   padding: 5px 10px;
   max-width: 70%;
+  min-width: 70%;
   word-wrap: break-word;
 }
 
@@ -321,9 +323,14 @@ input {
 }
 
 
-.date {
+.talk.left .date {
   font-size: 10px;
-  background-color: #0984fe;
+  background-color: #8f9090;
+  color: #f1f1f1;
+}
+.talk.right .date {
+  font-size: 10px;
+  background-color: #456ae6;
   color: #f1f1f1;
 }
 .msg-date {
@@ -334,6 +341,6 @@ input {
 /* Media query pour les écrans de taille tablette et supérieure */
 @media (min-width: 768px) {
  .global-discussion {
-  width: 50vw;
+  max-width: 600px;
  }
 }

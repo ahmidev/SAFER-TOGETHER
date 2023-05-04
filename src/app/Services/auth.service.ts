@@ -15,7 +15,7 @@ export class AuthService {
 
   public user!: {};
 
-  private url = 'http://localhost:8080/auth/authenticate';
+  private url = 'http://217.160.37.151:8080/auth/authenticate';
 
   constructor(private http: HttpClient) { }
 
@@ -67,7 +67,7 @@ export class AuthService {
   
   
   getUserById(id: number): Observable<any> {
-  return this.http.get(`http://localhost:8080/users/${id}`);
+  return this.http.get(`http://217.160.37.151:8080/users/${id}`);
 }
 
 }

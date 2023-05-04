@@ -94,17 +94,31 @@ h3, p {
 
 
 
-
 .en-ligne {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: rgb(4, 158, 4);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.online {
+  background-color: rgb(4, 158, 4);
+}
+
+.offline {
+  background-color: black;
+}
+
+
+.unread-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+ 
+}
 
 /* Media query pour les écrans de taille tablette et supérieure */
 @media (min-width: 768px) {
@@ -113,7 +127,7 @@ h3, p {
   }
 
   .img {
-    width: 10vw;
+    max-width: 8vw;
    
 }
 .user-info {

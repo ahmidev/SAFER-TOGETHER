@@ -11,7 +11,8 @@
     <div class="user">
       <img [src]="getAppropriateImage(idReceiver) || defaultImage" alt="user">
       <p>{{receiverUserData.lastname}} {{receiverUserData.firstname}}</p>
-      <p>Active now</p>
+      <p>{{ receiverUserData.connected ? 'En ligne' : 'Hors ligne' }}</p>
+
 
     </div>
 
@@ -34,7 +35,8 @@
       <p>{{msg.message}}</p>
     </div> -->
 
-      <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender !== currentUser}">
+    <div *ngFor="let msg of messages" [ngClass]="{'talk': true, 'right': msg.sender == currentUser, 'left': msg.sender == idReceiver}">
+
         <!-- <img [src]="getUserImage(msg.sender) | async" alt="user"> -->
         <img [src]="getAppropriateImage(msg.sender)" alt="user">
         <div class="msg-date">

@@ -44,13 +44,15 @@ export class MapComponent implements OnInit {
     // })
     this.positionService.getLocation().subscribe((users: any) => {
       this.geolocations = users
-      console.log(users[0].geolocalisation.latitude
-        )
+      console.log("lol :" , this.geolocations     )
+     this.geolocations.forEach((user:any)=>console.log(user.geolocalisation))
     })
-    console.log(this.geolocations);
+ 
   }
 
-
+  trackByFn(index: number, item: any): any {
+    return item.id; // Utilisez une propriété unique pour chaque élément, comme l'ID
+  }
 
   // lat2= 48.852020263671875;
 
