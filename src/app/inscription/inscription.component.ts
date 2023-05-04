@@ -88,12 +88,17 @@ export class InscriptionComponent implements OnInit{
     formData.append('file', this.file, this.file.name);
     console.log(this.file.name);
     
-    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'skipInterceptor': ''
+      })
+    };
     const headers = new HttpHeaders({
       'skipInterceptor': '' // Ajoutez ce header pour ignorer l'intercepteur pour cette requête
     });
 
-    this.http.post('http://localhost:8080/auth/register', formData, { headers }).subscribe(
+    this.http.post('http://217.160.37.151:8080/auth/register', formData, { headers }).subscribe(
       (response) =>{
         console.log('Envoi réussi');
         this.router.navigate(["register"]);

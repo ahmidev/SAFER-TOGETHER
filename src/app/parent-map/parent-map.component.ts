@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PositionService } from '../Services/position.service';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-parent-map',
@@ -9,7 +10,7 @@ import { PositionService } from '../Services/position.service';
 export class ParentMapComponent implements OnInit {
 
 
-  constructor(private positionService: PositionService,) {
+  constructor(private positionService: PositionService,private notificationService: NotificationService) {
 
   }
 
@@ -20,6 +21,11 @@ export class ParentMapComponent implements OnInit {
       // this.geolocations.push(geolocations)
       console.log(geolocations)
     })
+    this.notificationService.unreadMessageCount$.subscribe((count) => {
+      // this.unreadMessageCount = count;
+      console.log(count);
+      
+    });
   }
 
 }

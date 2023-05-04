@@ -12,11 +12,12 @@ import * as Webstomp from 'webstomp-client';
 export class MessageService {
   private socket!: WebSocket;
   private stompClient!: Webstomp.Client;
+  
 
   constructor() { }
 
   connect(idReceiver:any,idSender:any): Observable<any> {
-    const socket = new SockJS('http://localhost:8080/chat'); 
+    const socket = new SockJS('http://217.160.37.151:8080/chat'); 
     this.stompClient = Webstomp.over(socket);
 
     const subject = new Subject<any>();

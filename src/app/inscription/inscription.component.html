@@ -113,7 +113,7 @@
           J'ai lu et j'accepte les
           <a href="">conditions générales</a>
         </label>
-        <input type="checkbox" class="checkbox" formControlName="checkbox" [class.error]="userForm.get('firstname')?.invalid" [class.valid]="userForm.get('firstname')?.valid"/>
+        <input type="checkbox" class="checkbox" formControlName="checkbox" [class.error]="userForm.get('checkbox')?.invalid" [class.valid]="userForm.get('checkbox')?.valid"/>
       </div>
 <!-- bouton d'inscription -->
       <button class="submit" type="submit" [disabled]="!userForm.value.checkbox || userForm.invalid">

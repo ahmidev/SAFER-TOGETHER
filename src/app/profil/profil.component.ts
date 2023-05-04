@@ -29,7 +29,7 @@ export class ProfilComponent implements OnInit {
 
 
 back():void {
-  this.router.navigate(["/safer-list"]);
+  this.router.navigate(["/parentmap"]);
   console.log("coucou");
   
 }
@@ -92,7 +92,7 @@ getStarBackgroundWidth(index: number): string {
     this.saferId = this.activatedRoute.snapshot.params['id'];
 
 
-  this.http.get(`http://localhost:8080/users/${this.saferId}`).subscribe(async (data:any)=>{
+  this.http.get(`http://217.160.37.151:8080/users/${this.saferId}`).subscribe(async (data:any)=>{
     this.safer = data; 
     console.log(this.safer);
     

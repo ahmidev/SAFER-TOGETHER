@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'safer';
-  connexion!:boolean;
+  connexion:boolean = false;
 
   constructor(private guard: AuthGuard, private authService :AuthService, public router: Router){}
 
@@ -27,11 +27,20 @@ export class AppComponent implements OnInit {
       case '/home':
       case '/inscription':
       case '/admin':
+      case '/reset-password':
+      case '/request-reset-password':
+      case '/register':
         return false;
-      default:
-        return true;
-    }
+        default:
+          // méthode startsWith de JavaScript pour vérifier si la chaîne de caractères de la route commence par /reset-password.
+          if (route.startsWith('/reset-password')) {
+            return false;
+          } else {
+            return true;
+          }
   }
+
+}
   
 
 }

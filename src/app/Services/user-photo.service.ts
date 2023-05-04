@@ -7,7 +7,7 @@ import { Observable, map, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class UserPhotoService {
-  private baseUrl = 'http://localhost:8080/users'; 
+  private baseUrl = 'http://217.160.37.151:8080/users'; 
 
   constructor(private http: HttpClient, private sanitizer:DomSanitizer) { }
 

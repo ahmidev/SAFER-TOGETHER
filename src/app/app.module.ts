@@ -23,6 +23,8 @@ import { ParentMapComponent } from './parent-map/parent-map.component';
 import { AuthInterceptor } from './Services/auth.interceptor';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AdminComponent } from './admin/admin.component';
+import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { AdminComponent } from './admin/admin.component';
     SaferListComponent,
     ParentMapComponent,
     MapComponent,
-    AdminComponent
+    AdminComponent,
+    RequestResetPasswordComponent,
+    ResetPasswordComponent
     
   ],
   imports: [

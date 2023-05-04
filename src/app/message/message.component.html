@@ -18,11 +18,12 @@
                     <h3>{{user.lastname}} {{user.firstname}}</h3>
     
                 </div>
-
+                <div class="unread-indicator" *ngIf="hasUnreadMessages(user.id)"></div>
                 <div class="date">
                     <p>{{ heureActuelle | date:'HH:mm' }}</p>
 
-                    <div class="en-ligne"></div>
+                    <div class="en-ligne" [ngClass]="{'online': user.connected, 'offline': !user.connected}"></div>
+
                 </div>
             </div>
 

@@ -8,7 +8,7 @@ import { Message } from 'src/app/message-interface';
 })
 export class ChatService {
   
-  private baseUrl = 'http://localhost:8080/api/chat';
+  private baseUrl = 'http://217.160.37.151:8080/api/chat';
 
   constructor(private http: HttpClient) { }
 
