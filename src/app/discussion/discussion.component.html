@@ -63,7 +63,7 @@
     <div class="container-input">
 
       <div class="group-inp">
-        <input placeholder="Enter your message here" [(ngModel)]="messageContent">
+        <input placeholder="Enter your message here" [(ngModel)]="messageContent" (keydown)="sendMessageEnter($event)" >
         <button class="submit-message" (click)="sendMessage()">
           <img src="../assets/send2.svg" alt="send-message">
         </button>

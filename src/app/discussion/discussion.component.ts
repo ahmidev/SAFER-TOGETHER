@@ -104,6 +104,13 @@ this.notificationService.messages$.subscribe((messages) => {
 
   }
 
+  sendMessageEnter(event: KeyboardEvent){
+if (event.key === "Enter"){
+  this.sendMessage()
+  console.log(event);
+}
+  }
+
 getMessageSender(){
   this.http.get(`http://217.160.37.151:8080/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
     const tabTri = msg.filter((receiverUser: any) => receiverUser.receiver == this.idReceiver);
