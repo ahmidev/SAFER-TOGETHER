@@ -10,11 +10,11 @@ export class FavorisService {
 
 
 addFavorite(favorite : any){
-  return this.http.post('http://localhost:8080/fav/create',favorite)
+  return this.http.post('http://217.160.37.151:8080/fav/create',favorite)
 }
 
 getFavorites(id : any){
-  return this.http.get(`http://localhost:8080/fav/${id}`)
+  return this.http.get(`http://217.160.37.151:8080/fav/${id}`)
 
 }
 

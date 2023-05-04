@@ -92,6 +92,9 @@ img {
     fill:rgb(246, 95, 95);
   }
 
+  .list-padding {
+    height: 78px; /* Ajustez cette valeur en fonction de la hauteur de votre composant fixe */
+}
 
 
   /* Media query pour les écrans de taille tablette et supérieure */

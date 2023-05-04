@@ -10,7 +10,7 @@ import { BehaviorSubject, EMPTY, Observable, catchError, of, throwError } from '
 export class UserProfilService {
 
 
-  private readonly apiUrl = 'http://localhost:8080/users';
+  private readonly apiUrl = 'http://217.160.37.151:8080/users';
   
 
   private dataUser = new BehaviorSubject<any>(null);
@@ -90,7 +90,7 @@ export class UserProfilService {
 
   getUserById(id: number|string|null): Observable<any> {
    
-    return this.http.get(`http://localhost:8080/users/${id}`);
+    return this.http.get(`http://217.160.37.151:8080/users/${id}`);
   }
 
   
@@ -103,11 +103,11 @@ export class UserProfilService {
   // }
 
   updateUser(users: any): Observable<any> {
-    return this.http.put(`http://localhost:8080/users/${users.id}`, users);
+    return this.http.put(`http://217.160.37.151:8080/users/${users.id}`, users);
   }
 
   deleteUser(id: string): Observable<any> {
-    return this.http.delete(`http://localhost:8080/users/${id}`);
+    return this.http.delete(`http://217.160.37.151:8080/users/${id}`);
   }
   
 }

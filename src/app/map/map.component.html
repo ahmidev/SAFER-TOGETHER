@@ -1,15 +1,18 @@
-<!-- <div class="background">
+<div class="background">
   <div class="map">
     <agm-map *ngIf="geolocations" class="carte" [latitude]="48.866667" [longitude]="2.333333">
 
-      <agm-marker  *ngFor="let item of geolocations" [latitude]="item.geolocalisation.latitude" [longitude]="item.geolocalisation.longitude">
+      <ng-container *ngFor="let item of geolocations;trackBy: trackByFn">
+        <ng-container *ngIf="item.geolocalisation && item.geolocalisation.latitude && item.geolocalisation.longitude">
+          <agm-marker [latitude]="item.geolocalisation.latitude" [longitude]="item.geolocalisation.longitude">
+            <agm-info-window>
+              <p>Safer {{ item.firstname }} {{item.lastname}}</p>
+            </agm-info-window>
+          </agm-marker>
+        </ng-container>
+      </ng-container>
 
-        <agm-info-window>
-          <p>Safer {{ item.firstname }} {{item.lastname}}</p>
-        </agm-info-window>
-
-      </agm-marker>
 
     </agm-map>
   </div>
-</div> -->
+</div>

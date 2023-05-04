@@ -1,3 +1,4 @@
+<body>
 <div class="container">
   <header>
     <!-- création de la div "fond" pour avoir un carré blanc comme sur la maquette -->
@@ -19,7 +20,7 @@
       <img *ngIf="!safer.photo " src="assets/Safer2.svg" alt="default Photo " class="safer" >
     </div>
   </header>
-<body>
+
 
   <main>
     <!-- nom Safer -->
@@ -27,9 +28,9 @@
     <!-- localisation Safer -->
     <h2>Paris, France</h2>
     <div class="avis">
-      <input type="text" [(ngModel)]="review">
-      <input type="number" [(ngModel)]="rating">
-      <button (click)="addAReview()">Laisser un avis</button>
+      <!-- <input type="text" [(ngModel)]="review"> -->
+      <!-- <input type="number" [(ngModel)]="rating"> -->
+      <!-- <button (click)="addAReview()">Laisser un avis</button> -->
     </div>
     <!-- note du Safer -->
     <div class="rating">

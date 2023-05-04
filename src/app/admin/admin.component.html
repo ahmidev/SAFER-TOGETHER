@@ -6,17 +6,19 @@
 <table class="user-table">
     <thead>
       <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
+        <th>Nom Prénom</th>
+        <th>Photo</th>
         <th>Statut</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <td>{{ user.firstname }}</td>
-        <td>{{ user.lastname }}</td>
+        <td>{{ user.firstname }} {{ user.lastname }}</td>
+        <td><img  class="photo" [src]="'data:;base64,'+user.photo" alt="photo"></td>
         <td>
           <div class="status-indicator" [ngClass]="{'active': user.active, 'inactive': !user.active}" (click)="toggleUserStatus(user)">
+            <span *ngIf="user.active">active</span>
+             <span *ngIf="!user.active">inactive</span>
           </div>
         </td>
       </tr>

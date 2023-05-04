@@ -2,13 +2,15 @@
 
   <div class="icones">
 
-      <img (click)="logOut()" src="/assets/icone_log.svg" alt="disconnect">
+      <img (click)="logOut()" src="/assets/power.svg" alt="disconnect">
 
-      <img routerLink="parentmap" src="/assets/icone_home.svg" alt="home">
+      <img routerLink="parentmap" routerLinkActive="active" src="/assets/home.svg" alt="home">
 
-      <img [routerLink]="['userprofil']" routerLinkActive="router-link-active"  src="/assets/icone_profil.svg" alt="profile">
+      <img [routerLink]="['userprofil']" routerLinkActive="active"  src="/assets/user.svg" alt="profile">
 
-      <img routerLink="message" src="/assets/icone_messages.svg" alt="messages">
+        <img routerLink="message" routerLinkActive="active" src="/assets/message-circle.svg" alt="messages">
+        <span *ngIf="unreadMessageCount" class="notification">{{unreadMessageCount}}</span>
+
 
   </div>
 

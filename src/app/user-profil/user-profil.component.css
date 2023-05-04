@@ -191,7 +191,10 @@ p {
 /* Media query pour les écrans de taille tablette et supérieure */
 @media (min-width: 768px) {
     .button {
-        width: 60vw;
+        max-width: 40vw;
       
+    }
+    .section2 {
+        max-width: 40vw;
     }
    }

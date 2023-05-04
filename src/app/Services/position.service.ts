@@ -23,12 +23,12 @@ export class PositionService {
   }
 
   saveLocation(id: any, geolocation: any) {
-    return this.http.put(`http://localhost:8080/users/geolocation/${id}`, geolocation)
+    return this.http.put(`http://217.160.37.151:8080/users/geolocation/${id}`, geolocation)
 
   }
 
   getLocation() {
-    return this.http.get("http://localhost:8080/users/")
+    return this.http.get("http://217.160.37.151:8080/users/")
   }
 
   getPosition(): Observable<GeolocationPosition> {

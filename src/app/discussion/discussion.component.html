@@ -1,40 +1,41 @@
- <body>
+<body>
 
-<div class="global-discussion">
+  <div class="global-discussion">
 
-  <div class="nav-top">
+    <div class="nav-top">
 
-    <div class="go-back">
-      <img src="assets/back-arrow.svg" alt="" routerLink="/message">
+      <div class="go-back">
+        <img src="assets/arrow-left.svg" alt="" routerLink="/message">
+      </div>
+
+      <div class="user">
+        <img [src]="getAppropriateImage(idReceiver) || defaultImage" alt="user">
+        <p>{{receiverUserData.lastname}} {{receiverUserData.firstname}}</p>
+        <p>{{ receiverUserData.connected ? 'En ligne' : 'Hors ligne' }}</p>
+      </div>
+
+      <div class="call">
+        <img src="../assets/phone.svg" alt="call">
+
+      </div>
+
     </div>
 
-    <div class="user">
-      <img [src]="getAppropriateImage(idReceiver) || defaultImage" alt="user">
-      <p>{{receiverUserData.lastname}} {{receiverUserData.firstname}}</p>
-      <p>Active now</p>
+    <div class="conversation">
 
-    </div>
-
-    <div class="call">
-      <img src="../assets/phone-call.svg" alt="call">
-
-    </div>
-
-  </div>
-
-  <div class="conversation">
-
-     <!-- <div class="talk left">
+      <!-- <div class="talk left">
       <img src="../assets/Safer1.svg" alt="safer1">
       <p>Lorem ipsum dolor sit amet.</p>
-    </div>  -->
+      </div>  -->
 
-    <!-- <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
+      <!-- <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender === !currentUser}">
       <img src="../assets/Safer4.svg" alt="user">
       <p>{{msg.message}}</p>
-    </div> -->
+      </div> -->
 
-      <div *ngFor="let msg of messages" [ngClass]="{'talk right': msg.sender === currentUser, 'talk left': msg.sender !== currentUser}">
+      <div *ngFor="let msg of messages"
+        [ngClass]="{'talk': true, 'right': msg.sender == currentUser, 'left': msg.sender == idReceiver}">
+
         <!-- <img [src]="getUserImage(msg.sender) | async" alt="user"> -->
         <img [src]="getAppropriateImage(msg.sender)" alt="user">
         <div class="msg-date">
@@ -42,15 +43,10 @@
           <span class="date">{{msg.createdDate|date:'dd/MM/yyyy, hh:mm a'}}</span>
         </div>
       </div>
-<<<<<<< HEAD
-    </div>
 
-=======
- 
-    
->>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
 
-       <!-- <div class="talk left">
+
+      <!-- <div class="talk left">
         <img src="../assets/Safer1.svg" alt="safer1">
         <p>Lorem ipsum dolor sit amet.</p>
       </div>
@@ -64,27 +60,16 @@
     </div>
 
 
-      <div class="container-input">
-        <div class="files-logo-container">
-          <img src="../assets/clip.svg" alt="attach-files">
-        </div>
+    <div class="container-input">
 
-        <div class="group-inp">
-          <input placeholder="Enter your message here"  [(ngModel)]="messageContent">
-          <button class="submit-message" (click)="sendMessage()">
-            <img src="../assets/send.svg" alt="send-message">
-          </button>
-        </div>
+      <div class="group-inp">
+        <input placeholder="Enter your message here" [(ngModel)]="messageContent">
+        <button class="submit-message" (click)="sendMessage()">
+          <img src="../assets/send2.svg" alt="send-message">
+        </button>
       </div>
 
-      
-
-
-
-
-
-
-
+    </div>
 
 
 
@@ -105,5 +90,3 @@
     <div class="message-content">{{msg.message}}</div>
   </div>
 </div> -->
-
-

@@ -27,12 +27,9 @@ export class UserProfilComponent implements OnInit{
     email: '',
     birthday: '',
     description: '',
-<<<<<<< HEAD
 
-=======
     photo:''
-    
->>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
+
   };
 
   fileToUpload!: File|null ;
@@ -131,7 +128,7 @@ getUser(){
   }
 
   // setDefaultPhoto(): void {
-  //   const defaultPhotoPath = 'assets/Safer1.svg'; 
+  //   const defaultPhotoPath = 'assets/Safer1.svg';
   //   this.photoPreview = this.sanitizer.bypassSecurityTrustUrl(defaultPhotoPath);
   // }
 

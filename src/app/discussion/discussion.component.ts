@@ -9,6 +9,7 @@ import { UserPhotoService } from '../Services/user-photo.service';
 import { Observable, catchError, map, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RouterTestingHarness } from '@angular/router/testing';
+import { NotificationService } from '../Services/notification.service';
 
 @Component({
   selector: 'app-discussion',
@@ -30,42 +31,65 @@ export class DiscussionComponent implements OnInit{
   public receiverUserData:any;
 
 
-  constructor(private chatService: MessageService, private activatedRoute: ActivatedRoute, private userPhotoService: UserPhotoService, private userProfilService:UserProfilService,  private sanitizer: DomSanitizer, private http:HttpClient) {}
+  constructor(private notificationService: NotificationService, private chatService: MessageService, private activatedRoute: ActivatedRoute, private userPhotoService: UserPhotoService, private userProfilService:UserProfilService,  private sanitizer: DomSanitizer, private http:HttpClient) {}
 
 sender_id: number = 0;
 receiver_id: number = 0;
 message : string = '';
 
   ngOnInit(): void {
+    this.notificationService.resetUnreadMessageCount();
+    // this.idReceiver = this.activatedRoute.snapshot.params['id'];
+    // console.log('ID reçu:', this.idReceiver);
+    // const userIdStorage = localStorage.getItem('userId');
+    // this.currentUser = Number(userIdStorage);
+    // console.log('ID user:', this.currentUser);
 
-    this.idReceiver = this.activatedRoute.snapshot.params['id'];
-    console.log('ID reçu:', this.idReceiver);
-    const userIdStorage = localStorage.getItem('userId');
-    this.currentUser = Number(userIdStorage);
-    console.log('ID user:', this.currentUser);
+
+    // this.chatService.connect(this.idReceiver,this.currentUser).subscribe(
+    //   (event) => {
+    //     if (event.type === 'CONNECTED') {
+    //       console.log('WebSocket connected:', event.payload);
+
+    //     } else if (event.type === 'MESSAGE') {
+    //       console.log('Received message:', event.payload);
+    //       console.log(event.payload.sender);
+    //       console.log(event.payload);
+    //       this.messages.push(event.payload)
+    //       console.log(this.messages);
+
+    //     }
+    //   },
+    //   (error) => {
+    //     console.error('WebSocket connection error:', error);
+    //   }
+    // );
+
+// Indiquez que le composant de discussion est actif
+this.notificationService.setDiscussionActive(true);
+
+this.idReceiver = this.activatedRoute.snapshot.params['id'];
+console.log('ID reçu:', this.idReceiver);
+const userIdStorage = localStorage.getItem('userId');
+this.currentUser = Number(userIdStorage);
+console.log('ID user:', this.currentUser);
+
+// Connectez-vous au WebSocket via NotificationService
+this.notificationService.connectWebSocket(this.idReceiver, this.currentUser);
+
+// Souscrivez au BehaviorSubject des messages dans le NotificationService
+this.notificationService.messages$.subscribe((messages) => {
+  this.messages = messages;
+  console.log(messages);
+
+});
 
 
-    this.chatService.connect(this.idReceiver,this.currentUser).subscribe(
-      (event) => {
-        if (event.type === 'CONNECTED') {
-          console.log('WebSocket connected:', event.payload);
-
-        } else if (event.type === 'MESSAGE') {
-          console.log('Received message:', event.payload);
-          console.log(event.payload.sender);
-          console.log(event.payload);
-          this.messages.push(event.payload)
-          console.log(this.messages);
-
-        }
-      },
-      (error) => {
-        console.error('WebSocket connection error:', error);
-      }
-    );
     this.getPhotoCurrentUser();
     this.getPhotoUserReceiver();
-    this.getMessage();
+    this.getMessageReceiver();
+    this.getMessageSender();
+
   }
 
 
@@ -80,90 +104,92 @@ message : string = '';
 
   }
 
-getMessage(){
-  this.http.get(`http://localhost:8080/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
-    this.messages = msg.filter((receiverUser: any) => receiverUser.receiver == this.idReceiver);
+getMessageSender(){
+  this.http.get(`http://217.160.37.151:8080/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
+    const tabTri = msg.filter((receiverUser: any) => receiverUser.receiver == this.idReceiver);
+    console.log("message du current :" ,tabTri);
+
+    tabTri.forEach((element:any) => {
+      this.messages.push(element)
+    });
     console.log(this.messages);
-    
-    
+
+
+  })
+}
+getMessageReceiver(){
+  this.http.get(`http://217.160.37.151:8080/message/by-sender/${this.idReceiver}`).subscribe(async (msg:any)=> {
+    const tabTri = msg.filter((receiverUser: any) => receiverUser.receiver == this.currentUser)
+    console.log("message du receiver :" ,tabTri);
+    tabTri.forEach((element:any) => {
+      this.messages.push(element)
+    });
+    console.log(this.messages)
+
   })
 }
 
 
 
 getPhotoCurrentUser(){
-  this.http.get(`http://localhost:8080/users/${this.currentUser}`).subscribe(async (data:any)=>{
+  this.http.get(`http://217.160.37.151:8080/users/${this.currentUser}`).subscribe(async (data:any)=>{
   this.currentUserData = data;
-<<<<<<< HEAD
-    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-      (photoBlob: Blob) => {
-        console.log('Photo Blob:', photoBlob);
-     this.photoCurrentUser = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob))
-
-    })
-
-=======
   console.log(data.photo);
-  
+
      this.photoCurrentUser = data.photo
-   
->>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
+
   })
 }
 
 
 
 getPhotoUserReceiver(){
-  this.http.get(`http://localhost:8080/users/${this.idReceiver}`).subscribe(async (data:any)=>{
+  this.http.get(`http://217.160.37.151:8080/users/${this.idReceiver}`).subscribe(async (data:any)=>{
     this.receiverUserData = data;
-<<<<<<< HEAD
-    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-      (photoBlob: Blob) => {
-        console.log('Photo Blob:', photoBlob);
-     this.photoReceiverUser = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
-
-    })
-
-=======
   console.log(data)
-  
-  this.photoReceiverUser = data.photo; 
-  
+
+  this.photoReceiverUser = data.photo;
+
   console.log(this.photoReceiverUser)
-    
->>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
+
   })
 }
 
 
 
 
+// getAppropriateImage(sender: number): SafeUrl | undefined {
+//   if (sender === this.currentUser) {
+//     if(this.photoCurrentUser !== null){
+
+//       return 'data:;base64,'+ this.photoCurrentUser;
+//     }else{
+//       return this.defaultImage;
+//     }
+//   }
+//   if (sender == this.idReceiver) {
+//     if(this.receiverUserData.photo !== null ){
+//       return 'data:;base64,'+ this.receiverUserData.photo;
+//     }else{
+//       return this.defaultImage;
+//     }
+//   } else {
+//     return undefined;
+//   }
+// }
+
 getAppropriateImage(sender: number): SafeUrl | undefined {
+  let base64Image: string | null = null;
+
   if (sender === this.currentUser) {
-    if(this.photoCurrentUser !== null){
+    base64Image = this.photoCurrentUser;
+  } else if (sender !== this.currentUser) {
+    base64Image =  this.photoReceiverUser;
+  }
 
-      return 'data:;base64,'+ this.photoCurrentUser;
-    }else{
-      return this.defaultImage;
-    }
-  }
-  if (sender === this.idReceiver) {
-    if(this.receiverUserData.photo !== null ){
-      return 'data:;base64,'+ this.photoReceiverUser;
-    }else{
-      return this.defaultImage;
-    }
-  } else {
-    return undefined;
-  }
+  return base64Image !== null ? 'data:;base64,' + base64Image : this.defaultImage;
 }
 
-<<<<<<< HEAD
-}
-=======
-
-
->>>>>>> 4232656e0dccbc46e89f7060fb01d5fde7716f36
 //  getUserImage(userId: number): Observable<SafeUrl> {
 //      let filename="";
 //     const user = this.userProfilService.getUserById(userId).subscribe(data=>{
@@ -206,12 +232,15 @@ getAppropriateImage(sender: number): SafeUrl | undefined {
 
 
 
+ngOnDestroy(): void {
+  // Indiquez que le composant de discussion n'est plus actif
+  this.notificationService.setDiscussionActive(false);
+}
 
 
-
-//   ngOnDestroy(): void {
-//    this.chatService.disconnect();
-//   }
+  // ngOnDestroy(): void {
+  //  this.chatService.disconnect();
+  // }
 
 
 //   ngOnDestroy(): void {
@@ -224,3 +253,4 @@ getAppropriateImage(sender: number): SafeUrl | undefined {
 //     sendForm.controls['message'].reset();
 //   }
 // }
+}
