@@ -1,44 +1,49 @@
 <div class="background">
-    <div class="title">
-        <h1>Trouvez votre SAFER</h1>
-    </div>
+  <div class="title">
+    <h1>Trouvez votre SAFER</h1>
+  </div>
 
 
- <!-- boucle for pour afficher les utilisateurs en ligne ( connecté )  -->
+  <!-- boucle for pour afficher les utilisateurs en ligne ( connecté )  -->
 
-<ul>
+  <ul class="cards">
+
     <li *ngFor="let user of listSafer">
 
-        <div  class="list">
-            <div [routerLink]="['/profil', user.id]"
-            [queryParams]="{ id: user.id}" class="user">
-                <div class="profile">
-                    <img *ngIf="user.photo" [src]="'data:;base64,'+user.photo"
-                        alt="">
-                    <img *ngIf="!user.photo" src="assets/Safer2.svg"
-                        alt="">
-                    <div class="name">
-                        <h2>{{user.firstname}}</h2>
-                        <!-- <h3>ville</h3> -->
-                    </div>
-                </div>
-                <div  class="coeur" [ngClass]="{'favorited':userFavorite(user.id)}">
-                    <svg id="Calque_7" data-name="Calque 7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 48.8">
-                    <path d="m25.01,9.83c-16.12-21.83-46.35,8.68,0,36.56,46.21-27.73,16.29-58.45,0-36.56Z" />
-                  </svg>
-                </div>
-                <div class="note">
-                    <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" [style.backgroundSize]="getStarBackgroundWidth(i) + ' 100%'">
-                        ★
-                      </span>
-                      
-                      
-                </div>
-            </div>
+      <div class="card" [routerLink]="['/profil', user.id]" [queryParams]="{ id: user.id}">
+
+        <div class="photo">
+          <img *ngIf="user.photo" [src]="'data:;base64,'+user.photo" alt="">
+          <img *ngIf="!user.photo" src="assets/Safer2.svg" alt="">
         </div>
-    
-    
+
+        <div class="details">
+          
+          <div class="name">
+            <h2>{{user.firstname}}</h2>
+          </div>
+
+          <div class="coeur" [ngClass]="{'favorited':userFavorite(user.id)}">
+            <svg id="Calque_7" data-name="Calque 7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 48.8">
+              <path d="m25.01,9.83c-16.12-21.83-46.35,8.68,0,36.56,46.21-27.73,16.29-58.45,0-36.56Z" />
+            </svg>
+          </div>
+
+          <div class="note">
+            <span class="star" *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
+              [style.backgroundSize]="getStarBackgroundWidth(i) + ' 100%'">
+              ★
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+
 
     </li>
+
     <li class="list-padding"></li>
+
   </ul>

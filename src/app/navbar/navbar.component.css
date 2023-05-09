@@ -30,6 +30,16 @@ img{
 }
 
 .active{
-color: rgba(128, 128, 128, 0.559);
+  filter: invert(94%) sepia(2%) saturate(0%) hue-rotate(194deg) brightness(87%) contrast(91%)
 }
 
+
+@media (min-width: 768px) {
+
+
+
+
+
+
+
+}

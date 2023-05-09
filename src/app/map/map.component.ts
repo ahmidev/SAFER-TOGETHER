@@ -42,12 +42,14 @@ export class MapComponent implements OnInit {
 
 
     // })
-    this.positionService.getLocation().subscribe((users: any) => {
-      this.geolocations = users
-      console.log("lol :" , this.geolocations     )
-     this.geolocations.forEach((user:any)=>console.log(user.geolocalisation))
-    })
- 
+
+
+    // this.positionService.getLocation().subscribe((users: any) => {
+    //   this.geolocations = users
+    //   console.log("lol :" , this.geolocations     )
+    //  this.geolocations.forEach((user:any)=>console.log(user.geolocalisation))
+    // })
+
   }
 
   trackByFn(index: number, item: any): any {
@@ -56,6 +58,6 @@ export class MapComponent implements OnInit {
 
   // lat2= 48.852020263671875;
 
-  // lng2= 2.1309494972229004; 
+  // lng2= 2.1309494972229004;
 
 }
