@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { NotificationService } from '../Services/notification.service';
+import { GlobalService } from '../Services/global.service';
 
 @Component({
   selector: 'app-message',
@@ -15,7 +16,7 @@ export class MessageComponent implements OnInit {
   userId! : number;
 
 
-constructor(private http: HttpClient,private sanitizer: DomSanitizer, private userPhotoService : UserPhotoService, private notificationService: NotificationService){}
+constructor(private globalService: GlobalService, private http: HttpClient,private sanitizer: DomSanitizer, private userPhotoService : UserPhotoService, private notificationService: NotificationService){}
 
 
 hasUnreadMessages(userId: number): boolean {
@@ -25,7 +26,7 @@ hasUnreadMessages(userId: number): boolean {
 
   ngOnInit() {
 
-    const url = 'http://217.160.37.151:8080/message/all-receivers-by-sender';
+    const url = `${this.globalService.apiUrl}/message/all-receivers-by-sender`;
   
     const userIdStorage = localStorage.getItem('userId');
     this.userId = Number(userIdStorage);

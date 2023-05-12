@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Observable } from 'rxjs/internal/Observable';
+import { GlobalService } from './global.service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class PositionService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
 
   getLocationService(): Promise<any> {
 
@@ -23,12 +24,12 @@ export class PositionService {
   }
 
   saveLocation(id: any, geolocation: any) {
-    return this.http.put(`http://217.160.37.151:8080/users/geolocation/${id}`, geolocation)
+    return this.http.put(`${this.globalService.apiUrl}/users/geolocation/${id}`, geolocation)
 
   }
 
   getLocation() {
-    return this.http.get("http://217.160.37.151:8080/users/")
+    return this.http.get(`${this.globalService.apiUrl}/users/`)
   }
 
   getPosition(): Observable<GeolocationPosition> {

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../modele/User';
+import { GlobalService } from '../Services/global.service';
 
 @Component({
   selector: 'app-inscription',
@@ -21,7 +22,7 @@ export class InscriptionComponent implements OnInit{
 
 
   userForm! : FormGroup;
-  constructor(private fb: FormBuilder, private http: HttpClient, private router:Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router:Router, private globalService: GlobalService) {
 
 
   this.userForm = this.fb.group ({
@@ -98,7 +99,7 @@ export class InscriptionComponent implements OnInit{
       'skipInterceptor': '' // Ajoutez ce header pour ignorer l'intercepteur pour cette requête
     });
 
-    this.http.post('http://217.160.37.151:8080/auth/register', formData, { headers }).subscribe(
+    this.http.post(`${this.globalService.apiUrl}/auth/register`, formData, { headers }).subscribe(
       (response) =>{
         console.log('Envoi réussi');
         this.router.navigate(["register"]);

@@ -10,6 +10,7 @@ import { Observable, catchError, map, of, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { NotificationService } from '../Services/notification.service';
+import { GlobalService } from '../Services/global.service';
 
 @Component({
   selector: 'app-discussion',
@@ -31,7 +32,7 @@ export class DiscussionComponent implements OnInit{
   public receiverUserData:any;
 
 
-  constructor(private notificationService: NotificationService, private chatService: MessageService, private activatedRoute: ActivatedRoute, private userPhotoService: UserPhotoService, private userProfilService:UserProfilService,  private sanitizer: DomSanitizer, private http:HttpClient) {}
+  constructor(private globalService: GlobalService, private notificationService: NotificationService, private chatService: MessageService, private activatedRoute: ActivatedRoute, private userPhotoService: UserPhotoService, private userProfilService:UserProfilService,  private sanitizer: DomSanitizer, private http:HttpClient) {}
 
 sender_id: number = 0;
 receiver_id: number = 0;
@@ -112,7 +113,7 @@ if (event.key === "Enter"){
   }
 
 getMessageSender(){
-  this.http.get(`http://217.160.37.151:8080/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
+  this.http.get(`${this.globalService.apiUrl}/message/by-sender/${this.currentUser}`).subscribe(async (msg:any)=> {
     const tabTri = msg.filter((receiverUser: any) => receiverUser.receiver == this.idReceiver);
     console.log("message du current :" ,tabTri);
 
@@ -125,7 +126,7 @@ getMessageSender(){
   })
 }
 getMessageReceiver(){
-  this.http.get(`http://217.160.37.151:8080/message/by-sender/${this.idReceiver}`).subscribe(async (msg:any)=> {
+  this.http.get(`${this.globalService.apiUrl}/message/by-sender/${this.idReceiver}`).subscribe(async (msg:any)=> {
     const tabTri = msg.filter((receiverUser: any) => receiverUser.receiver == this.currentUser)
     console.log("message du receiver :" ,tabTri);
     tabTri.forEach((element:any) => {
@@ -139,7 +140,7 @@ getMessageReceiver(){
 
 
 getPhotoCurrentUser(){
-  this.http.get(`http://217.160.37.151:8080/users/${this.currentUser}`).subscribe(async (data:any)=>{
+  this.http.get(`${this.globalService.apiUrl}/users/${this.currentUser}`).subscribe(async (data:any)=>{
   this.currentUserData = data;
   console.log(data.photo);
 
@@ -151,7 +152,7 @@ getPhotoCurrentUser(){
 
 
 getPhotoUserReceiver(){
-  this.http.get(`http://217.160.37.151:8080/users/${this.idReceiver}`).subscribe(async (data:any)=>{
+  this.http.get(`${this.globalService.apiUrl}/users/${this.idReceiver}`).subscribe(async (data:any)=>{
     this.receiverUserData = data;
   console.log(data)
 

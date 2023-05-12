@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserPhotoService } from '../Services/user-photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FavorisService } from '../Services/favoris.service';
+import { GlobalService } from '../Services/global.service';
 
 @Component({
   selector: 'app-safer-list',
@@ -20,7 +21,7 @@ export class SaferListComponent implements OnInit {
   rating: number = 0;
 
 
-  constructor(private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}
+  constructor(private globalService: GlobalService, private http: HttpClient, private userPhotoService : UserPhotoService, private sanitizer: DomSanitizer, private favorisService : FavorisService){}
 
   getStarBackgroundWidth(index: number): string {
     const starValue = index + 1;
@@ -37,7 +38,7 @@ export class SaferListComponent implements OnInit {
     this.userId = Number(localStorage.getItem('userId'));
     // const token = localStorage.getItem('token');
     const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b3RvQGdtYWlsLmNvbSIsImZ1bGxOYW1lIjoidGF0YSB0b3RvIiwiZXhwIjoxNjgwOTkxNTQ5LCJ1c2VySWQiOjQsImlhdCI6MTY4MDI3MTU0OSwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XX0.Ul0A7TCmPy3kzkF5mKpH-psI92hGgO_B8WIr2HnYSMo";
-    const url = 'http://217.160.37.151:8080/users/';
+    const url = `${this.globalService.apiUrl}/users/`;
     // const options = {
     //   method: 'GET', // Méthode HTTP (GET, POST, PUT, DELETE, etc.)
     //   headers: {

@@ -7,6 +7,7 @@ import { UserPhotoService } from '../Services/user-photo.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FavorisService } from '../Services/favoris.service';
 import { ReviewsService } from '../Services/reviews.service';
+import { GlobalService } from '../Services/global.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ProfilComponent implements OnInit {
   isFav : boolean = false;
   rating: number = 3.6;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient, private userPhotoService: UserPhotoService, private sanitizer: DomSanitizer, private favorisService: FavorisService, private reviewsService: ReviewsService) { }
+  constructor(private globalService: GlobalService, private router: Router, private activatedRoute: ActivatedRoute, private http: HttpClient, private userPhotoService: UserPhotoService, private sanitizer: DomSanitizer, private favorisService: FavorisService, private reviewsService: ReviewsService) { }
 
 
 
@@ -92,18 +93,9 @@ getStarBackgroundWidth(index: number): string {
     this.saferId = this.activatedRoute.snapshot.params['id'];
 
 
-  this.http.get(`http://217.160.37.151:8080/users/${this.saferId}`).subscribe(async (data:any)=>{
+  this.http.get(`${this.globalService.apiUrl}/users/${this.saferId}`).subscribe(async (data:any)=>{
     this.safer = data;
-    console.log(this.safer);
-
-    (await this.userPhotoService.getUserPhoto(data.photo)).subscribe(
-      (photoBlob: Blob) => {
-        console.log('Photo Blob:', photoBlob);
-     this.photoSafer = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(photoBlob));
-
-
-
-    });
+    
 
   },
   (error) => {

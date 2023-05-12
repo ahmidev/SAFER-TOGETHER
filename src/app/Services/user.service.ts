@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GlobalService } from './global.service';
 
 export interface User {
   id: number;
@@ -14,11 +15,11 @@ export interface User {
 })
 export class UserService {
 
-  private apiUrl = 'http://217.160.37.151:8080';
+  private apiUrl = this.globalService.apiUrl;
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
 
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/users/`);

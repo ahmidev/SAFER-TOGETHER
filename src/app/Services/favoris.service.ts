@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavorisService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private globalService: GlobalService) { }
 
 
 addFavorite(favorite : any){
-  return this.http.post('http://217.160.37.151:8080/fav/create',favorite)
+  return this.http.post(`${this.globalService.apiUrl}/fav/create`,favorite)
 }
 
 getFavorites(id : any){
-  return this.http.get(`http://217.160.37.151:8080/fav/${id}`)
+  return this.http.get(`${this.globalService.apiUrl}/fav/${id}`)
 
 }
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
+import { GlobalService } from '../Services/global.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -15,7 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   passwordForm! : FormGroup;
   message!:string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private fb: FormBuilder, private authService :AuthService) {
+  constructor(private globalService: GlobalService, private http: HttpClient, private route: ActivatedRoute, private fb: FormBuilder, private authService :AuthService) {
     this.route.queryParams.subscribe(params => {
       this.token = params['token'];
     });
@@ -79,7 +80,7 @@ ngOnInit(): void {
         })
       };
       
-    this.http.put('http://217.160.37.151:8080/users/reset-password', null, { params,...httpOptions }).subscribe(
+    this.http.put(`${this.globalService.apiUrl}/users/reset-password`, null, { params,...httpOptions }).subscribe(
       (response:any) => {
         console.log('Password reset successfully:', response);
         this.message = response.message

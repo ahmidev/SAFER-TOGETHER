@@ -4,6 +4,7 @@ import { catchError, tap, switchAll } from 'rxjs/operators';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import * as SockJS from 'sockjs-client';
 import * as Webstomp from 'webstomp-client';
+import { GlobalService } from './global.service';
 
 
 @Injectable({
@@ -14,10 +15,10 @@ export class MessageService {
   private stompClient!: Webstomp.Client;
   
 
-  constructor() { }
+  constructor(private globalService: GlobalService) { }
 
   connect(idReceiver:any,idSender:any): Observable<any> {
-    const socket = new SockJS('http://217.160.37.151:8080/chat'); 
+    const socket = new SockJS(`${this.globalService.apiUrl}/chat`); 
     this.stompClient = Webstomp.over(socket);
 
     const subject = new Subject<any>();

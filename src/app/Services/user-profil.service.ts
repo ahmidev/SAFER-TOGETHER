@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, EMPTY, Observable, catchError, of, throwError } from 'rxjs';
+import { GlobalService } from './global.service';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { BehaviorSubject, EMPTY, Observable, catchError, of, throwError } from '
 export class UserProfilService {
 
 
-  private readonly apiUrl = 'http://217.160.37.151:8080/users';
+  private readonly apiUrl = `${this.globalService.apiUrl}/users`;
   
 
   private dataUser = new BehaviorSubject<any>(null);
@@ -22,7 +23,7 @@ export class UserProfilService {
   public user !: {};
     token:string =  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYWguYmFAc25jZi5mciIsImZ1bGxOYW1lIjoidG90byBtb3VzICIsImV4cCI6MTY4MTI0NjU1MiwidXNlcklkIjo4LCJpYXQiOjE2ODA1MjY1NTIsImF1dGhvcml0aWVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV19.7MYDV0h-WKhAI6t3Lf9560FZG84Jqqs3onjg6Eo0mqY"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globalService: GlobalService) { }
 
 
   updateUserProfile(userId: number, userData: any, file?: File|null): Observable<any> {
@@ -90,7 +91,7 @@ export class UserProfilService {
 
   getUserById(id: number|string|null): Observable<any> {
    
-    return this.http.get(`http://217.160.37.151:8080/users/${id}`);
+    return this.http.get(`${this.globalService.apiUrl}/users/${id}`);
   }
 
   
@@ -103,11 +104,11 @@ export class UserProfilService {
   // }
 
   updateUser(users: any): Observable<any> {
-    return this.http.put(`http://217.160.37.151:8080/users/${users.id}`, users);
+    return this.http.put(`${this.globalService.apiUrl}/users/${users.id}`, users);
   }
 
   deleteUser(id: string): Observable<any> {
-    return this.http.delete(`http://217.160.37.151:8080/users/${id}`);
+    return this.http.delete(`${this.globalService.apiUrl}/users/${id}`);
   }
   
 }
