@@ -26,7 +26,7 @@ export class UserProfilComponent implements OnInit{
     password: '',
     email: '',
     birthday: '',
-    description: '',
+   
 
     photo:''
 
@@ -166,6 +166,8 @@ getUser(){
       response => {
         console.log('Données utilisateur mises à jour avec succès.', response);
         this.saveSuccess = true;
+        console.log(this.user);
+        
       },
       error => {
         console.error('Erreur lors de la mise à jour des données utilisateur.', error);

@@ -77,7 +77,10 @@
  
 </div>
 <div class="container-data">
-
+  <p class="password">
+    <span >8 caractères minimum avec une majuscule, une minuscule, des caractères spéciaux et un chiffre.</span>
+  </p>
+  
   <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
     Le mot de passe est invalide (8 caractères minimum).
   </div>
@@ -94,8 +97,8 @@
 
   <input type="password" id="confirm_password" formControlName="confirm_password" required compare="password"
   placeholder="Confirmation du mot de passe" [class.error]="userForm.get('confirm_password')?.touched &&
-  userForm.get('firstname')?.invalid" [class.valid]="userForm.get('confirm_password')?.touched &&
-  userForm.get('firstname')?.valid"/>
+  userForm.get('confirm_password')?.invalid" [class.valid]="userForm.get('confirm_password')?.touched &&
+  userForm.get('confirm_password')?.valid"/>
   <!-- <label for="confirm_password" class="floating-label">Confirmer votre Mot de passe</label> -->
 </div>
       <div class="file">
@@ -111,7 +114,7 @@
       <div class="accept">
         <label for="checkbox">
           J'ai lu et j'accepte les
-          <a href="">conditions générales</a>
+          <a routerLink="/rgpd" >conditions générales</a>
         </label>
         <input type="checkbox" class="checkbox" formControlName="checkbox" [class.error]="userForm.get('checkbox')?.invalid" [class.valid]="userForm.get('checkbox')?.valid"/>
       </div>
@@ -122,8 +125,3 @@
     </form>
   </div>
 </main>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 79aa74d58c5b8d3de67e13892a9e06dbc65f4018

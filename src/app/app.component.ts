@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthGuard } from './guards/auth.guard';
 import { AuthService } from './Services/auth.service';
 import { Router } from '@angular/router';
+import { LoadingService } from './Services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,11 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'safer';
   connexion:boolean = false;
+  loading$ = this.loadingService.loading$;
 
-  constructor(private guard: AuthGuard, private authService :AuthService, public router: Router){}
+  
+
+  constructor(private loadingService: LoadingService ,private guard: AuthGuard, private authService :AuthService, public router: Router){}
 
 
   ngOnInit(): void {
@@ -30,6 +34,7 @@ export class AppComponent implements OnInit {
       case '/reset-password':
       case '/request-reset-password':
       case '/register':
+      case '/rgpd':
         return false;
         default:
           // méthode startsWith de JavaScript pour vérifier si la chaîne de caractères de la route commence par /reset-password.

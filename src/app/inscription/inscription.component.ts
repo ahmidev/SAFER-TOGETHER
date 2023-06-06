@@ -78,7 +78,7 @@ export class InscriptionComponent implements OnInit{
   }
 
   onSubmit() {
-
+    console.log(this.userForm.value)
 
     const formData = new FormData();
     formData.append('firstname', this.userForm.value.lastname);

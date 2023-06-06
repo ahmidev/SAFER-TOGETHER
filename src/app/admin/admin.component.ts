@@ -44,6 +44,10 @@ logOut(){
   this.authService.logout();
   this.router.navigate(['connexion'])
 }
+home(){
+  
+  this.router.navigate(['parentmap'])
+}
 
 
 }

@@ -30,6 +30,8 @@ img{
 }
 
 .active{
-color: rgba(128, 128, 128, 0.559);
+background-color: #fccfd4;
+border-radius: 10px;
+padding: 0 5px;
 }
 

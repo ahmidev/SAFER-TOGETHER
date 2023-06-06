@@ -16,6 +16,7 @@ export class ConnexionComponent implements OnInit {
   email!: string;
   password!: string;
   erreur: boolean = false;
+  errorAuth!: string;
 
   user: any;
   constructor(private authService: AuthService, private router: Router, private userProfileService: UserProfilService,
@@ -76,6 +77,8 @@ export class ConnexionComponent implements OnInit {
       (error) => {
         // Si la connexion échoue, afficher un message d'erreur
         console.log('Erreur de connexion : ' + error);
+        alert(error)
+        this.errorAuth = error;
       }
     );
   }

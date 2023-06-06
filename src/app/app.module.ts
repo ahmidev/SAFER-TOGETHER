@@ -26,6 +26,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AdminComponent } from './admin/admin.component';
 import { RequestResetPasswordComponent } from './request-reset-password/request-reset-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LoadingInterceptor } from './Services/loading.interceptor';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ AppComponent,
   ],
 
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

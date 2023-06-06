@@ -9,8 +9,9 @@
         <img src="../assets/logo1.png" alt="" srcset="">
     </div>
 
-    <div class="alert" *ngIf="erreur">
-    <strong>login ou mot de passe erronés..</strong>
+    <div class="alert" *ngIf="errorAuth">
+    <!-- <strong>login ou mot de passe erronés..</strong> -->
+    <strong>{{errorAuth}}</strong>
     </div>
 
     <div class="input">

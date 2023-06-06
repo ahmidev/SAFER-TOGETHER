@@ -4,6 +4,7 @@
 
       <img (click)="logOut()" src="/assets/power.svg" alt="disconnect">
 
+      <img *ngIf="isAdmin" routerLink="admin" routerLinkActive="active" src="/assets/administrateur.svg" alt="home">
       <img routerLink="parentmap" routerLinkActive="active" src="/assets/home.svg" alt="home">
 
       <img [routerLink]="['userprofil']" routerLinkActive="active"  src="/assets/user.svg" alt="profile">

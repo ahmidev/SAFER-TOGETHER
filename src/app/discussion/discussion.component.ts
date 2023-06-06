@@ -30,13 +30,13 @@ export class DiscussionComponent implements OnInit{
   public defaultImage: string = "/assets/Safer2.svg"
   public currentUserData:any;
   public receiverUserData:any;
+  
+  sender_id: number = 0;
+  receiver_id: number = 0;
+  message : string = '';
 
 
   constructor(private globalService: GlobalService, private notificationService: NotificationService, private chatService: MessageService, private activatedRoute: ActivatedRoute, private userPhotoService: UserPhotoService, private userProfilService:UserProfilService,  private sanitizer: DomSanitizer, private http:HttpClient) {}
-
-sender_id: number = 0;
-receiver_id: number = 0;
-message : string = '';
 
   ngOnInit(): void {
     this.notificationService.resetUnreadMessageCount();
@@ -82,7 +82,7 @@ this.notificationService.connectWebSocket(this.idReceiver, this.currentUser);
 this.notificationService.messages$.subscribe((messages) => {
   this.messages = messages;
   console.log(messages);
-
+ 
 });
 
 
@@ -90,6 +90,10 @@ this.notificationService.messages$.subscribe((messages) => {
     this.getPhotoUserReceiver();
     this.getMessageReceiver();
     this.getMessageSender();
+    this.sortObjectsByDateProperty(this.messages,'createdDate');
+    
+    console.log(this.messages);
+    
 
   }
 
@@ -137,6 +141,13 @@ getMessageReceiver(){
   })
 }
 
+sortObjectsByDateProperty(objects: any[], dateProperty: string): any[] {
+  return objects.sort((a, b) => {
+    const dateA = new Date(a[dateProperty]);
+    const dateB = new Date(b[dateProperty]);
+    return dateA.getTime() - dateB.getTime() || dateA.toLocaleTimeString().localeCompare(dateB.toLocaleTimeString());
+  });
+}
 
 
 getPhotoCurrentUser(){
@@ -157,6 +168,7 @@ getPhotoUserReceiver(){
   console.log(data)
 
   this.photoReceiverUser = data.photo;
+  this.idReceiver = data.id
 
   console.log(this.photoReceiverUser)
 
@@ -243,6 +255,7 @@ getAppropriateImage(sender: number): SafeUrl | undefined {
 ngOnDestroy(): void {
   // Indiquez que le composant de discussion n'est plus actif
   this.notificationService.setDiscussionActive(false);
+  this.messages = [];
 }
 
 

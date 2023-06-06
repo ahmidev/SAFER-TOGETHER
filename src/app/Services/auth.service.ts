@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import { UserConnect } from '../modele/UserConnect';
 import { GlobalService } from './global.service';
 
@@ -43,8 +43,23 @@ export class AuthService {
       email: email,
       password: password
     };
-    return this.http.post<any>(this.url, body, httpOptions);
+    return this.http.post<any>(this.url, body, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 401) {
+      return throwError('E-mail ou mot de passe non valide');
+    } else if(error.status === 403) {
+      return throwError('Votre compte n\'a pas encore été validé');
+    }else {
+      
+      return throwError('An unknown error occurred');
+    }
+  }
+
+
 
   getToken(): string|null {
     return localStorage.getItem('token');

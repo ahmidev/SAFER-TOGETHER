@@ -95,6 +95,10 @@ svg {
 
 }
 
+
+.alert {
+    color: red;
+}
 /* Media query pour les écrans de taille tablette et supérieure */
 @media (min-width: 768px) {
     .main {

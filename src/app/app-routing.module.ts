@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConfirmRegistrationComponent } from './confirm-registration/confirm-registration.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { DiscussionComponent } from './discussion/discussion.component';
+import { RgpdComponent } from './rgpd/rgpd.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { InscriptionComponent } from './inscription/inscription.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'admin', component: AdminComponent, canActivate: [AdminGuard] },
   {path:'inscription', component: InscriptionComponent},
+  {path:'rgpd', component: RgpdComponent},
   {path:'connexion', component: ConnexionComponent},
   { path: 'request-reset-password', component: RequestResetPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },

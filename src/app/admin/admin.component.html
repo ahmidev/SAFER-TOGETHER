@@ -1,6 +1,7 @@
 <div class="header">
     <h2 class="title">Liste des Safers</h2>
-    <img class="logOut" (click)="logOut()" src="/assets/icone_log.svg" alt="disconnect">
+    <img class="logOut" (click)="home()" src="/assets/home.svg" alt="home">
+    <img class="logOut" (click)="logOut()" src="/assets/power.svg" alt="disconnect">
 
 </div>
 <table class="user-table">
@@ -14,7 +15,9 @@
     <tbody>
       <tr *ngFor="let user of users">
         <td>{{ user.firstname }} {{ user.lastname }}</td>
-        <td><img  class="photo" [src]="'data:;base64,'+user.photo" alt="photo"></td>
+        <td><img *ngIf="user.photo" class="photo" [src]="'data:;base64,'+user.photo" alt="photo">
+            <img *ngIf="!user.photo" class="photo" src="/assets/Safer1.svg" alt="photo">
+        </td>
         <td>
           <div class="status-indicator" [ngClass]="{'active': user.active, 'inactive': !user.active}" (click)="toggleUserStatus(user)">
             <span *ngIf="user.active">active</span>

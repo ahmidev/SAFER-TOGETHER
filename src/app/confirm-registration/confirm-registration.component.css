@@ -10,7 +10,7 @@
 .card {
     width: 90vw;
     font-family: 'Montserrat', sans-serif;
-    background-color: var( --cornflower-blue);
+    background-color: var( --china-rose);
     margin:200px auto;
     display: flex;
     flex-direction: column;
@@ -32,6 +32,7 @@
     text-align: center;
     margin-top: 10px;
     font-size: 1em;
+    color: antiquewhite;
 }
 
 .card button {
