@@ -23,7 +23,7 @@ export class PositionService {
   }
 
   saveLocation(id: any, geolocation: any) {
-    return this.http.put(`http://localhost:8080/users/geolocation/${id}`, geolocation)
+    return this.http.put(`http://localhost:8080/geoloc/geolocation/${id}`, geolocation)
 
   }
 
