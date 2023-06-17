@@ -84,6 +84,7 @@ ngOnInit(): void {
       (response:any) => {
         console.log('Password reset successfully:', response);
         this.message = response.message
+        this.passwordForm.value.reset();
       },
       error => {
         console.error('Error resetting password:', error);
